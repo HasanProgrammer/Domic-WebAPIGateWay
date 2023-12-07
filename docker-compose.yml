@@ -1,0 +1,62 @@
+name: 'web_api_gateway_service'
+
+services:
+  
+  domic.web.api.gateway:
+    networks:
+      - domic
+    image: web_api_gateway_service:1.0.0
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 150M
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - log:/app/CoreLogs
+      - ~\.aspnet\https\:/https/
+    environment:
+      - E-RabbitMQ-Host=
+      - E-RabbitMQ-Port=
+      - E-RabbitMQ-Username=
+      - E-RabbitMQ-Password=
+      - I-RabbitMQ-Host=
+      - I-RabbitMQ-Port=
+      - I-RabbitMQ-Username=
+      - I-RabbitMQ-Password=
+      - RedisConnectionString=domic.web.api.gateway.redis:6379
+      - MongoConnectionString=
+      - C-SqlServerConnectionString=
+      - Q-SqlServerConnectionString=
+      - ServiceDiscoveryAddress=https://domic.discovery.api:443
+      - Host=domic.web.api.gateway
+      - Port=80
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Dotris313@313%%
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Karami.WebAPI.pfx
+    depends_on:
+      - domic.web.api.gateway.redis
+  
+  domic.web.api.gateway.redis:
+    networks:
+      - domic
+    image: 'redis'
+    container_name: 'api_gateway_redis'
+    command: 'redis-server'
+    ports:
+      - 6300:6379
+  
+volumes:
+  log:
+    
+networks:
+  domic:
+    external: true
