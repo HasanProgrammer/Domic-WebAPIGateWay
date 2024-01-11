@@ -237,7 +237,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         _loadGrpcChannelForUserServiceAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressAsync(Service.UserService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
@@ -254,7 +254,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         _loadGrpcChannelForAuthServiceAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressAsync(Service.AuthService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.AuthService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 

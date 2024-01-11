@@ -149,7 +149,7 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
         _loadGrpcChannelAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressAsync(Service.CommentService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CommentService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 

@@ -155,7 +155,7 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
         _loadGrpcChannelAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressAsync(Service.UserService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 

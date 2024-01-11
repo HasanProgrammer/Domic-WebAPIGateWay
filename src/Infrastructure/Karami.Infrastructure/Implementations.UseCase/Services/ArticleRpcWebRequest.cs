@@ -240,7 +240,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         _loadGrpcChannelAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressAsync(Service.ArticleService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.ArticleService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 

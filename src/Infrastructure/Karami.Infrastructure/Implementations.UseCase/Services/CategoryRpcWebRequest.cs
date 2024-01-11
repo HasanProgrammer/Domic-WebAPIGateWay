@@ -177,7 +177,7 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
         _loadGrpcChannelAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressAsync(Service.CategoryService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CategoryService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
