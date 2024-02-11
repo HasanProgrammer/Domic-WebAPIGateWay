@@ -21,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Core\Karami.Common\Karami.Common.csproj" />
-    <ProjectReference Include="..\..\..\src\Core\Karami.Domain\Karami.Domain.csproj" />
-    <ProjectReference Include="..\..\..\src\Core\Karami.UseCase\Karami.UseCase.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\Domic.Common\Domic.Common.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\Domic.Domain\Domic.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\Domic.UseCase\Domic.UseCase.csproj" />
   </ItemGroup>
 
 </Project>

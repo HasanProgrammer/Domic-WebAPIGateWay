@@ -1,0 +1,49 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:42426",
+      "sslPort": 44383
+    }
+  },
+  "profiles": {
+    "Domic.WebAPI": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "Elastic-Host": "http://localhost:9200",
+        "Elastic-Username": "",
+        "Elastic-Password": "",
+        "E-RabbitMQ-Host": "localhost",
+        "E-RabbitMQ-Port": "5672",
+        "E-RabbitMQ-Username": "guest",
+        "E-RabbitMQ-Password": "guest",
+        "I-RabbitMQ-Host": "",
+        "I-RabbitMQ-Port": "",
+        "I-RabbitMQ-Username": "",
+        "I-RabbitMQ-Password": "",
+        "RedisConnectionString": "127.0.0.1:6379",
+        "MongoConnectionString": "",
+        "C-SqlServerConnectionString": "",
+        "Q-SqlServerConnectionString": "",
+        "ServiceDiscoveryAddress": "https://localhost:9009",
+        "Host": "localhost",
+        "Port": "5001",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

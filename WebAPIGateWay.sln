@@ -7,21 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F7ECA80D-EB2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FFBAB004-BDEA-471B-93C2-417FA06A47A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karami.Common", "src\Core\Karami.Common\Karami.Common.csproj", "{EB0B52FB-D2B9-435F-877B-35CB78799BB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domic.Common", "src\Core\Domic.Common\Domic.Common.csproj", "{EB0B52FB-D2B9-435F-877B-35CB78799BB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karami.Domain", "src\Core\Karami.Domain\Karami.Domain.csproj", "{F9E381D5-9BDD-4925-A19B-C5582F069E0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domic.Domain", "src\Core\Domic.Domain\Domic.Domain.csproj", "{F9E381D5-9BDD-4925-A19B-C5582F069E0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karami.UseCase", "src\Core\Karami.UseCase\Karami.UseCase.csproj", "{91E15190-0F29-419B-B0A9-44977CB6C64B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domic.UseCase", "src\Core\Domic.UseCase\Domic.UseCase.csproj", "{91E15190-0F29-419B-B0A9-44977CB6C64B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6D33A846-ECD2-4FE8-BA26-55A3E7CA8A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karami.Infrastructure", "src\Infrastructure\Karami.Infrastructure\Karami.Infrastructure.csproj", "{27A9E5D7-3A38-4C24-9750-555D4AAB7334}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domic.Infrastructure", "src\Infrastructure\Domic.Infrastructure\Domic.Infrastructure.csproj", "{27A9E5D7-3A38-4C24-9750-555D4AAB7334}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karami.Persistence", "src\Infrastructure\Karami.Persistence\Karami.Persistence.csproj", "{8D71F079-D77D-485E-81C3-9B99BA623EC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domic.Persistence", "src\Infrastructure\Domic.Persistence\Domic.Persistence.csproj", "{8D71F079-D77D-485E-81C3-9B99BA623EC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{3DA39AB6-F4AF-4D1F-8A3D-55601B320099}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karami.WebAPI", "src\Presentation\Karami.WebAPI\Karami.WebAPI.csproj", "{610B8BC9-2273-444C-AF85-EE4E3D87F38F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domic.WebAPI", "src\Presentation\Domic.WebAPI\Domic.WebAPI.csproj", "{610B8BC9-2273-444C-AF85-EE4E3D87F38F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8470726E-49D0-4A98-AD05-B2A47D42BD39}"
 EndProject
