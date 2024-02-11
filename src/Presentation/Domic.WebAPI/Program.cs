@@ -1,4 +1,3 @@
-using Domic.Core.Common.ClassConsts;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.WebAPI.Extensions;
 using Domic.Persistence.Contexts;
