@@ -1,0 +1,18 @@
+
+ Date: 1402/12/05 | Message: The client reset the request stream. | Source: System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadBufferAsync(CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadToEndAsyncInternal(CancellationToken cancellationToken)
+   at Domic.Core.WebAPI.Extensions.HttpContextExtension.CentralRequestLoggerAsync(HttpContext context, IHostEnvironment hostEnvironment, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IMessageBroker messageBroker, IDateTime dateTime, String serviceName, CancellationToken cancellationToken) 
+
+
+ Date: 1402/12/05 | Message: The client reset the request stream. | Source: System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadBufferAsync(CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadToEndAsyncInternal(CancellationToken cancellationToken)
+   at Domic.Core.WebAPI.Extensions.HttpContextExtension.CentralRequestLoggerAsync(HttpContext context, IHostEnvironment hostEnvironment, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IMessageBroker messageBroker, IDateTime dateTime, String serviceName, CancellationToken cancellationToken) 
+

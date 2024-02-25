@@ -44,9 +44,9 @@ WebApplication application = builder.Build();
 
 #region Middleware
 
-application.UsePreFlightCors(application.Configuration);
+application.UsePreFlightCors();
 
-application.UseCoreExceptionHandler();
+application.UseCoreExceptionHandler(application.Configuration);
 
 if (application.Environment.IsProduction())
 {

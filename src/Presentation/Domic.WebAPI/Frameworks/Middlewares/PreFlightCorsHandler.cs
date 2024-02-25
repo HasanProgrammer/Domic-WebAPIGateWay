@@ -2,14 +2,9 @@ namespace Domic.WebAPI.Frameworks.Middlewares;
 
 public class PreFlightCorsHandler
 {
-    private readonly RequestDelegate _Next;
-    private readonly IConfiguration  _Configuration;
+    private readonly RequestDelegate _next;
         
-    public PreFlightCorsHandler(RequestDelegate Next, IConfiguration Configuration)
-    {
-        _Next          = Next;
-        _Configuration = Configuration;
-    }
+    public PreFlightCorsHandler(RequestDelegate Next) => _next = Next;
 
     public async Task Invoke(HttpContext Context)
     {
@@ -23,6 +18,6 @@ public class PreFlightCorsHandler
             Context.Response.StatusCode = 200;
         }
 
-        await _Next(Context);
+        await _next(Context);
     }
 }

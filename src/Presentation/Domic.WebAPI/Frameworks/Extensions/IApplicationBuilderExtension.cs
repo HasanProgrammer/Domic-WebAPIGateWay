@@ -8,7 +8,6 @@ public static class IApplicationBuilderExtension
     /// 
     /// </summary>
     /// <param name="Builder"></param>
-    /// <param name="Configuration"></param>
-    public static void UsePreFlightCors(this IApplicationBuilder Builder, IConfiguration Configuration) 
-        => Builder.UseMiddleware<PreFlightCorsHandler>(Configuration);
+    public static void UsePreFlightCors(this IApplicationBuilder Builder) 
+        => Builder.UseMiddleware<PreFlightCorsHandler>();
 }
