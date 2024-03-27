@@ -93,3 +93,16 @@ public partial class Route
     public const string InActiveArticleCommentAnswerUrl = "inactive";
     public const string DeleteArticleCommentAnswerUrl   = "delete";
 }
+
+//Term
+public partial class Route
+{
+    public const string BaseTermUrl             = "term";
+    public const string ReadOneTermUrl          = "read-one";
+    public const string ReadAllPaginatedTermUrl = "read-all-paginated";
+    public const string CreateTermUrl           = "create";
+    public const string ActiveTermUrl           = "active";
+    public const string InActiveTermUrl         = "inactive";
+    public const string UpdateTermUrl           = "update";
+    public const string DeleteTermUrl           = "delete";
+}
