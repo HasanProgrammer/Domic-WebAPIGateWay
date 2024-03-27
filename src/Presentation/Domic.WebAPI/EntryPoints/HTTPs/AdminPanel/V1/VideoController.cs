@@ -4,9 +4,9 @@ using Domic.UseCase.TermUseCase.Commands.Active;
 using Domic.UseCase.TermUseCase.Commands.Create;
 using Domic.UseCase.TermUseCase.Commands.InActive;
 using Domic.UseCase.TermUseCase.Commands.Update;
-using Domic.UseCase.TermUseCase.DTOs.GRPCs.Update;
 using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TermUseCase.Queries.ReadOne;
+using Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -16,13 +16,14 @@ using ReadAllPaginatedResponse = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadAllPag
 using CreateResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Create.CreateResponse;
 using UpdateResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.UpdateResponse;
 using ActiveResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponse;
+using DeleteCommand            = Domic.UseCase.VideoUseCase.Commands.Update.DeleteCommand;
 using InActiveResponse         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
-public class TermController(IMediator mediator) : BaseUserController
+public class VideoController(IMediator mediator) : BaseUserController
 {
     /// <summary>
     /// 
@@ -31,8 +32,8 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route(Route.ReadOneTermUrl)]
-    [PermissionPolicy(Type = "Term.ReadOne")]
+    [Route(Route.ReadOneVideoUrl)]
+    [PermissionPolicy(Type = "Video.ReadOne")]
     public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
@@ -47,8 +48,8 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route(Route.ReadAllPaginatedTermUrl)]
-    [PermissionPolicy(Type = "Term.ReadAllPaginated")]
+    [Route(Route.ReadAllPaginatedVideoUrl)]
+    [PermissionPolicy(Type = "Video.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
@@ -65,8 +66,8 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPut]
-    [Route(Route.CreateTermUrl)]
-    [PermissionPolicy(Type = "Term.Create")]
+    [Route(Route.CreateVideoUrl)]
+    [PermissionPolicy(Type = "Video.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
@@ -81,8 +82,8 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPatch]
-    [Route(Route.UpdateTermUrl)]
-    [PermissionPolicy(Type = "Term.Update")]
+    [Route(Route.UpdateVideoUrl)]
+    [PermissionPolicy(Type = "Video.Update")]
     public async Task<IActionResult> Update([FromBody] UpdateCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
@@ -97,8 +98,8 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPatch]
-    [Route(Route.ActiveTermUrl)]
-    [PermissionPolicy(Type = "Term.Active")]
+    [Route(Route.ActiveVideoUrl)]
+    [PermissionPolicy(Type = "Video.Active")]
     public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
@@ -113,8 +114,8 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPatch]
-    [Route(Route.InActiveTermUrl)]
-    [PermissionPolicy(Type = "Term.InActive")]
+    [Route(Route.InActiveVideoUrl)]
+    [PermissionPolicy(Type = "Video.InActive")]
     public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
@@ -128,10 +129,10 @@ public class TermController(IMediator mediator) : BaseUserController
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPatch]
-    [Route(Route.DeleteTermUrl)]
-    [PermissionPolicy(Type = "Term.Delete")]
-    public async Task<IActionResult> InActive([FromBody] DeleteCommand command, CancellationToken cancellationToken)
+    [HttpDelete]
+    [Route(Route.DeleteVideoUrl)]
+    [PermissionPolicy(Type = "Video.Delete")]
+    public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 

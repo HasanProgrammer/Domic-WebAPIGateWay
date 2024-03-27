@@ -106,3 +106,16 @@ public partial class Route
     public const string UpdateTermUrl           = "update";
     public const string DeleteTermUrl           = "delete";
 }
+
+//Video
+public partial class Route
+{
+    public const string BaseVideoUrl             = "video";
+    public const string ReadOneVideoUrl          = "read-one";
+    public const string ReadAllPaginatedVideoUrl = "read-all-paginated";
+    public const string CreateVideoUrl           = "create";
+    public const string ActiveVideoUrl           = "active";
+    public const string InActiveVideoUrl         = "inactive";
+    public const string UpdateVideoUrl           = "update";
+    public const string DeleteVideoUrl           = "delete";
+}
