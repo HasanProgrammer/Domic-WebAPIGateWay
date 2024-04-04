@@ -11,7 +11,7 @@ using Domic.UseCase.TermUseCase.Commands.Active;
 using Domic.UseCase.TermUseCase.Commands.Update;
 using Domic.UseCase.TermUseCase.Commands.Create;
 using Domic.UseCase.TermUseCase.Commands.InActive;
-using Domic.UseCase.TermUseCase.DTOs.ViewModels;
+using Domic.UseCase.TermUseCase.DTOs;
 using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TermUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;

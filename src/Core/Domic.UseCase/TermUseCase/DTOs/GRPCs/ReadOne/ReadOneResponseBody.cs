@@ -1,4 +1,4 @@
-﻿using Domic.UseCase.TermUseCase.DTOs.ViewModels;
+﻿using Domic.UseCase.TermUseCase.DTOs;
 
 namespace Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadOne;
 
