@@ -3,46 +3,47 @@ using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Infrastructure.Extensions;
-using Domic.Core.Term.Grpc;
+using Domic.Core.Video.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
-using Domic.UseCase.TermUseCase.Contracts.Interfaces;
-using Domic.UseCase.TermUseCase.Commands.Active;
-using Domic.UseCase.TermUseCase.Commands.Update;
-using Domic.UseCase.TermUseCase.Commands.Create;
-using Domic.UseCase.TermUseCase.Commands.InActive;
-using Domic.UseCase.TermUseCase.DTOs.ViewModels;
-using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.TermUseCase.Queries.ReadOne;
+using Domic.UseCase.VideoUseCase.Contracts.Interfaces;
+using Domic.UseCase.VideoUseCase.Commands.Active;
+using Domic.UseCase.VideoUseCase.Commands.Update;
+using Domic.UseCase.VideoUseCase.Commands.Create;
+using Domic.UseCase.VideoUseCase.Commands.InActive;
+using Domic.UseCase.VideoUseCase.DTOs.ViewModels;
+using Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.VideoUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using String                       = Domic.Core.Term.Grpc.String;
-using Int32                        = Domic.Core.Term.Grpc.Int32;
-using ActiveRequest                = Domic.Core.Term.Grpc.ActiveRequest;
-using ReadOneResponse              = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadOneResponseBody          = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
-using CreateResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Create.CreateResponse;
-using CreateResponseBody           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Create.CreateResponseBody;
-using ReadAllPaginatedResponse     = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using ReadAllPaginatedResponseBody = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
-using UpdateResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.UpdateResponse;
-using UpdateResponseBody           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
-using ActiveResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponse;
-using ActiveResponseBody           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
-using CheckExistRequest            = Domic.Core.Term.Grpc.CheckExistRequest;
-using CreateRequest                = Domic.Core.Term.Grpc.CreateRequest;
-using InActiveRequest              = Domic.Core.Term.Grpc.InActiveRequest;
-using InActiveResponse             = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponse;
-using InActiveResponseBody         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
-using ReadAllPaginatedRequest      = Domic.Core.Term.Grpc.ReadAllPaginatedRequest;
-using ReadOneRequest               = Domic.Core.Term.Grpc.ReadOneRequest;
-using UpdateRequest                = Domic.Core.Term.Grpc.UpdateRequest;
+
+using String                       = Domic.Core.Video.Grpc.String;
+using Int32                        = Domic.Core.Video.Grpc.Int32;
+using ActiveRequest                = Domic.Core.Video.Grpc.ActiveRequest;
+using ReadOneResponse              = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponseBody          = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
+using CreateResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Create.CreateResponse;
+using CreateResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Create.CreateResponseBody;
+using ReadAllPaginatedResponse     = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllPaginatedResponseBody = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
+using UpdateResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.UpdateResponse;
+using UpdateResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
+using ActiveResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.ActiveResponse;
+using ActiveResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
+using CheckExistRequest            = Domic.Core.Video.Grpc.CheckExistRequest;
+using CreateRequest                = Domic.Core.Video.Grpc.CreateRequest;
+using InActiveRequest              = Domic.Core.Video.Grpc.InActiveRequest;
+using InActiveResponse             = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponse;
+using InActiveResponseBody         = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
+using ReadAllPaginatedRequest      = Domic.Core.Video.Grpc.ReadAllPaginatedRequest;
+using ReadOneRequest               = Domic.Core.Video.Grpc.ReadOneRequest;
+using UpdateRequest                = Domic.Core.Video.Grpc.UpdateRequest;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
-public class TermRpcWebRequest(
+public class VideoRpcWebRequest(
     IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
-) : ITermRpcWebRequest
+) : IVideoRpcWebRequest
 {
     private GrpcChannel _channel;
 
@@ -50,7 +51,7 @@ public class TermRpcWebRequest(
     {
         var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
         
-        CheckExistRequest payload = new() { TermId = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
+        CheckExistRequest payload = new() { VideoId = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
 
         var result =
             await loadData.client.CheckExistAsync(payload, headers: loadData.headers, 
@@ -65,7 +66,7 @@ public class TermRpcWebRequest(
         var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
         
         ReadOneRequest payload = new() {
-            TermId = request.TermId != null ? new String { Value = request.TermId } : null
+            VideoId = request.VideoId != null ? new String { Value = request.VideoId } : null
         };
 
         var result =
@@ -76,7 +77,7 @@ public class TermRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Term = result.Body.Term.DeSerialize<TermsDto>() } 
+            Body    = new ReadOneResponseBody { Video = result.Body.Video.DeSerialize<VideosDto>() } 
         };
     }
 
@@ -100,7 +101,7 @@ public class TermRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Terms = result.Body.Terms.DeSerialize<PaginatedCollection<TermsDto>>()
+                Videos = result.Body.Videos.DeSerialize<PaginatedCollection<VideosDto>>()
             }
         };
     }
@@ -111,12 +112,11 @@ public class TermRpcWebRequest(
         
         CreateRequest payload = new();
 
-        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }       : null;
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }             : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description }      : null;
-        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }         : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }      : null;
-        payload.Price       = request.Price       != null ? new String { Value = request.Price.ToString() } : null;
+        payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }      : null;
+        payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
+        payload.Description = request.Description != null ? new String { Value = request.Description } : null;
+        payload.VideoUrl    = request.VideoUrl    != null ? new String { Value = request.VideoUrl }    : null;
+        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
         
         var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -124,7 +124,7 @@ public class TermRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new CreateResponseBody { TermId = result.Body.TermId }
+            Body    = new CreateResponseBody { VideoId = result.Body.VideoId }
         };
     }
 
@@ -133,14 +133,12 @@ public class TermRpcWebRequest(
         var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
         
         UpdateRequest payload = new();
-
-        payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }            : null;
-        payload.CategoryId  = request.TermId      != null ? new String { Value = request.TermId }            : null;
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }              : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description }       : null;
-        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }          : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }       : null;
-        payload.Price       = request.Price       != null ? new String { Value = request.Status.ToString() } : null;
+        
+        payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }      : null;
+        payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
+        payload.Description = request.Description != null ? new String { Value = request.Description } : null;
+        payload.VideoUrl    = request.VideoUrl    != null ? new String { Value = request.VideoUrl }    : null;
+        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
         
         var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -148,7 +146,7 @@ public class TermRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new UpdateResponseBody { TermId = result.Body.TermId }
+            Body    = new UpdateResponseBody { VideoId = result.Body.VideoId }
         };
     }
 
@@ -158,7 +156,7 @@ public class TermRpcWebRequest(
         
         ActiveRequest payload = new();
 
-        payload.TermId = request.TermId is not null ? new String { Value = request.TermId } : null;
+        payload.VideoId = request.VideoId is not null ? new String { Value = request.VideoId } : null;
 
         var result = 
             await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -166,7 +164,7 @@ public class TermRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ActiveResponseBody { TermId = result.Body.TermId } 
+            Body    = new ActiveResponseBody { VideoId = result.Body.VideoId } 
         };
     }
 
@@ -176,7 +174,7 @@ public class TermRpcWebRequest(
         
         InActiveRequest payload = new();
 
-        payload.TermId = request.TermId is not null ? new String { Value = request.TermId } : null;
+        payload.VideoId = request.VideoId is not null ? new String { Value = request.VideoId } : null;
 
         var result = 
             await loadData.client.InActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -184,7 +182,7 @@ public class TermRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new InActiveResponseBody { TermId = result.Body.TermId } 
+            Body    = new InActiveResponseBody { VideoId = result.Body.VideoId } 
         };
     }
 
@@ -192,7 +190,7 @@ public class TermRpcWebRequest(
     
     /*---------------------------------------------------------------*/
 
-    private async Task<(Metadata headers, TermService.TermServiceClient client)> 
+    private async Task<(Metadata headers, VideoService.VideoServiceClient client)> 
         _loadGrpcChannelForTermServiceAsync(CancellationToken cancellationToken)
     {
         var targetServiceInstance =
@@ -205,7 +203,7 @@ public class TermRpcWebRequest(
                 { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() },
                 { Header.License , configuration.GetValue<string>("SecretKey") }
             },
-            new TermService.TermServiceClient(_channel)
+            new VideoService.VideoServiceClient(_channel)
         );
     }
 }

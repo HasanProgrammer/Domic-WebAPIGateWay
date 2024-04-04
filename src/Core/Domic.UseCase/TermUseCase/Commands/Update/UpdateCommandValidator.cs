@@ -3,12 +3,10 @@ using Domic.Core.Domain.Exceptions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.UseCase.Exceptions;
 using Domic.UseCase.RoleUseCase.Contracts.Interfaces;
-using Domic.UseCase.TermUseCase.Contracts.Interfaces;
 
 namespace Domic.UseCase.TermUseCase.Commands.Update;
 
-public class UpdateCommandValidator(ICategoryRpcWebRequest categoryRpcWebRequest, ITermRpcWebRequest termRpcWebRequest) 
-    : IValidator<UpdateCommand>
+public class UpdateCommandValidator(ICategoryRpcWebRequest categoryRpcWebRequest) : IValidator<UpdateCommand>
 {
     public async Task<object> ValidateAsync(UpdateCommand input, CancellationToken cancellationToken)
     {
@@ -18,17 +16,9 @@ public class UpdateCommandValidator(ICategoryRpcWebRequest categoryRpcWebRequest
         if (!input.Image.IsImage())
             throw new UseCaseException("فرمت تصویر شاخص دوره صحیح نمی باشد !");
         
-        var targetTermTask = termRpcWebRequest.CheckExistAsync(input.TermId, cancellationToken);
-        var targetCategoryTask = categoryRpcWebRequest.CheckExistAsync(input.CategoryId, cancellationToken);
-
-        await Task.WhenAll(targetTermTask, targetCategoryTask);
+        var targetCategory = await categoryRpcWebRequest.CheckExistAsync(input.CategoryId, cancellationToken);
         
-        if (await targetTermTask is false)
-            throw new DomainException(
-                string.Format("دوره ای با شناسه {0} وجود خارجی ندارد !", input.CategoryId)
-            );
-        
-        if (await targetCategoryTask is false)
+        if (targetCategory is false)
             throw new DomainException(
                 string.Format("دسته بندی با شناسه {0} وجود خارجی ندارد !", input.CategoryId)
             );

@@ -18,9 +18,9 @@ public class CreateCommandHandler(ITermRpcWebRequest termRpcWebRequest,
     {
         #region UploadFile
 
-        var image = await command.Image.UploadAsync(webHostEnvironment, cancellationToken: cancellationToken);
+        var imageInfo = await command.Image.UploadAsync(webHostEnvironment, cancellationToken: cancellationToken);
 
-        command.ImageUrl = image.path;
+        command.ImageUrl = imageInfo.path;
 
         #endregion
         

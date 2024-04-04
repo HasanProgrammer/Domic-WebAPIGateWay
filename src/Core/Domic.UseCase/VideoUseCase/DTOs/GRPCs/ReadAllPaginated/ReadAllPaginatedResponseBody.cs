@@ -5,5 +5,5 @@ namespace Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadAllPaginated;
 
 public class ReadAllPaginatedResponseBody
 {
-    public PaginatedCollection<VideosDto> Terms { get; set; }
+    public PaginatedCollection<VideosDto> Videos { get; set; }
 }

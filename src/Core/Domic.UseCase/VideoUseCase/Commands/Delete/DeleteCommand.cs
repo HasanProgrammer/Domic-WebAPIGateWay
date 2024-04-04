@@ -5,5 +5,5 @@ namespace Domic.UseCase.VideoUseCase.Commands.Update;
 
 public class DeleteCommand : ICommand<DeleteResponse>
 {
-    
+    public required string VideoId { get; init; }
 }

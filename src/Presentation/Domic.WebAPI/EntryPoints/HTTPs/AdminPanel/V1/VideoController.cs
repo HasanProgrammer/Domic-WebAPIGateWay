@@ -1,23 +1,23 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
-using Domic.UseCase.TermUseCase.Commands.Active;
-using Domic.UseCase.TermUseCase.Commands.Create;
-using Domic.UseCase.TermUseCase.Commands.InActive;
-using Domic.UseCase.TermUseCase.Commands.Update;
-using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.TermUseCase.Queries.ReadOne;
+using Domic.UseCase.VideoUseCase.Commands.Active;
+using Domic.UseCase.VideoUseCase.Commands.Create;
+using Domic.UseCase.VideoUseCase.Commands.InActive;
+using Domic.UseCase.VideoUseCase.Commands.Update;
+using Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.VideoUseCase.Queries.ReadOne;
 using Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 using Route                    = Domic.Common.ClassConsts.Route;
-using ReadOneResponse          = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadAllPaginatedResponse = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using CreateResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Create.CreateResponse;
-using UpdateResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.UpdateResponse;
-using ActiveResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponse;
+using ReadOneResponse          = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadAllPaginatedResponse = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using CreateResponse           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Create.CreateResponse;
+using UpdateResponse           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.UpdateResponse;
+using ActiveResponse           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using DeleteCommand            = Domic.UseCase.VideoUseCase.Commands.Update.DeleteCommand;
-using InActiveResponse         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponse;
+using InActiveResponse         = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 

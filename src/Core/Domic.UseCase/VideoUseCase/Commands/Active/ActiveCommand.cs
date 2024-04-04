@@ -5,5 +5,5 @@ namespace Domic.UseCase.VideoUseCase.Commands.Active;
 
 public class ActiveCommand : ICommand<ActiveResponse>
 {
-    public required string TermId { get; init; }
+    public required string VideoId { get; init; }
 }
