@@ -119,3 +119,11 @@ public partial class Route
     public const string UpdateVideoUrl           = "update";
     public const string DeleteVideoUrl           = "delete";
 }
+
+//AggregateTerm
+public partial class Route
+{
+    public const string BaseAggregateTermUrl             = "aggregate-term";
+    public const string ReadOneAggregateTermUrl          = "read-one";
+    public const string ReadAllPaginatedAggregateTermUrl = "read-all-paginated";
+}

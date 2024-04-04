@@ -31,6 +31,7 @@
     <!--ForPrivateService-->
     <PackageReference Include="Domic.Grpc.Term" Version="1.1.0" />
     <PackageReference Include="Domic.Grpc.Video" Version="4.0.0" />
+    <PackageReference Include="Domic.Grpc.AggregateTerm" Version="1.1.0" />
     <!--ForPrivateService-->
   </ItemGroup>
   <!-- CorePackage | RPC -->

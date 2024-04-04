@@ -11,7 +11,7 @@ using Domic.UseCase.VideoUseCase.Commands.Active;
 using Domic.UseCase.VideoUseCase.Commands.Update;
 using Domic.UseCase.VideoUseCase.Commands.Create;
 using Domic.UseCase.VideoUseCase.Commands.InActive;
-using Domic.UseCase.VideoUseCase.DTOs.ViewModels;
+using Domic.UseCase.VideoUseCase.DTOs;
 using Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.VideoUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;

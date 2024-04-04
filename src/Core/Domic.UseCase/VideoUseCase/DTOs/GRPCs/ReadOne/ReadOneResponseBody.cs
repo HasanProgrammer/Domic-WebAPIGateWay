@@ -1,4 +1,4 @@
-﻿using Domic.UseCase.VideoUseCase.DTOs.ViewModels;
+﻿using Domic.UseCase.VideoUseCase.DTOs;
 
 namespace Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne;
 
