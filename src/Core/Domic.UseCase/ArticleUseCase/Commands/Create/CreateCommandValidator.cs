@@ -26,7 +26,7 @@ public class CreateCommandValidator : IValidator<CreateCommand>
         if (!input.Image.IsImage())
             throw new UseCaseException("فرمت تصویر شاخص مقاله صحیح نمی باشد !");
 
-        var taskUser     = _userRpcWebRequest.CheckExistAsync(input.UserId, cancellationToken);
+        var taskUser = _userRpcWebRequest.CheckExistAsync(input.UserId, cancellationToken);
         var taskCategory = _categoryRpcWebRequest.CheckExistAsync(input.CategoryId, cancellationToken);
 
         await Task.WhenAll(taskUser, taskCategory);

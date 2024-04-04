@@ -1,12 +1,10 @@
-﻿using Domic.Core.Auth.Grpc;
-using Grpc.Core;
+﻿using Grpc.Core;
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.Term.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.User.Grpc;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.TermUseCase.Contracts.Interfaces;
 using Domic.UseCase.TermUseCase.Commands.Active;
@@ -18,9 +16,9 @@ using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TermUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using ActiveRequest = Domic.Core.Term.Grpc.ActiveRequest;
 using String                       = Domic.Core.Term.Grpc.String;
 using Int32                        = Domic.Core.Term.Grpc.Int32;
+using ActiveRequest                = Domic.Core.Term.Grpc.ActiveRequest;
 using ReadOneResponse              = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
 using ReadOneResponseBody          = Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
 using CreateResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Create.CreateResponse;
@@ -31,14 +29,14 @@ using UpdateResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update
 using UpdateResponseBody           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
 using ActiveResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using ActiveResponseBody           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
-using CheckExistRequest = Domic.Core.Term.Grpc.CheckExistRequest;
-using CreateRequest = Domic.Core.Term.Grpc.CreateRequest;
-using InActiveRequest = Domic.Core.Term.Grpc.InActiveRequest;
+using CheckExistRequest            = Domic.Core.Term.Grpc.CheckExistRequest;
+using CreateRequest                = Domic.Core.Term.Grpc.CreateRequest;
+using InActiveRequest              = Domic.Core.Term.Grpc.InActiveRequest;
 using InActiveResponse             = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 using InActiveResponseBody         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
-using ReadAllPaginatedRequest = Domic.Core.Term.Grpc.ReadAllPaginatedRequest;
-using ReadOneRequest = Domic.Core.Term.Grpc.ReadOneRequest;
-using UpdateRequest = Domic.Core.Term.Grpc.UpdateRequest;
+using ReadAllPaginatedRequest      = Domic.Core.Term.Grpc.ReadAllPaginatedRequest;
+using ReadOneRequest               = Domic.Core.Term.Grpc.ReadOneRequest;
+using UpdateRequest                = Domic.Core.Term.Grpc.UpdateRequest;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -70,7 +68,7 @@ public class TermRpcWebRequest(
             TermId = request.TermId != null ? new String { Value = request.TermId } : null
         };
 
-        var result = 
+        var result =
             await loadData.client.ReadOneAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
@@ -93,7 +91,7 @@ public class TermRpcWebRequest(
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
         
-        var result = 
+        var result =
             await loadData.client.ReadAllPaginateAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
@@ -113,12 +111,14 @@ public class TermRpcWebRequest(
         
         CreateRequest payload = new();
 
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description } : null;
-        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }    : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
+        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }       : null;
+        payload.Name        = request.Name        != null ? new String { Value = request.Name }             : null;
+        payload.Description = request.Description != null ? new String { Value = request.Description }      : null;
+        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }         : null;
+        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }      : null;
+        payload.Price       = request.Price       != null ? new String { Value = request.Price.ToString() } : null;
         
-        var result = 
+        var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
         
         return new() {
@@ -134,11 +134,13 @@ public class TermRpcWebRequest(
         
         UpdateRequest payload = new();
 
-        payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }      : null;
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description } : null;
-        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }    : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
+        payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }            : null;
+        payload.CategoryId  = request.TermId      != null ? new String { Value = request.TermId }            : null;
+        payload.Name        = request.Name        != null ? new String { Value = request.Name }              : null;
+        payload.Description = request.Description != null ? new String { Value = request.Description }       : null;
+        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }          : null;
+        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }       : null;
+        payload.Price       = request.Price       != null ? new String { Value = request.Status.ToString() } : null;
         
         var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
