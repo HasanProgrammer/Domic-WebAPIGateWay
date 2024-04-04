@@ -127,3 +127,11 @@ public partial class Route
     public const string ReadOneAggregateTermUrl          = "read-one";
     public const string ReadAllPaginatedAggregateTermUrl = "read-all-paginated";
 }
+
+//AggregateVideo
+public partial class Route
+{
+    public const string BaseAggregateVideoUrl             = "aggregate-video";
+    public const string ReadOneAggregateVideoUrl          = "read-one";
+    public const string ReadAllPaginatedAggregateVideoUrl = "read-all-paginated";
+}

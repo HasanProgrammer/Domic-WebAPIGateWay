@@ -1,7 +1,7 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
-using Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated;
-using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateVideoUseCase.Queries.ReadAllPaginated;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +12,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin,Author")]
 [BlackListPolicy]
-public class AggregateTermController(IMediator mediator) : BaseAggregateVideoController
+public class AggregateVideoController(IMediator mediator) : BaseAggregateVideoController
 {
     /// <summary>
     /// 
@@ -21,8 +21,8 @@ public class AggregateTermController(IMediator mediator) : BaseAggregateVideoCon
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route(Route.ReadAllPaginatedAggregateTermUrl)]
-    [PermissionPolicy(Type = "AggregateTermReadAllPaginated")]
+    [Route(Route.ReadAllPaginatedAggregateVideoUrl)]
+    [PermissionPolicy(Type = "AggregateVideoReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
