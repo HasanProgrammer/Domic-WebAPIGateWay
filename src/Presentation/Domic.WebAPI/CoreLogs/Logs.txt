@@ -1,0 +1,63 @@
+
+ Date: 1403/01/21 | Message: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround | Source: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+
+
+ Date: 1403/01/21 | Message: The client reset the request stream. | Source: System.IO.IOException: The client reset the request stream.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadBufferAsync(CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadToEndAsyncInternal(CancellationToken cancellationToken)
+   at Domic.Core.WebAPI.Extensions.HttpContextExtension.CentralRequestLoggerAsync(HttpContext context, IHostEnvironment hostEnvironment, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IMessageBroker messageBroker, IDateTime dateTime, String serviceName, CancellationToken cancellationToken) 
+
+
+ Date: 1403/01/21 | Message: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround | Source: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+
+
+ Date: 1403/01/21 | Message: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround | Source: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+
+
+ Date: 1403/01/22 | Message: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround | Source: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+
+
+ Date: 1403/01/22 | Message: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround | Source: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+
+
+ Date: 1403/01/22 | Message: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround | Source: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/v{version}/aggregate-video/read-all-paginated" for actions - Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateTermController.ReadAllPaginated (Domic.WebAPI),Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1.AggregateVideoController.ReadAllPaginated (Domic.WebAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+

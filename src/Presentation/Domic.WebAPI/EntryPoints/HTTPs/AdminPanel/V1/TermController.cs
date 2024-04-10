@@ -22,7 +22,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
-public class TermController(IMediator mediator) : BaseUserController
+public class TermController(IMediator mediator) : BaseTermController
 {
     /// <summary>
     /// 

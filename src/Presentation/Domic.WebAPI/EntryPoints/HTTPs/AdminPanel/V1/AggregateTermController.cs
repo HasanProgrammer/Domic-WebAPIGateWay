@@ -12,7 +12,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin,Author")]
 [BlackListPolicy]
-public class AggregateTermController(IMediator mediator) : BaseAggregateVideoController
+public class AggregateTermController(IMediator mediator) : BaseAggregateTermController
 {
     /// <summary>
     /// 

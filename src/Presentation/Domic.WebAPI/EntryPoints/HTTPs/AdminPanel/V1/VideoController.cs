@@ -23,7 +23,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
-public class VideoController(IMediator mediator) : BaseUserController
+public class VideoController(IMediator mediator) : BaseVideoController
 {
     /// <summary>
     /// 
