@@ -32,7 +32,7 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadOneTermUrl)]
-    [PermissionPolicy(Type = "Term.ReadOne")]
+    //[PermissionPolicy(Type = "Term.ReadOne")]
     public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
@@ -48,7 +48,7 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedTermUrl)]
-    [PermissionPolicy(Type = "Term.ReadAllPaginated")]
+    //[PermissionPolicy(Type = "Term.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
@@ -66,7 +66,7 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpPut]
     [Route(Route.CreateTermUrl)]
-    [PermissionPolicy(Type = "Term.Create")]
+    //[PermissionPolicy(Type = "Term.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
@@ -82,7 +82,7 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.UpdateTermUrl)]
-    [PermissionPolicy(Type = "Term.Update")]
+    //[PermissionPolicy(Type = "Term.Update")]
     public async Task<IActionResult> Update([FromBody] UpdateCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
@@ -98,7 +98,7 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.ActiveTermUrl)]
-    [PermissionPolicy(Type = "Term.Active")]
+    //[PermissionPolicy(Type = "Term.Active")]
     public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
@@ -114,7 +114,7 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.InActiveTermUrl)]
-    [PermissionPolicy(Type = "Term.InActive")]
+    //[PermissionPolicy(Type = "Term.InActive")]
     public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
@@ -130,8 +130,8 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.DeleteTermUrl)]
-    [PermissionPolicy(Type = "Term.Delete")]
-    public async Task<IActionResult> InActive([FromBody] DeleteCommand command, CancellationToken cancellationToken)
+    //[PermissionPolicy(Type = "Term.Delete")]
+    public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
