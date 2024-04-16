@@ -1,5 +1,4 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TermUseCase.Commands.Active;
 using Domic.UseCase.TermUseCase.Commands.Create;
 using Domic.UseCase.TermUseCase.Commands.InActive;
