@@ -160,8 +160,9 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 
         return (
             new() {
-                { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() },
-                { Header.License , _configuration.GetValue<string>("SecretKey") }
+                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
+                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
+                { Header.IdempotentKey , Guid.NewGuid().ToString() }
             },
             new ArticleCommentService.ArticleCommentServiceClient(_channel)
         );

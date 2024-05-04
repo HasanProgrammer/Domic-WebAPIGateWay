@@ -198,10 +198,13 @@ public class VideoRpcWebRequest(
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
         
+        //Todo : ( Tech Debt ) => Shoud be ignore ( CheckExists ) action!
+        
         return (
             new() {
-                { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() },
-                { Header.License , configuration.GetValue<string>("SecretKey") }
+                { Header.Token         , httpContextAccessor.HttpContext.GetRowToken() } ,
+                { Header.License       , configuration.GetValue<string>("SecretKey") }   ,
+                { Header.IdempotentKey , Guid.NewGuid().ToString() }
             },
             new VideoService.VideoServiceClient(_channel)
         );

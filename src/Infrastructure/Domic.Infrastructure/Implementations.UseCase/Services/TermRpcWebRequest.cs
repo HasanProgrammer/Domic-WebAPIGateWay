@@ -200,10 +200,13 @@ public class TermRpcWebRequest(
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
         
+        //Todo : ( Tech Debt ) => Shoud be ignore ( CheckExists ) action!
+        
         return (
             new() {
-                { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() },
-                { Header.License , configuration.GetValue<string>("SecretKey") }
+                { Header.Token         , httpContextAccessor.HttpContext.GetRowToken() } ,
+                { Header.License       , configuration.GetValue<string>("SecretKey") }   ,
+                { Header.IdempotentKey , Guid.NewGuid().ToString() }
             },
             new TermService.TermServiceClient(_channel)
         );

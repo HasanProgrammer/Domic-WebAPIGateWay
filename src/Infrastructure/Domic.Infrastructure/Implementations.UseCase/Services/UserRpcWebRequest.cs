@@ -241,10 +241,13 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
+        //Todo : ( Tech Debt ) => Shoud be ignore ( CheckExists ) action!
+        
         return (
             new() {
-                { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() },
-                { Header.License , _configuration.GetValue<string>("SecretKey") }
+                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
+                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
+                { Header.IdempotentKey , Guid.NewGuid().ToString() }
             },
             new UserService.UserServiceClient(_channel)
         );
