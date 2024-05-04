@@ -263,7 +263,8 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
         return (
             new() {
-                { Header.License , _configuration.GetValue<string>("SecretKey") }
+                { Header.License       , _configuration.GetValue<string>("SecretKey") },
+                { Header.IdempotentKey , Guid.NewGuid().ToString() }
             },
             new AuthService.AuthServiceClient(_channel)
         );
