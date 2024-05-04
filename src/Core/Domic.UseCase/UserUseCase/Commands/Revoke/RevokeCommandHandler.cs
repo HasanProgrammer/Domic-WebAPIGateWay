@@ -30,7 +30,7 @@ public class RevokeCommandHandler : ICommandHandler<RevokeCommand, bool>
             
             await _redisCache.SetCacheValueAsync(
                 new KeyValuePair<string, string>("BlackList-Auth", _serializer.Serialize(payload)),
-                cancellationToken
+                cancellationToken: cancellationToken
             );
         }
 
@@ -48,7 +48,7 @@ public class RevokeCommandHandler : ICommandHandler<RevokeCommand, bool>
                 
                 await _redisCache.SetCacheValueAsync(
                     new KeyValuePair<string, string>($"BlackList-{permission}", _serializer.Serialize(payload)),
-                    cancellationToken
+                    cancellationToken: cancellationToken
                 );
             }
         }
