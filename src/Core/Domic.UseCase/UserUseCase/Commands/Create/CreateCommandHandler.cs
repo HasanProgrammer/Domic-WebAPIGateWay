@@ -11,7 +11,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, CreateRespons
     private readonly IUserRpcWebRequest _userRpcWebRequest;
     
     public CreateCommandHandler(IUserRpcWebRequest userRpcWebRequest) => _userRpcWebRequest = userRpcWebRequest;
-    
+
     public async Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken) 
         => await _userRpcWebRequest.CreateAsync(command, cancellationToken);
 }

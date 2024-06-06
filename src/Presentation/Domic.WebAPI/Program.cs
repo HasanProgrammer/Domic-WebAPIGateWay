@@ -23,7 +23,7 @@ builder.RegisterEntityFrameworkCoreCommand<SQLContext, string>();
 builder.RegisterCommandQueryUseCases();
 builder.RegisterJsonWebToken();
 builder.RegisterMessageBroker();
-builder.RegisterRedisCaching();
+builder.RegisterDistributedCaching();
 builder.RegisterServicesOfGrpcClientWebRequest();
 builder.RegisterServices();
 builder.RegisterServiceDiscovery();

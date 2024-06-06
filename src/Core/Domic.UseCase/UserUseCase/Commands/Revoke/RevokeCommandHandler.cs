@@ -6,10 +6,10 @@ namespace Domic.UseCase.UserUseCase.Commands.Revoke;
 
 public class RevokeCommandHandler : ICommandHandler<RevokeCommand, bool>
 {
-    private readonly IRedisCache _redisCache;
+    private readonly IExternalDistributedCache _redisCache;
     private readonly ISerializer _serializer;
 
-    public RevokeCommandHandler(IRedisCache redisCache, ISerializer serializer)
+    public RevokeCommandHandler(IExternalDistributedCache redisCache, ISerializer serializer)
     {
         _redisCache = redisCache;
         _serializer = serializer;

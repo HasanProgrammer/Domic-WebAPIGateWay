@@ -8,12 +8,13 @@ namespace Domic.UseCase.UserUseCase.Commands.SignIn;
 
 public class SignInCommandHandler : ICommandHandler<SignInCommand, SignInResponse>
 {
-    private readonly IRedisCache        _redisCache;
+    private readonly IExternalDistributedCache    _redisCache;
     private readonly ISerializer        _serializer;
     private readonly IJsonWebToken      _jsonWebToken;
     private readonly IUserRpcWebRequest _userRpcWebRequest;
 
-    public SignInCommandHandler(IUserRpcWebRequest userRpcWebRequest, IRedisCache redisCache, ISerializer serializer,
+    public SignInCommandHandler(IUserRpcWebRequest userRpcWebRequest, IExternalDistributedCache redisCache, 
+        ISerializer serializer,
         IJsonWebToken jsonWebToken
     )
     {
