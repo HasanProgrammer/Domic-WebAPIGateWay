@@ -34,7 +34,8 @@ services:
       - I-RabbitMQ-Port=
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
-      - RedisConnectionString=domic.web.api.gateway.redis:6379
+      - E-RedisConnectionString=domic.web.api.gateway.redis:6379
+      - I-RedisConnectionString=domic.web.api.gateway.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=
