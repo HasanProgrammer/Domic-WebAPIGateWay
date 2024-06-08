@@ -9,7 +9,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseUserUrl             = "users";
-    public const string ReadOneUserUrl          = "{userId}";
+    public const string ReadOneUserUrl          = "{UserId}";
     public const string ReadAllPaginatedUserUrl = "";
     public const string CreateUserUrl           = "create";
     public const string UpdateUserUrl           = "update";
@@ -23,7 +23,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseRoleUrl             = "roles";
-    public const string ReadOneRoleUrl          = "{roleId}";
+    public const string ReadOneRoleUrl          = "{RoleId}";
     public const string ReadAllPaginatedRoleUrl = "";
     public const string CreateRoleUrl           = "create";
     public const string UpdateRoleUrl           = "update";
@@ -34,7 +34,7 @@ public partial class Route
 public partial class Route
 {
     public const string BasePermissionUrl             = "permissions";
-    public const string ReadOnePermissionUrl          = "{permissionId}";
+    public const string ReadOnePermissionUrl          = "{PermissionId}";
     public const string ReadAllPaginatedPermissionUrl = "";
     public const string CreatePermissionUrl           = "create";
     public const string UpdatePermissionUrl           = "update";
@@ -45,7 +45,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseCategoryUrl             = "categories";
-    public const string ReadOneCategoryUrl          = "{categoryId}";
+    public const string ReadOneCategoryUrl          = "{CategoryId}";
     public const string ReadAllPaginatedCategoryUrl = "";
     public const string CreateCategoryUrl           = "create";
     public const string UpdateCategoryUrl           = "update";
@@ -56,7 +56,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseArticleUrl             = "articles";
-    public const string ReadOneArticleUrl          = "{targetId}";
+    public const string ReadOneArticleUrl          = "{TargetId}";
     public const string ReadAllPaginatedArticleUrl = "";
     public const string CreateArticleUrl           = "create";
     public const string UpdateArticleUrl           = "update";
@@ -98,7 +98,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseTermUrl             = "terms";
-    public const string ReadOneTermUrl          = "{termId}";
+    public const string ReadOneTermUrl          = "{TermId}";
     public const string ReadAllPaginatedTermUrl = "";
     public const string CreateTermUrl           = "create";
     public const string ActiveTermUrl           = "active";
@@ -111,7 +111,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseVideoUrl             = "videos";
-    public const string ReadOneVideoUrl          = "{videoId}";
+    public const string ReadOneVideoUrl          = "{VideoId}";
     public const string ReadAllPaginatedVideoUrl = "";
     public const string CreateVideoUrl           = "create";
     public const string ActiveVideoUrl           = "active";
