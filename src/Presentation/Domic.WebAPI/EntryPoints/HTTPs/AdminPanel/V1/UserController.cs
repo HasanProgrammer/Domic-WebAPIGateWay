@@ -25,7 +25,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
-[BlackListPolicy(IgnoreActions = "SignIn")]
+[BlackListPolicy]
 public class UserController : BaseUserController
 {
     private readonly IMediator _mediator;
