@@ -38,7 +38,7 @@ public class CategoryController : BaseCategoryController
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadOneCategoryUrl)]
-    public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query,
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query,
         CancellationToken cancellationToken
     )
     {

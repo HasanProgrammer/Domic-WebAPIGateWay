@@ -1,4 +1,5 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TermUseCase.Commands.Active;
 using Domic.UseCase.TermUseCase.Commands.Create;
 using Domic.UseCase.TermUseCase.Commands.InActive;
@@ -31,8 +32,8 @@ public class TermController(IMediator mediator) : BaseTermController
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadOneTermUrl)]
-    //[PermissionPolicy(Type = "Term.ReadOne")]
-    public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query, CancellationToken cancellationToken)
+    [PermissionPolicy(Type = "Term.ReadOne")]
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 

@@ -8,9 +8,9 @@ public partial class Route
 //User
 public partial class Route
 {
-    public const string BaseUserUrl             = "user";
-    public const string ReadOneUserUrl          = "read-one";
-    public const string ReadAllPaginatedUserUrl = "read-all-paginated";
+    public const string BaseUserUrl             = "users";
+    public const string ReadOneUserUrl          = "{userId}";
+    public const string ReadAllPaginatedUserUrl = "";
     public const string CreateUserUrl           = "create";
     public const string UpdateUserUrl           = "update";
     public const string ActiveUserUrl           = "active";
@@ -22,9 +22,9 @@ public partial class Route
 //Role
 public partial class Route
 {
-    public const string BaseRoleUrl             = "role";
-    public const string ReadOneRoleUrl          = "read-one";
-    public const string ReadAllPaginatedRoleUrl = "read-all-paginated";
+    public const string BaseRoleUrl             = "roles";
+    public const string ReadOneRoleUrl          = "{roleId}";
+    public const string ReadAllPaginatedRoleUrl = "";
     public const string CreateRoleUrl           = "create";
     public const string UpdateRoleUrl           = "update";
     public const string DeleteRoleUrl           = "delete";
@@ -33,9 +33,9 @@ public partial class Route
 //Permission
 public partial class Route
 {
-    public const string BasePermissionUrl             = "permission";
-    public const string ReadOnePermissionUrl          = "read-one";
-    public const string ReadAllPaginatedPermissionUrl = "read-all-paginated";
+    public const string BasePermissionUrl             = "permissions";
+    public const string ReadOnePermissionUrl          = "{permissionId}";
+    public const string ReadAllPaginatedPermissionUrl = "";
     public const string CreatePermissionUrl           = "create";
     public const string UpdatePermissionUrl           = "update";
     public const string DeletePermissionUrl           = "delete";
@@ -44,9 +44,9 @@ public partial class Route
 //Category
 public partial class Route
 {
-    public const string BaseCategoryUrl             = "category";
-    public const string ReadOneCategoryUrl          = "read-one";
-    public const string ReadAllPaginatedCategoryUrl = "read-all-paginated";
+    public const string BaseCategoryUrl             = "categories";
+    public const string ReadOneCategoryUrl          = "{categoryId}";
+    public const string ReadAllPaginatedCategoryUrl = "";
     public const string CreateCategoryUrl           = "create";
     public const string UpdateCategoryUrl           = "update";
     public const string DeleteCategoryUrl           = "delete";
@@ -55,9 +55,9 @@ public partial class Route
 //Article
 public partial class Route
 {
-    public const string BaseArticleUrl             = "article";
-    public const string ReadOneArticleUrl          = "read-one";
-    public const string ReadAllPaginatedArticleUrl = "read-all-paginated";
+    public const string BaseArticleUrl             = "articles";
+    public const string ReadOneArticleUrl          = "{targetId}";
+    public const string ReadAllPaginatedArticleUrl = "";
     public const string CreateArticleUrl           = "create";
     public const string UpdateArticleUrl           = "update";
     public const string ActiveArticleUrl           = "active";
@@ -68,15 +68,15 @@ public partial class Route
 //AggregateArticle
 public partial class Route
 {
-    public const string BaseAggregateArticleUrl             = "aggregate-article";
-    public const string ReadOneAggregateArticleUrl          = "read-one";
-    public const string ReadAllPaginatedAggregateArticleUrl = "read-all-paginated";
+    public const string BaseAggregateArticleUrl             = "aggregate-articles";
+    public const string ReadOneAggregateArticleUrl          = "";
+    public const string ReadAllPaginatedAggregateArticleUrl = "";
 }
 
 //ArticleComment
 public partial class Route
 {
-    public const string BaseArticleCommentUrl     = "article-comment";
+    public const string BaseArticleCommentUrl     = "article-comments";
     public const string CreateArticleCommentUrl   = "create";
     public const string UpdateArticleCommentUrl   = "update";
     public const string ActiveArticleCommentUrl   = "active";
@@ -87,7 +87,7 @@ public partial class Route
 //ArticleCommentAnswer
 public partial class Route
 {
-    public const string BaseArticleCommentAnswerUrl     = "article-comment-answer";
+    public const string BaseArticleCommentAnswerUrl     = "article-comment-answers";
     public const string CreateArticleCommentAnswerUrl   = "create";
     public const string ActiveArticleCommentAnswerUrl   = "active";
     public const string InActiveArticleCommentAnswerUrl = "inactive";
@@ -97,9 +97,9 @@ public partial class Route
 //Term
 public partial class Route
 {
-    public const string BaseTermUrl             = "term";
-    public const string ReadOneTermUrl          = "read-one";
-    public const string ReadAllPaginatedTermUrl = "read-all-paginated";
+    public const string BaseTermUrl             = "terms";
+    public const string ReadOneTermUrl          = "{termId}";
+    public const string ReadAllPaginatedTermUrl = "";
     public const string CreateTermUrl           = "create";
     public const string ActiveTermUrl           = "active";
     public const string InActiveTermUrl         = "inactive";
@@ -110,9 +110,9 @@ public partial class Route
 //Video
 public partial class Route
 {
-    public const string BaseVideoUrl             = "video";
-    public const string ReadOneVideoUrl          = "read-one";
-    public const string ReadAllPaginatedVideoUrl = "read-all-paginated";
+    public const string BaseVideoUrl             = "videos";
+    public const string ReadOneVideoUrl          = "{videoId}";
+    public const string ReadAllPaginatedVideoUrl = "";
     public const string CreateVideoUrl           = "create";
     public const string ActiveVideoUrl           = "active";
     public const string InActiveVideoUrl         = "inactive";
@@ -123,15 +123,15 @@ public partial class Route
 //AggregateTerm
 public partial class Route
 {
-    public const string BaseAggregateTermUrl             = "aggregate-term";
-    public const string ReadOneAggregateTermUrl          = "read-one";
-    public const string ReadAllPaginatedAggregateTermUrl = "read-all-paginated";
+    public const string BaseAggregateTermUrl             = "aggregate-terms";
+    public const string ReadOneAggregateTermUrl          = "";
+    public const string ReadAllPaginatedAggregateTermUrl = "";
 }
 
 //AggregateVideo
 public partial class Route
 {
-    public const string BaseAggregateVideoUrl             = "aggregate-video";
-    public const string ReadOneAggregateVideoUrl          = "read-one";
-    public const string ReadAllPaginatedAggregateVideoUrl = "read-all-paginated";
+    public const string BaseAggregateVideoUrl             = "aggregate-videos";
+    public const string ReadOneAggregateVideoUrl          = "";
+    public const string ReadAllPaginatedAggregateVideoUrl = "";
 }

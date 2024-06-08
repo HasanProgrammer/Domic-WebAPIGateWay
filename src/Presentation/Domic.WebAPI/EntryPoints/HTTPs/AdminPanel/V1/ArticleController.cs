@@ -41,7 +41,7 @@ public class ArticleController : BaseArticleController
     [HttpGet]
     [Route(Route.ReadOneArticleUrl)]
     [PermissionPolicy(Type = Permission.ArticleReadOne)]
-    public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query,
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query,
         CancellationToken cancellationToken
     )
     {

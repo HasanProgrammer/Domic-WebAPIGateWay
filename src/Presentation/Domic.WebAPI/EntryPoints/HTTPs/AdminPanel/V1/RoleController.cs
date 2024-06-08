@@ -40,7 +40,7 @@ public class RoleController : BaseRoleController
     [HttpGet]
     [Route(Route.ReadOneRoleUrl)]
     [PermissionPolicy(Type = Permission.RoleReadOne)]
-    public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query, CancellationToken cancellationToken)
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 

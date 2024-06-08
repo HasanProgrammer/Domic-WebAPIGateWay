@@ -34,7 +34,7 @@ public class VideoController(IMediator mediator) : BaseVideoController
     [HttpGet]
     [Route(Route.ReadOneVideoUrl)]
     [PermissionPolicy(Type = "Video.ReadOne")]
-    public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query, CancellationToken cancellationToken)
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 

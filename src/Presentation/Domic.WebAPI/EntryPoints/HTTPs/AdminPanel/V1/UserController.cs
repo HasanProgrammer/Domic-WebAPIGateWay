@@ -45,7 +45,7 @@ public class UserController : BaseUserController
     [HttpGet]
     [Route(Route.ReadOneUserUrl)]
     [PermissionPolicy(Type = Permission.UserReadOne)]
-    public async Task<IActionResult> ReadOne([FromQuery] ReadOneQuery query, CancellationToken cancellationToken)
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
