@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel;
 
 [Route(Route.BaseUrl + Route.BaseCategoryUrl)]
-public class BaseCategoryController : ControllerBase
-{
-    
-}
+public class BaseCategoryController : ControllerBase;

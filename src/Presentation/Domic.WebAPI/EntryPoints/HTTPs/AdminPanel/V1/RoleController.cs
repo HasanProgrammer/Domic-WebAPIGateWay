@@ -103,7 +103,7 @@ public class RoleController : BaseRoleController
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPatch]
+    [HttpDelete]
     [Route(Route.DeleteRoleUrl)]
     [PermissionPolicy(Type = Permission.RoleDelete)]
     public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)

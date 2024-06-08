@@ -123,15 +123,8 @@ public partial class Route
 //AggregateTerm
 public partial class Route
 {
-    public const string BaseAggregateTermUrl             = "aggregate-terms";
-    public const string ReadOneAggregateTermUrl          = "";
-    public const string ReadAllPaginatedAggregateTermUrl = "";
-}
-
-//AggregateVideo
-public partial class Route
-{
-    public const string BaseAggregateVideoUrl             = "aggregate-videos";
-    public const string ReadOneAggregateVideoUrl          = "";
-    public const string ReadAllPaginatedAggregateVideoUrl = "";
+    public const string BaseAggregateTermUrl              = "aggregate-terms";
+    public const string ReadOneAggregateTermUrl           = "";
+    public const string ReadAllPaginatedAggregateTermUrl  = "terms";
+    public const string ReadAllPaginatedAggregateVideoUrl = "videos";
 }

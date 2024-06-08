@@ -100,7 +100,7 @@ public class CategoryController : BaseCategoryController
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPatch]
+    [HttpDelete]
     [Route(Route.DeleteCategoryUrl)]
     public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
     {

@@ -140,7 +140,7 @@ public class ArticleController : BaseArticleController
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPatch]
+    [HttpDelete]
     [Route(Route.DeleteArticleUrl)]
     [PermissionPolicy(Type = Permission.ArticleDelete)]
     public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)

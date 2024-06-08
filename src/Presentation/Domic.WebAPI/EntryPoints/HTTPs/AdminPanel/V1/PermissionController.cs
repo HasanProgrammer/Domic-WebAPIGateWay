@@ -103,7 +103,7 @@ public class PermissionController : BasePermissionController
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPatch]
+    [HttpDelete]
     [Route(Route.DeletePermissionUrl)]
     [PermissionPolicy(Type = Permission.PermissionDelete)]
     public async Task<IActionResult> Delete([FromBody] DeleteCommand command,

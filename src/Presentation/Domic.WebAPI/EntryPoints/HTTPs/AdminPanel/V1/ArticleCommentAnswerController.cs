@@ -100,7 +100,7 @@ public class ArticleCommentAnswerController : BaseArticleCommentAnswerController
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPatch]
+    [HttpDelete]
     [Route(Route.DeleteArticleCommentAnswerUrl)]
     [PermissionPolicy(Type = Permission.ArticleCommentAnswerDelete)]
     public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)

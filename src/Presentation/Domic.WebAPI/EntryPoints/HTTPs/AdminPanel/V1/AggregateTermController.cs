@@ -22,8 +22,26 @@ public class AggregateTermController(IMediator mediator) : BaseAggregateTermCont
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateTermUrl)]
-    [PermissionPolicy(Type = "AggregateTermReadAllPaginated")]
-    public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
+    [PermissionPolicy(Type = "AggregateTerm.ReadAllPaginated")]
+    public async Task<IActionResult> ReadAllTermsPaginated([FromQuery] ReadAllPaginatedQuery query,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route(Route.ReadAllPaginatedAggregateVideoUrl)]
+    [PermissionPolicy(Type = "AggregateVideo.ReadAllPaginated")]
+    public async Task<IActionResult> ReadAllVideosPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
     {
