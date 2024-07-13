@@ -1,4 +1,18 @@
 {
   "IsExternalBrokerConsumingAsync": false,
-  "IsInternalBrokerConsumingAsync": false
+  "IsInternalBrokerConsumingAsync": false,
+  "ExternalQueueConfig": {
+    "Throttle": [
+      {
+        "Active": false,
+        "Queue": "یه چیزی",
+        "Size": 0,
+        "Limitation": 1000,
+        "IsGlobally": false
+      }
+    ]
+  },
+  "InternalQueueConfig": {
+    "Throttle": []
+  }
 }
