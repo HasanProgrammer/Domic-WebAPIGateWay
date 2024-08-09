@@ -120,6 +120,19 @@ public partial class Route
     public const string DeleteVideoUrl           = "delete";
 }
 
+//Ticket
+public partial class Route
+{
+    public const string BaseTicketUrl             = "tickets";
+    public const string ReadOneTicketUrl          = "{TicketId}";
+    public const string ReadAllPaginatedTicketUrl = "";
+    public const string CreateTicketUrl           = "create";
+    public const string ActiveTicketUrl           = "active";
+    public const string InActiveTicketUrl         = "inactive";
+    public const string UpdateTicketUrl           = "update";
+    public const string DeleteTicketUrl           = "delete";
+}
+
 //AggregateTerm
 public partial class Route
 {
