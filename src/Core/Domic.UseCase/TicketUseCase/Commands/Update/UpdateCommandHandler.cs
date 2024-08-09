@@ -2,11 +2,10 @@ using Domic.Core.UseCase.Attributes;
 using Domic.UseCase.TicketUseCase.Contracts.Interfaces;
 using Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update;
 using Domic.Core.UseCase.Contracts.Interfaces;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Domic.UseCase.TicketUseCase.Commands.Update;
 
-public class UpdateCommandHandler(ITicketRpcWebRequest TicketRpcWebRequest, IWebHostEnvironment webHostEnvironment) 
+public class UpdateCommandHandler(ITicketRpcWebRequest TicketRpcWebRequest) 
     : ICommandHandler<UpdateCommand, UpdateResponse>
 {
     [WithValidation]
