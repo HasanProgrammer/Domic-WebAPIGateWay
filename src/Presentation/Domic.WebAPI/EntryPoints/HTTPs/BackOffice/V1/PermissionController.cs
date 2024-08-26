@@ -21,7 +21,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
 [BlackListPolicy]
-public class PermissionController : BasePermissionController
+[Route(Route.BaseBackOfficeUrl + Route.BasePermissionUrl)]
+public class PermissionController : ControllerBase
 {
     private readonly IMediator _mediator;
 

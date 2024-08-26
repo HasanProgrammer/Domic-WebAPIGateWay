@@ -13,7 +13,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin,Author")]
 [BlackListPolicy]
-public class AggregateArticleController : BaseAggregateArticleController
+[Route(Route.BaseBackOfficeUrl + Route.BaseAggregateArticleUrl)]
+public class AggregateArticleController : ControllerBase
 {
     private readonly IMediator _mediator;
 

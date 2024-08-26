@@ -3,7 +3,6 @@ using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
 using Route                    = Domic.Common.ClassConsts.Route;
 using ReadOneResponse          = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
@@ -13,7 +12,6 @@ using CreateResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.C
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [ApiVersion("1.0")]
-[Authorize(Roles = "SuperAdmin,Admin")]
 [Route(Route.BaseHomeUrl + Route.BaseAggregateTermUrl)]
 public class TicketController(IMediator mediator) : ControllerBase
 {

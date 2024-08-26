@@ -22,7 +22,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
-public class TermController(IMediator mediator) : BaseTermController
+[Route(Route.BaseBackOfficeUrl + Route.BaseTermUrl)]
+public class TermController(IMediator mediator) : ControllerBase
 {
     /// <summary>
     /// 

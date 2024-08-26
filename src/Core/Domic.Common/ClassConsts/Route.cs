@@ -3,7 +3,7 @@
 public partial class Route
 {
     public const string BaseHomeUrl = "api/v{version:apiVersion}/";
-    public const string BaseBackOfficeUrl = "api/v{version:apiVersion}/admin";
+    public const string BaseBackOfficeUrl = "api/v{version:apiVersion}/admin/";
 }
 
 //User

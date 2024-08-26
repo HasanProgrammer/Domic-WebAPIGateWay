@@ -22,7 +22,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin,Author")]
 [BlackListPolicy]
-public class ArticleCommentAnswerController : BaseArticleCommentAnswerController
+[Route(Route.BaseBackOfficeUrl + Route.BaseArticleCommentAnswerUrl)]
+public class ArticleCommentAnswerController : ControllerBase
 {
     private readonly IMediator _mediator;
 

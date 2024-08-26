@@ -23,7 +23,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
-public class VideoController(IMediator mediator) : BaseVideoController
+[Route(Route.BaseBackOfficeUrl + Route.BaseVideoUrl)]
+public class VideoController(IMediator mediator) : ControllerBase
 {
     /// <summary>
     /// 
