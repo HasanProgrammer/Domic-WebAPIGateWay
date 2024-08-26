@@ -19,7 +19,7 @@ using ActiveResponse           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.Ac
 using DeleteCommand            = Domic.UseCase.VideoUseCase.Commands.Update.DeleteCommand;
 using InActiveResponse         = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
+namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]

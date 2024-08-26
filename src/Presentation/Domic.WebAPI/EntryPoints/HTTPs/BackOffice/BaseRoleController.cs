@@ -2,7 +2,7 @@
 
 using Route = Domic.Common.ClassConsts.Route;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel;
+namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice;
 
-[Route(Route.BaseUrl + Route.BaseRoleUrl)]
+[Route(Route.BaseBackOfficeUrl + Route.BaseRoleUrl)]
 public class BaseRoleController : ControllerBase;

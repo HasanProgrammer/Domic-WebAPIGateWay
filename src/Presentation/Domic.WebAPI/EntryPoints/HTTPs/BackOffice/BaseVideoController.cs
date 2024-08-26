@@ -2,7 +2,7 @@
 
 using Route = Domic.Common.ClassConsts.Route;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel;
+namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice;
 
-[Route(Route.BaseUrl + Route.BaseVideoUrl)]
+[Route(Route.BaseBackOfficeUrl + Route.BaseVideoUrl)]
 public class BaseVideoController : ControllerBase;

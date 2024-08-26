@@ -18,7 +18,7 @@ using UpdateResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.Upd
 using ActiveResponse           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using InActiveResponse         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel.V1;
+namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
 [ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]

@@ -2,7 +2,7 @@
 
 using Route = Domic.Common.ClassConsts.Route;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.AdminPanel;
+namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice;
 
-[Route(Route.BaseUrl + Route.BaseArticleCommentAnswerUrl)]
+[Route(Route.BaseBackOfficeUrl + Route.BaseArticleCommentAnswerUrl)]
 public class BaseArticleCommentAnswerController : ControllerBase;
