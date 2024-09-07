@@ -16,8 +16,6 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "BlazeMetter-Id": "d60b416b3940b1bbd4b65d4e",
-        "BlazeMetter-Key": "4b56a12423afd5e124cbb8501a84c369c0db1982bb7fb3fcc9c1090997b3745ff37b5270",
         "Elastic-Host": "http://localhost:9200",
         "Elastic-Index": "apigateway",
         "Elastic-Username": "domic",
