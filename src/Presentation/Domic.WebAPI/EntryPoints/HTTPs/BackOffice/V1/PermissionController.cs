@@ -68,7 +68,7 @@ public class PermissionController : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreatePermissionUrl)]
     [PermissionPolicy(Type = Permission.PermissionCreate)]
     public async Task<IActionResult> Create([FromBody] CreateCommand command,

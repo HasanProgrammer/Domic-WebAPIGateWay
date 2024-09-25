@@ -65,7 +65,7 @@ public class TermController(IMediator mediator) : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreateTermUrl)]
     [PermissionPolicy(Type = "Term.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)

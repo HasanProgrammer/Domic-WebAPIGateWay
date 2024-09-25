@@ -12,8 +12,8 @@ public partial class Route
     public const string BaseUserUrl             = "users";
     public const string ReadOneUserUrl          = "{UserId}";
     public const string ReadAllPaginatedUserUrl = "";
-    public const string CreateUserUrl           = "create";
-    public const string UpdateUserUrl           = "update";
+    public const string CreateUserUrl           = "";
+    public const string UpdateUserUrl           = "";
     public const string ActiveUserUrl           = "active";
     public const string InActiveUserUrl         = "inactive";
     public const string RevokeUrl               = "revoke";
@@ -26,9 +26,9 @@ public partial class Route
     public const string BaseRoleUrl             = "roles";
     public const string ReadOneRoleUrl          = "{RoleId}";
     public const string ReadAllPaginatedRoleUrl = "";
-    public const string CreateRoleUrl           = "create";
-    public const string UpdateRoleUrl           = "update";
-    public const string DeleteRoleUrl           = "delete";
+    public const string CreateRoleUrl           = "";
+    public const string UpdateRoleUrl           = "";
+    public const string DeleteRoleUrl           = "";
 }
 
 //Permission
@@ -37,9 +37,9 @@ public partial class Route
     public const string BasePermissionUrl             = "permissions";
     public const string ReadOnePermissionUrl          = "{PermissionId}";
     public const string ReadAllPaginatedPermissionUrl = "";
-    public const string CreatePermissionUrl           = "create";
-    public const string UpdatePermissionUrl           = "update";
-    public const string DeletePermissionUrl           = "delete";
+    public const string CreatePermissionUrl           = "";
+    public const string UpdatePermissionUrl           = "";
+    public const string DeletePermissionUrl           = "";
 }
 
 //Category
@@ -48,9 +48,9 @@ public partial class Route
     public const string BaseCategoryUrl             = "categories";
     public const string ReadOneCategoryUrl          = "{CategoryId}";
     public const string ReadAllPaginatedCategoryUrl = "";
-    public const string CreateCategoryUrl           = "create";
-    public const string UpdateCategoryUrl           = "update";
-    public const string DeleteCategoryUrl           = "delete";
+    public const string CreateCategoryUrl           = "";
+    public const string UpdateCategoryUrl           = "";
+    public const string DeleteCategoryUrl           = "";
 }
 
 //Article
@@ -59,11 +59,11 @@ public partial class Route
     public const string BaseArticleUrl             = "articles";
     public const string ReadOneArticleUrl          = "{TargetId}";
     public const string ReadAllPaginatedArticleUrl = "";
-    public const string CreateArticleUrl           = "create";
-    public const string UpdateArticleUrl           = "update";
+    public const string CreateArticleUrl           = "";
+    public const string UpdateArticleUrl           = "";
     public const string ActiveArticleUrl           = "active";
     public const string InActiveArticleUrl         = "inactive";
-    public const string DeleteArticleUrl           = "delete";
+    public const string DeleteArticleUrl           = "";
 }
 
 //AggregateArticle
@@ -78,21 +78,21 @@ public partial class Route
 public partial class Route
 {
     public const string BaseArticleCommentUrl     = "article-comments";
-    public const string CreateArticleCommentUrl   = "create";
-    public const string UpdateArticleCommentUrl   = "update";
+    public const string CreateArticleCommentUrl   = "";
+    public const string UpdateArticleCommentUrl   = "";
     public const string ActiveArticleCommentUrl   = "active";
     public const string InActiveArticleCommentUrl = "inactive";
-    public const string DeleteArticleCommentUrl   = "delete";
+    public const string DeleteArticleCommentUrl   = "";
 }
 
 //ArticleCommentAnswer
 public partial class Route
 {
     public const string BaseArticleCommentAnswerUrl     = "article-comment-answers";
-    public const string CreateArticleCommentAnswerUrl   = "create";
+    public const string CreateArticleCommentAnswerUrl   = "";
     public const string ActiveArticleCommentAnswerUrl   = "active";
     public const string InActiveArticleCommentAnswerUrl = "inactive";
-    public const string DeleteArticleCommentAnswerUrl   = "delete";
+    public const string DeleteArticleCommentAnswerUrl   = "";
 }
 
 //Term
@@ -101,11 +101,11 @@ public partial class Route
     public const string BaseTermUrl             = "terms";
     public const string ReadOneTermUrl          = "{TermId}";
     public const string ReadAllPaginatedTermUrl = "";
-    public const string CreateTermUrl           = "create";
+    public const string CreateTermUrl           = "";
     public const string ActiveTermUrl           = "active";
     public const string InActiveTermUrl         = "inactive";
-    public const string UpdateTermUrl           = "update";
-    public const string DeleteTermUrl           = "delete";
+    public const string UpdateTermUrl           = "";
+    public const string DeleteTermUrl           = "";
 }
 
 //Video
@@ -114,11 +114,11 @@ public partial class Route
     public const string BaseVideoUrl             = "videos";
     public const string ReadOneVideoUrl          = "{VideoId}";
     public const string ReadAllPaginatedVideoUrl = "";
-    public const string CreateVideoUrl           = "create";
+    public const string CreateVideoUrl           = "";
     public const string ActiveVideoUrl           = "active";
     public const string InActiveVideoUrl         = "inactive";
-    public const string UpdateVideoUrl           = "update";
-    public const string DeleteVideoUrl           = "delete";
+    public const string UpdateVideoUrl           = "";
+    public const string DeleteVideoUrl           = "";
 }
 
 //Ticket
@@ -127,11 +127,11 @@ public partial class Route
     public const string BaseTicketUrl             = "tickets";
     public const string ReadOneTicketUrl          = "{TicketId}";
     public const string ReadAllPaginatedTicketUrl = "";
-    public const string CreateTicketUrl           = "create";
+    public const string CreateTicketUrl           = "";
     public const string ActiveTicketUrl           = "active";
     public const string InActiveTicketUrl         = "inactive";
-    public const string UpdateTicketUrl           = "update";
-    public const string DeleteTicketUrl           = "delete";
+    public const string UpdateTicketUrl           = "";
+    public const string DeleteTicketUrl           = "";
 }
 
 //AggregateTerm

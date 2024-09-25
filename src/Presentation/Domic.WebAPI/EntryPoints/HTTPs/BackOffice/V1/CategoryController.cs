@@ -71,7 +71,7 @@ public class CategoryController : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreateCategoryUrl)]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     { 

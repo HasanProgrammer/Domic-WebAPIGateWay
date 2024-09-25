@@ -77,7 +77,7 @@ public class UserController : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreateUserUrl)]
     [PermissionPolicy(Type = Permission.UserCreate)]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)

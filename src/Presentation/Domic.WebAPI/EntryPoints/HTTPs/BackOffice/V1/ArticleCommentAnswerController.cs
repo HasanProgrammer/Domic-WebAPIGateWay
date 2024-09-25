@@ -35,7 +35,7 @@ public class ArticleCommentAnswerController : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreateArticleCommentAnswerUrl)]
     [PermissionPolicy(Type = Permission.ArticleCommentAnswerCreate)]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)

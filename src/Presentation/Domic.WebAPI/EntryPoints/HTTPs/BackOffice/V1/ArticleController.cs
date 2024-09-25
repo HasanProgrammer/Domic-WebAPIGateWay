@@ -75,7 +75,7 @@ public class ArticleController : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreateArticleUrl)]
     [PermissionPolicy(Type = Permission.ArticleCreate)]
     public async Task<IActionResult> Create([FromForm] CreateCommand command, CancellationToken cancellationToken)

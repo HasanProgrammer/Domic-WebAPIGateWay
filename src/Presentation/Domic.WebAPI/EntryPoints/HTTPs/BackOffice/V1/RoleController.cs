@@ -72,7 +72,7 @@ public class RoleController : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
+    [HttpPost]
     [Route(Route.CreateRoleUrl)]
     [PermissionPolicy(Type = Permission.RoleCreate)]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
