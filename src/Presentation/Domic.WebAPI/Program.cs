@@ -22,7 +22,6 @@ builder.RegisterELK();
 builder.RegisterEntityFrameworkCoreCommand<SQLContext, string>();
 builder.RegisterCommandQueryUseCases();
 builder.RegisterJsonWebToken();
-builder.RegisterMessageBroker();
 builder.RegisterEventStreamBroker();
 builder.RegisterDistributedCaching();
 builder.RegisterServicesOfGrpcClientWebRequest();
