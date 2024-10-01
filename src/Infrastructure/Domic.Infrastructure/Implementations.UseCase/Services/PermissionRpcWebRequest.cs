@@ -50,7 +50,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
             TargetId = request.PermissionId != null ? new String { Value = request.PermissionId } : null
@@ -77,7 +77,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request?.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -100,7 +100,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
         
@@ -121,7 +121,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
         
@@ -141,7 +141,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
 
     public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new();
 
@@ -165,20 +165,21 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, PermissionService.PermissionServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new PermissionService.PermissionServiceClient (_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new PermissionService.PermissionServiceClient (_channel) );
     }
 }

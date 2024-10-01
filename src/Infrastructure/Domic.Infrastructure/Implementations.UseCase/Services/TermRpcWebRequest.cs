@@ -48,7 +48,7 @@ public class TermRpcWebRequest(
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         CheckExistRequest payload = new() { TermId = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
 
@@ -62,7 +62,7 @@ public class TermRpcWebRequest(
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
             TermId = request.TermId != null ? new String { Value = request.TermId } : null
@@ -84,7 +84,7 @@ public class TermRpcWebRequest(
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -107,7 +107,7 @@ public class TermRpcWebRequest(
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
 
@@ -130,7 +130,7 @@ public class TermRpcWebRequest(
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
 
@@ -154,7 +154,7 @@ public class TermRpcWebRequest(
 
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ActiveRequest payload = new();
 
@@ -172,7 +172,7 @@ public class TermRpcWebRequest(
 
     public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTermServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         InActiveRequest payload = new();
 
@@ -193,22 +193,21 @@ public class TermRpcWebRequest(
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, TermService.TermServiceClient client)> 
-        _loadGrpcChannelForTermServiceAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await serviceDiscovery.LoadAddressInMemoryAsync(Service.TermService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
         
-        //Todo : ( Tech Debt ) => Shoud be ignore ( CheckExists ) action!
+        var metaData = new Metadata {
+            { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , configuration.GetValue<string>("SecretKey") }
+        };
         
-        return (
-            new() {
-                { Header.Token         , httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new TermService.TermServiceClient(_channel)
-        );
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new TermService.TermServiceClient(_channel) );
     }
 }

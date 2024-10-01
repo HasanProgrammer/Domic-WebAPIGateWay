@@ -39,7 +39,7 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -68,19 +68,21 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, AggregateArticleService.AggregateArticleServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CommentService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() },
-                { Header.License , _configuration.GetValue<string>("SecretKey") }
-            },
-            new AggregateArticleService.AggregateArticleServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new AggregateArticleService.AggregateArticleServiceClient(_channel) );
     }
 }

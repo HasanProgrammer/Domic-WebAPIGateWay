@@ -48,7 +48,7 @@ public class TicketRpcWebRequest(
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(true, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         CheckExistRequest payload = new() { TicketId = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
 
@@ -62,7 +62,7 @@ public class TicketRpcWebRequest(
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ReadOneRequest payload = new() {
             TicketId = request.TicketId != null ? new String { Value = request.TicketId } : null
@@ -84,7 +84,7 @@ public class TicketRpcWebRequest(
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -107,7 +107,7 @@ public class TicketRpcWebRequest(
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
         
@@ -128,7 +128,7 @@ public class TicketRpcWebRequest(
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
 
@@ -150,7 +150,7 @@ public class TicketRpcWebRequest(
 
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ActiveRequest payload = new();
 
@@ -168,7 +168,7 @@ public class TicketRpcWebRequest(
 
     public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForTicketServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         InActiveRequest payload = new();
 
@@ -189,7 +189,7 @@ public class TicketRpcWebRequest(
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, TicketService.TicketServiceClient client)> 
-        _loadGrpcChannelForTicketServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await serviceDiscovery.LoadAddressInMemoryAsync(serviceName: "TicketService", cancellationToken);

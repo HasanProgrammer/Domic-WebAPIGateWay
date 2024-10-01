@@ -2,7 +2,6 @@
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
-using Domic.Core.Article.Grpc;
 using Domic.Core.Category.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -57,7 +56,7 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         CheckExistRequest payload = new();
 
@@ -71,13 +70,13 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
             TargetId = request.CategoryId != null ? new String { Value = request.CategoryId } : null
         };
 
-        var result = 
+        var result =
             await loadData.client.ReadOneAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
         
         return new() {
@@ -91,14 +90,14 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
         
-        var result = 
+        var result =
             await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
@@ -114,13 +113,13 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
         
         payload.Name = request.Name != null ? new String { Value = request.Name } : null;
         
-        var result = 
+        var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
         
         return new() {
@@ -132,14 +131,14 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new() {
             TargetId = request.Id   is not null ? new String { Value = request.Id }   : null ,
             Name     = request.Name is not null ? new String { Value = request.Name } : null
         };
 
-        var result = 
+        var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
         
         return new() {
@@ -151,13 +150,13 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
 
     public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new() {
             TargetId = request.CategoryId is not null ? new String { Value = request.CategoryId } : null
         };
 
-        var result = 
+        var result =
             await loadData.client.DeleteAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
         
         return new() {
@@ -175,20 +174,21 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, CategoryService.CategoryServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CategoryService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new CategoryService.CategoryServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new CategoryService.CategoryServiceClient(_channel) );
     }
 }
