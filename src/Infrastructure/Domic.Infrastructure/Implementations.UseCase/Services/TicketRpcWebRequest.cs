@@ -111,6 +111,7 @@ public class TicketRpcWebRequest(
         
         CreateRequest payload = new();
         
+        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }    : null;
         payload.Title       = request.Title       != null ? new String { Value = request.Title }        : null;
         payload.Description = request.Description != null ? new String { Value = request.Description }  : null;
         payload.Priority    = request.Priority    != null ? new Int32 { Value = (int)request.Priority } : null;
@@ -133,6 +134,7 @@ public class TicketRpcWebRequest(
         UpdateRequest payload = new();
 
         payload.TicketId    = request.Id          != null ? new String { Value = request.Id }           : null;
+        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }   : null;
         payload.Title       = request.Title       != null ? new String { Value = request.Title }        : null;
         payload.Description = request.Description != null ? new String { Value = request.Description }  : null;
         payload.Priority    = request.Priority    != null ? new Int32 { Value = (int)request.Priority } : null;
