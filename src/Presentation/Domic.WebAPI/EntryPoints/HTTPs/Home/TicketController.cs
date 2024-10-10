@@ -2,6 +2,7 @@
 using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TicketUseCase.Queries.ReadOne;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Route                    = Domic.Common.ClassConsts.Route;
@@ -13,6 +14,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [ApiVersion("1.0")]
 [Route(Route.BaseHomeUrl + Route.BaseAggregateTermUrl)]
+[Authorize]
 public class TicketController(IMediator mediator) : ControllerBase
 {
     /// <summary>

@@ -30,7 +30,7 @@ public class AggregateVideoRpcWebRequest(
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -59,19 +59,21 @@ public class AggregateVideoRpcWebRequest(
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, AggregateVideoService.AggregateVideoServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await serviceDiscovery.LoadAddressInMemoryAsync("AggregateTermService", cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() },
-                { Header.License , configuration.GetValue<string>("SecretKey") }
-            },
-            new AggregateVideoService.AggregateVideoServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new AggregateVideoService.AggregateVideoServiceClient(_channel) );
     }
 }

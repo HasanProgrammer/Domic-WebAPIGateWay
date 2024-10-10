@@ -52,7 +52,7 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
 
@@ -72,7 +72,7 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
 
@@ -91,7 +91,7 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ActiveRequest payload = new();
 
@@ -109,7 +109,7 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 
     public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         InActiveRequest payload = new();
 
@@ -127,7 +127,7 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 
     public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new();
 
@@ -151,20 +151,21 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, ArticleCommentService.ArticleCommentServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.ArticleService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new ArticleCommentService.ArticleCommentServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new ArticleCommentService.ArticleCommentServiceClient(_channel) );
     }
 }

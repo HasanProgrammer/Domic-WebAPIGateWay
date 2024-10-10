@@ -58,7 +58,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(true, cancellationToken);
         
         CheckExistRequest payload = new() { TargetId = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
 
@@ -72,7 +72,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
             TargetId = request.UserId != null ? new String { Value = request.UserId } : null
@@ -94,7 +94,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -117,7 +117,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(false, cancellationToken);
         
         CreateRequest payload = new();
 
@@ -144,7 +144,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<SignInResponse> SignInAsync(SignInCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForAuthServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
         
         SignInRequest payload = new();
         
@@ -163,7 +163,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
 
@@ -192,7 +192,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(false, cancellationToken);
         
         ActiveRequest payload = new();
 
@@ -210,7 +210,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
 
     public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelForUserServiceAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(false, cancellationToken);
         
         InActiveRequest payload = new();
 
@@ -234,39 +234,40 @@ public class UserRpcWebRequest : IUserRpcWebRequest
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, UserService.UserServiceClient client)>
-        _loadGrpcChannelForUserServiceAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelForUserServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
-
-        //Todo : ( Tech Debt ) => Shoud be ignore ( CheckExists ) action!
         
-        return (
-            new() {
-                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new UserService.UserServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new UserService.UserServiceClient(_channel) );
     }
     
     private async Task<(Metadata headers, AuthService.AuthServiceClient client)>
-        _loadGrpcChannelForAuthServiceAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelForAuthServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.AuthService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.License       , _configuration.GetValue<string>("SecretKey") },
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new AuthService.AuthServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new AuthService.AuthServiceClient(_channel) );
     }
 }

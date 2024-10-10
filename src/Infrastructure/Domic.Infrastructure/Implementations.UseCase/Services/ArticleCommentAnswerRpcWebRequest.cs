@@ -47,7 +47,7 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new() {
             OwnerId   = request.OwnerId   is not null ? new String { Value = request.OwnerId }   : null ,
@@ -67,7 +67,7 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new() {
             TargetId = request.TargetId is not null ? new String { Value = request.TargetId } : null ,
@@ -86,7 +86,7 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
 
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ActiveRequest payload = new() {
             TargetId = request.TargetId is not null ? new String { Value = request.TargetId } : null
@@ -104,7 +104,7 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
 
     public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         InActiveRequest payload = new() {
             TargetId = request.TargetId is not null ? new String { Value = request.TargetId } : null
@@ -122,7 +122,7 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
 
     public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new() {
             TargetId = request.TargetId is not null ? new String { Value = request.TargetId } : null
@@ -146,20 +146,21 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, ArticleCommentAnswerService.ArticleCommentAnswerServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CommentService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new ArticleCommentAnswerService.ArticleCommentAnswerServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return (metaData, new ArticleCommentAnswerService.ArticleCommentAnswerServiceClient(_channel) );
     }
 }

@@ -56,7 +56,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         CheckExistRequest payload = new();
 
@@ -72,7 +72,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
             TargetId = !string.IsNullOrEmpty(request.TargetId) ? new String { Value = request.TargetId } : null
@@ -96,7 +96,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
@@ -119,7 +119,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
         
@@ -147,7 +147,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<UpdateResponse> UpdateAsync(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
         
@@ -175,7 +175,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ActiveRequest payload = new();
 
@@ -193,7 +193,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         InActiveRequest payload = new();
 
@@ -213,7 +213,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
 
     public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
     {
-        var loadData = await _loadGrpcChannelAsync(cancellationToken);
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new() {
             TargetId = !string.IsNullOrEmpty(request.TargetId) ? new String { Value = request.TargetId } : null
@@ -237,20 +237,21 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, ArticleService.ArticleServiceClient client)> 
-        _loadGrpcChannelAsync(CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
             await _serviceDiscovery.LoadAddressInMemoryAsync(Service.ArticleService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
-        return (
-            new() {
-                { Header.Token         , _httpContextAccessor.HttpContext.GetRowToken() } ,
-                { Header.License       , _configuration.GetValue<string>("SecretKey") }   ,
-                { Header.IdempotentKey , Guid.NewGuid().ToString() }
-            },
-            new ArticleService.ArticleServiceClient(_channel)
-        );
+        var metaData = new Metadata {
+            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , _configuration.GetValue<string>("SecretKey") }
+        };
+        
+        if(isIdempotent == false)
+            metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
+        
+        return ( metaData, new ArticleService.ArticleServiceClient(_channel) );
     }
 }

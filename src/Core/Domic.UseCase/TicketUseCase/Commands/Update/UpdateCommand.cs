@@ -7,6 +7,7 @@ namespace Domic.UseCase.TicketUseCase.Commands.Update;
 public class UpdateCommand : ICommand<UpdateResponse>
 {
     public required string Id { get; set; }
+    public required string CategoryId { get; set; }
     public required string Title { get; set; }
     public required string Description { get; set; }
     public required TicketStatus? Status { get; set; }
