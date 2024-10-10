@@ -1,4 +1,5 @@
-﻿using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Common.ClassConsts;
+using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.VideoUseCase.Commands.Active;
 using Domic.UseCase.VideoUseCase.Commands.Create;
@@ -21,8 +22,9 @@ using InActiveResponse         = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
+[ApiExplorerSettings(GroupName = "BackOffice/Video")]
+[ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseVideoUrl)]
 public class VideoController(IMediator mediator) : ControllerBase
 {

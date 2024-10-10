@@ -17,9 +17,10 @@ using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
 [BlackListPolicy]
+[ApiExplorerSettings(GroupName = "BackOffice/Category")]
+[ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseCategoryUrl)]
 public class CategoryController : ControllerBase
 {

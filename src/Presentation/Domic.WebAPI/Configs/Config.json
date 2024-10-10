@@ -1,7 +1,7 @@
 {
   "LoggerType": {
-    "Messaging": false,
-    "Streaming": true
+    "Messaging": true,
+    "Streaming": false
   },
   "IsExternalBrokerConsumingAsync": false,
   "IsInternalBrokerConsumingAsync": false,

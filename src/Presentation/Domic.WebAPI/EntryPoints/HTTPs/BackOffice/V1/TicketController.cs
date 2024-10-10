@@ -21,8 +21,9 @@ using InActiveResponse         = Domic.UseCase.TicketUseCase.DTOs.GRPCs.InActive
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
+[ApiExplorerSettings(GroupName = "BackOffice/Ticket")]
+[ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseTicketUrl)]
 public class TicketController(IMediator mediator) : ControllerBase
 {

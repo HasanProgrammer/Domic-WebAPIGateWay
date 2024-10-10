@@ -12,9 +12,10 @@ using CreateResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.C
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
-[ApiVersion("1.0")]
-[Route(Route.BaseHomeUrl + Route.BaseAggregateTermUrl)]
 [Authorize]
+[ApiExplorerSettings(GroupName = "Home/Ticket")]
+[Route(Route.BaseHomeUrl + Route.BaseAggregateTermUrl)]
+[ApiVersion("1.0")]
 public class TicketController(IMediator mediator) : ControllerBase
 {
     /// <summary>

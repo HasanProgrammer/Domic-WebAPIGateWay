@@ -20,8 +20,9 @@ using InActiveResponse         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.I
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
+[ApiExplorerSettings(GroupName = "BackOffice/Term")]
+[ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseTermUrl)]
 public class TermController(IMediator mediator) : ControllerBase
 {

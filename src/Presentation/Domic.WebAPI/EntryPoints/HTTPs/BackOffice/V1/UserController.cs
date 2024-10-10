@@ -1,4 +1,5 @@
-﻿using Domic.Core.Common.ClassConsts;
+﻿using Domic.Common.ClassConsts;
+using Domic.Core.Common.ClassConsts;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.UserUseCase.Commands.Active;
@@ -23,8 +24,9 @@ using InActiveResponse         = Domic.UseCase.UserUseCase.DTOs.GRPCs.InActive.I
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin")]
+[ApiExplorerSettings(GroupName = "BackOffice/User")]
+[ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseUserUrl)]
 [BlackListPolicy]
 public class UserController : ControllerBase

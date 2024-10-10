@@ -9,9 +9,10 @@ using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[ApiVersion("1.0")]
 [Authorize(Roles = "SuperAdmin,Admin,Author")]
 [BlackListPolicy]
+[ApiExplorerSettings(GroupName = "BackOffice/AggregateTerm")]
+[ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseAggregateTermUrl)]
 public class AggregateTermController(IMediator mediator) : ControllerBase
 {
