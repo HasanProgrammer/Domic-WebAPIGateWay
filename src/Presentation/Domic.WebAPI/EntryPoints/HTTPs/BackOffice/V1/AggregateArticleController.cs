@@ -11,7 +11,7 @@ using Route = Domic.Common.ClassConsts.Route;
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
 [ApiVersion("1.0")]
-[Authorize(Roles = "SuperAdmin,Admin,Author")]
+[Authorize(Roles = "SuperAdmin,Admin")]
 [BlackListPolicy]
 [Route(Route.BaseBackOfficeUrl + Route.BaseAggregateArticleUrl)]
 public class AggregateArticleController : ControllerBase

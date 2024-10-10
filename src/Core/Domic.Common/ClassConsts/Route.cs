@@ -134,6 +134,14 @@ public partial class Route
     public const string DeleteTicketUrl           = "";
 }
 
+//AggregateTicket
+public partial class Route
+{
+    public const string BaseAggregateTicketUrl             = "aggregate-tickets";
+    public const string ReadOneAggregateTicketUrl          = "{TicketId}";
+    public const string ReadAllPaginatedAggregateTicketUrl = "";
+}
+
 //AggregateTerm
 public partial class Route
 {
