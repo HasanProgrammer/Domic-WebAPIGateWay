@@ -6,12 +6,12 @@ services:
     networks:
       - domic
     image: web_api_gateway_service:1.0.0
-    deploy:
-      resources:
-        limits:
-          memory: 150M
-        reservations:
-          memory: 150M
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 150M
+#        reservations:
+#          memory: 150M
     build:
       context: .
       dockerfile: Dockerfile
@@ -35,7 +35,7 @@ services:
       - I-RabbitMQ-Port=
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
-      - E-RedisConnectionString=domic.redis.redis:6379
+      - E-RedisConnectionString=domic.redis:6379
       - I-RedisConnectionString=domic.web.api.gateway.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=
@@ -45,7 +45,7 @@ services:
       - Port=80
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=Dotris313@313%%
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
     depends_on:
       - domic.web.api.gateway.redis
