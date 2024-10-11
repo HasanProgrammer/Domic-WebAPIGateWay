@@ -5,8 +5,8 @@ services:
   domic.web.api.gateway:
     networks:
       - domic
-    image: web_api_gateway:1.0.0
-    container_name: "api_gateway"
+    image: web_api_gateway_service_api_image:1.0.0
+    container_name: "web_api_gateway_service_api"
 #    deploy:
 #      resources:
 #        limits:
@@ -55,7 +55,7 @@ services:
     networks:
       - domic
     image: 'redis'
-    container_name: 'api_gateway_redis'
+    container_name: 'web_api_gateway_redis'
     command: 'redis-server'
     ports:
       - 6300:6379
