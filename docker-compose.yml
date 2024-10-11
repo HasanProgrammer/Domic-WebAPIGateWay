@@ -23,9 +23,10 @@ services:
       - log:/app/CoreLogs
       - ~\.aspnet\https\:/https/
     environment:
-      - Elastic-Host=http://localhost:9200
-      - Elastic-Username=
-      - Elastic-Password=
+      - Elastic-Host=http://domic.elastic.search:9200
+      - Elastic-Index=apigateway
+      - Elastic-Username=domic
+      - Elastic-Password=Domic123!@#
       - E-RabbitMQ-Host=
       - E-RabbitMQ-Port=
       - E-RabbitMQ-Username=
@@ -34,7 +35,7 @@ services:
       - I-RabbitMQ-Port=
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
-      - E-RedisConnectionString=domic.web.api.gateway.redis:6379
+      - E-RedisConnectionString=domic.redis.redis:6379
       - I-RedisConnectionString=domic.web.api.gateway.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=
@@ -45,7 +46,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Dotris313@313%%
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Karami.WebAPI.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
     depends_on:
       - domic.web.api.gateway.redis
   
