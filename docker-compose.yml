@@ -5,7 +5,8 @@ services:
   domic.web.api.gateway:
     networks:
       - domic
-    image: web_api_gateway_service:1.0.0
+    image: web_api_gateway:1.0.0
+    container_name: "api_gateway"
 #    deploy:
 #      resources:
 #        limits:
@@ -27,10 +28,10 @@ services:
       - Elastic-Index=apigateway
       - Elastic-Username=domic
       - Elastic-Password=Domic123!@#
-      - E-RabbitMQ-Host=
-      - E-RabbitMQ-Port=
-      - E-RabbitMQ-Username=
-      - E-RabbitMQ-Password=
+      - E-RabbitMQ-Host=domic.rabbit.mq
+      - E-RabbitMQ-Port=5672
+      - E-RabbitMQ-Username=domic
+      - E-RabbitMQ-Password=Domic123!@#
       - I-RabbitMQ-Host=
       - I-RabbitMQ-Port=
       - I-RabbitMQ-Username=
