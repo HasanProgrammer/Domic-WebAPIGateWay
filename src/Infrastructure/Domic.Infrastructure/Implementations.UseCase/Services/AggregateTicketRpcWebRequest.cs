@@ -16,7 +16,9 @@ using Microsoft.Extensions.Configuration;
 using Int32                        = Domic.Core.AggregateTicket.Grpc.Int32;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
-using ReadOneResponse = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponse              = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponseBody          = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
+using String                       = Domic.Core.AggregateTicket.Grpc.String;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -27,9 +29,27 @@ public class AggregateTicketRpcWebRequest(
 {
     private GrpcChannel _channel;
 
-    public Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
+    public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
+
+        var payload = new ReadOneRequest {
+            TicketId = request.TicketId != null ? new String { Value = request.TicketId } : null,
+            UserId   = request.UserId   != null ? new String { Value = request.UserId }   : null
+        };
+        
+        var result =
+            await loadData.client.ReadOneAsync(payload, cancellationToken: cancellationToken, 
+                headers: loadData.headers
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadOneResponseBody {
+                Tickets = result.Body.Ticket.DeSerialize<AggregateTicketsDto>()
+            }
+        };
     }
 
     public async Task<ReadAllPaginatedResponse> ReadAllPaginatedAsync(ReadAllPaginatedQuery request, 
@@ -39,6 +59,8 @@ public class AggregateTicketRpcWebRequest(
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
+            UserId       = request.UserId       != null ? new String { Value = request.UserId }           : null,
+            SearchText   = request.SearchText   != null ? new String { Value = request.SearchText }       : null,
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };

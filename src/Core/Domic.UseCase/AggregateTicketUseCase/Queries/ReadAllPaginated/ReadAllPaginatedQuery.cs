@@ -4,4 +4,8 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 
 namespace Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>;
+public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>
+{
+    public required string UserId { get; init; }
+    public required string SearchText { get; init; }
+}
