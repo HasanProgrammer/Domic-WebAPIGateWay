@@ -1,0 +1,37 @@
+﻿using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.UserUseCase.Commands.SignIn;
+using Domic.UseCase.UserUseCase.DTOs.GRPCs.SignIn;
+using Microsoft.AspNetCore.Mvc;
+
+using Route = Domic.Common.ClassConsts.Route;
+
+namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
+
+[ApiExplorerSettings(GroupName = "Home/User")]
+[ApiVersion("1.0")]
+[Route(Route.BaseHomeUrl + Route.BaseUserUrl)]
+public class UserController : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Mediator"></param>
+    public UserController(IMediator Mediator) => _mediator = Mediator;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch]
+    [Route(Route.SignInUserUrl)]
+    public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.DispatchAsync<SignInResponse>(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+}

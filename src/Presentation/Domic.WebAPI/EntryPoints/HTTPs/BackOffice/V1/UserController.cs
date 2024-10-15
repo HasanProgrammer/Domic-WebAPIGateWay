@@ -1,14 +1,11 @@
-﻿using Domic.Common.ClassConsts;
-using Domic.Core.Common.ClassConsts;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.InActive;
 using Domic.UseCase.UserUseCase.Commands.Revoke;
-using Domic.UseCase.UserUseCase.Commands.SignIn;
 using Domic.UseCase.UserUseCase.Commands.Update;
-using Domic.UseCase.UserUseCase.DTOs.GRPCs.SignIn;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Mvc;
@@ -153,21 +150,5 @@ public class UserController : ControllerBase
         return result ? 
             new JsonResult(new { Code = 200, Message = "عملیات ابطال دسترسی با موفقیت انجام گردید" , Body = new {} }): 
             new JsonResult(new { Code = 400, Message = "عملیات ابطال دسترسی با موفقیت انجام نگردید", Body = new {} });
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="command"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpPatch]
-    [Route(Route.SignInUserUrl)]
-    [AllowAnonymous]
-    public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.DispatchAsync<SignInResponse>(command, cancellationToken);
-
-        return new JsonResult(result);
     }
 }
