@@ -61,7 +61,7 @@ public class AggregateTicketRpcWebRequest(
         ReadAllPaginatedRequest payload = new() {
             UserId       = request.UserId       != null ? new String { Value = request.UserId }           : null,
             SearchText   = request.SearchText   != null ? new String { Value = request.SearchText }       : null,
-            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
+            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null,
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
 
