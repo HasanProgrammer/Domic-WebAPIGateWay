@@ -261,7 +261,6 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
-            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
             { Header.License , _configuration.GetValue<string>("SecretKey") }
         };
         
