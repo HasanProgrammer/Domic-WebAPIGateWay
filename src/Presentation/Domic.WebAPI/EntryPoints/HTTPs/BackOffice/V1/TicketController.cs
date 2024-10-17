@@ -67,22 +67,6 @@ public class TicketController(IMediator mediator) : ControllerBase
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost]
-    [Route(Route.CreateTicketUrl)]
-    [PermissionPolicy(Type = "Ticket.Create")]
-    public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
-    { 
-        var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
-
-        return new JsonResult(result);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="command"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
     [HttpPatch]
     [Route(Route.UpdateTicketUrl)]
     [PermissionPolicy(Type = "Ticket.Update")]

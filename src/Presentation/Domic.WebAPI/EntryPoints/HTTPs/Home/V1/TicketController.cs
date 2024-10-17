@@ -1,4 +1,5 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
@@ -14,7 +15,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [Authorize]
 [ApiExplorerSettings(GroupName = "Home/Ticket")]
-[Route(Route.BaseHomeUrl + Route.BaseAggregateTermUrl)]
+[Route(Route.BaseHomeUrl)]
 [ApiVersion("1.0")]
 public class TicketController(IMediator mediator) : ControllerBase
 {
@@ -25,7 +26,8 @@ public class TicketController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route(Route.ReadOneTicketUrl)]
+    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadOneAggregateTicketUrl}")]
+    [PermissionPolicy(Type = "AggregateTicket.ReadOne")]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
@@ -40,7 +42,8 @@ public class TicketController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route(Route.ReadAllPaginatedAggregateTicketUrl)]
+    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadAllPaginatedAggregateTicketUrl}")]
+    [PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
@@ -49,7 +52,7 @@ public class TicketController(IMediator mediator) : ControllerBase
 
         return new JsonResult(result);
     }
-
+    
     /// <summary>
     /// 
     /// </summary>
@@ -57,9 +60,10 @@ public class TicketController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    [Route(Route.CreateTicketUrl)]
+    [Route($"{Route.BaseTicketUrl}/{Route.CreateTicketUrl}")]
+    [PermissionPolicy(Type = "Ticket.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
-    {
+    { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
         return new JsonResult(result);

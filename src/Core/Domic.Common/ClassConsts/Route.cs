@@ -70,7 +70,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseAggregateArticleUrl             = "aggregate-articles";
-    public const string ReadOneAggregateArticleUrl          = "";
+    public const string ReadOneAggregateArticleUrl          = "{ArticleId}";
     public const string ReadAllPaginatedAggregateArticleUrl = "";
 }
 
