@@ -43,7 +43,7 @@ public class AggregateTicketController(IMediator mediator) : ControllerBase
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateTicketUrl)]
     [PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
-    public async Task<IActionResult> ReadAllTicketsPaginated([FromQuery] ReadAllPaginatedQuery query,
+    public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
     {
