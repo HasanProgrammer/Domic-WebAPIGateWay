@@ -1,13 +1,13 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.TicketUseCase.Commands.Create;
-using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.TicketUseCase.Queries.ReadOne;
+using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Route                    = Domic.Common.ClassConsts.Route;
-using ReadOneResponse          = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadAllPaginatedResponse = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadOneResponse          = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadAllPaginatedResponse = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using CreateResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponse;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
@@ -40,7 +40,7 @@ public class TicketController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route(Route.ReadAllPaginatedTicketUrl)]
+    [Route(Route.ReadAllPaginatedAggregateTicketUrl)]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
