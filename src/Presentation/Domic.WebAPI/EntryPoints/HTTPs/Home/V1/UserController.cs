@@ -1,7 +1,9 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.SignIn;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.SignIn;
 using Microsoft.AspNetCore.Mvc;
+using Domic.UseCase.UserUseCase.DTOs.GRPCs.Create;
 
 using Route = Domic.Common.ClassConsts.Route;
 
@@ -31,6 +33,21 @@ public class UserController : ControllerBase
     public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<SignInResponse>(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [Route(Route.SignUpUserUrl)]
+    public async Task<IActionResult> SignUp([FromBody] CreateCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
         return new JsonResult(result);
     }

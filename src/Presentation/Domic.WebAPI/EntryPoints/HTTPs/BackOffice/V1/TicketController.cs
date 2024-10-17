@@ -1,19 +1,13 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TicketUseCase.Commands.Active;
-using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.TicketUseCase.Commands.InActive;
 using Domic.UseCase.TicketUseCase.Commands.Update;
-using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.TicketUseCase.Queries.ReadOne;
 using Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 using Route                    = Domic.Common.ClassConsts.Route;
-using ReadOneResponse          = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadAllPaginatedResponse = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using CreateResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponse;
 using UpdateResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponse;
 using ActiveResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using DeleteCommand            = Domic.UseCase.TicketUseCase.Commands.Update.DeleteCommand;
@@ -27,40 +21,6 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [Route(Route.BaseBackOfficeUrl + Route.BaseTicketUrl)]
 public class TicketController(IMediator mediator) : ControllerBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="query"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpGet]
-    [Route(Route.ReadOneTicketUrl)]
-    [PermissionPolicy(Type = "Ticket.ReadOne")]
-    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
-    {
-        var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
-
-        return new JsonResult(result);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="query"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpGet]
-    [Route(Route.ReadAllPaginatedTicketUrl)]
-    [PermissionPolicy(Type = "Ticket.ReadAllPaginated")]
-    public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
-        CancellationToken cancellationToken
-    )
-    {
-        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
-
-        return new JsonResult(result);
-    }
-
     /// <summary>
     /// 
     /// </summary>

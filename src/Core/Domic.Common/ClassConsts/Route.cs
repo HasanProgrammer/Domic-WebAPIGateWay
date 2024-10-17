@@ -18,6 +18,7 @@ public partial class Route
     public const string InActiveUserUrl         = "inactive";
     public const string RevokeUrl               = "revoke";
     public const string SignInUserUrl           = "signin";
+    public const string SignUpUserUrl           = "signup";
 }
 
 //Role
