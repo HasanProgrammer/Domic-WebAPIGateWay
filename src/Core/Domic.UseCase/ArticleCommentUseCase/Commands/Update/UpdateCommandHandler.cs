@@ -13,6 +13,10 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, UpdateRespons
     public UpdateCommandHandler(IArticleCommentRpcWebRequest articleCommentRpcWebRequest)
         => _articleCommentRpcWebRequest = articleCommentRpcWebRequest;
 
-    public async Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
-        => await _articleCommentRpcWebRequest.UpdateAsync(command, cancellationToken);
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
+        => _articleCommentRpcWebRequest.UpdateAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

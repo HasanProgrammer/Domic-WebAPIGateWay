@@ -13,6 +13,10 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, DeleteRespons
     public DeleteCommandHandler(IArticleCommentRpcWebRequest articleCommentRpcWebRequest)
         => _articleCommentRpcWebRequest = articleCommentRpcWebRequest;
 
-    public async Task<DeleteResponse> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
-        => await _articleCommentRpcWebRequest.DeleteAsync(command, cancellationToken);
+    public Task BeforeHandleAsync(DeleteCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<DeleteResponse> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
+        => _articleCommentRpcWebRequest.DeleteAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(DeleteCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

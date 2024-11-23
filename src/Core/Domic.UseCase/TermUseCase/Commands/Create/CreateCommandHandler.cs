@@ -13,6 +13,8 @@ public class CreateCommandHandler(ITermRpcWebRequest termRpcWebRequest,
     IWebHostEnvironment webHostEnvironment
 ) : ICommandHandler<CreateCommand, CreateResponse>
 {
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public async Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
@@ -26,4 +28,6 @@ public class CreateCommandHandler(ITermRpcWebRequest termRpcWebRequest,
         
         return await termRpcWebRequest.CreateAsync(command, cancellationToken);
     }
+
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

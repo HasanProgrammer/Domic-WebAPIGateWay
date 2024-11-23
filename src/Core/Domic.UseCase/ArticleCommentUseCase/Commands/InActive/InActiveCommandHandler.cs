@@ -13,6 +13,10 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, InActiveR
     public InActiveCommandHandler(IArticleCommentRpcWebRequest articleCommentRpcWebRequest)
         => _articleCommentRpcWebRequest = articleCommentRpcWebRequest;
 
-    public async Task<InActiveResponse> HandleAsync(InActiveCommand command, CancellationToken cancellationToken)
-        => await _articleCommentRpcWebRequest.InActiveAsync(command, cancellationToken);
+    public Task BeforeHandleAsync(InActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<InActiveResponse> HandleAsync(InActiveCommand command, CancellationToken cancellationToken)
+        => _articleCommentRpcWebRequest.InActiveAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(InActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

@@ -15,6 +15,8 @@ public class RevokeCommandHandler : ICommandHandler<RevokeCommand, bool>
         _serializer = serializer;
     }
 
+    public Task BeforeHandleAsync(RevokeCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public async Task<bool> HandleAsync(RevokeCommand command, CancellationToken cancellationToken)
     {
@@ -55,4 +57,6 @@ public class RevokeCommandHandler : ICommandHandler<RevokeCommand, bool>
 
         return true;
     }
+
+    public Task AfterHandleAsync(RevokeCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

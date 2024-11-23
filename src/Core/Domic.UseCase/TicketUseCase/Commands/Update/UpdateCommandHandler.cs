@@ -8,7 +8,11 @@ namespace Domic.UseCase.TicketUseCase.Commands.Update;
 public class UpdateCommandHandler(ITicketRpcWebRequest TicketRpcWebRequest) 
     : ICommandHandler<UpdateCommand, UpdateResponse>
 {
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken) 
         => TicketRpcWebRequest.UpdateAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

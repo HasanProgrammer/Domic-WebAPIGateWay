@@ -24,6 +24,8 @@ public class SignInCommandHandler : ICommandHandler<SignInCommand, SignInRespons
         _userRpcWebRequest = userRpcWebRequest;
     }
 
+    public Task BeforeHandleAsync(SignInCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     public async Task<SignInResponse> HandleAsync(SignInCommand command, CancellationToken cancellationToken)
     {
         var result = await _userRpcWebRequest.SignInAsync(command, cancellationToken);
@@ -77,4 +79,6 @@ public class SignInCommandHandler : ICommandHandler<SignInCommand, SignInRespons
 
         return result;
     }
+
+    public Task AfterHandleAsync(SignInCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

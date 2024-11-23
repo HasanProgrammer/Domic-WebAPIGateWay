@@ -12,6 +12,8 @@ namespace Domic.UseCase.VideoUseCase.Commands.Create;
 public class CreateCommandHandler(IVideoRpcWebRequest videoRpcWebRequest, IWebHostEnvironment webHostEnvironment) 
     : ICommandHandler<CreateCommand, CreateResponse>
 {
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public async Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
@@ -25,4 +27,6 @@ public class CreateCommandHandler(IVideoRpcWebRequest videoRpcWebRequest, IWebHo
         
         return await videoRpcWebRequest.CreateAsync(command, cancellationToken);
     }
+
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

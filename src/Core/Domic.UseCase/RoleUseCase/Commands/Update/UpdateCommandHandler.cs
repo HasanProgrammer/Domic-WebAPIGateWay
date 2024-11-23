@@ -11,6 +11,10 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, UpdateRespons
     public UpdateCommandHandler(IRoleRpcWebRequest roleRpcWebRequest) 
         => _roleRpcWebRequest = roleRpcWebRequest;
 
-    public async Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
-        => await _roleRpcWebRequest.UpdateAsync(command, cancellationToken);
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
+        => _roleRpcWebRequest.UpdateAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

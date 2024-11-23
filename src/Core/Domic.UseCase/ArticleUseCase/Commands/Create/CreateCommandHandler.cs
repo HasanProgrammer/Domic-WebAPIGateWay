@@ -22,6 +22,8 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, CreateRespons
         _articleRpcWebRequest = articleRpcWebRequest;
     }
 
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public async Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
@@ -37,4 +39,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, CreateRespons
 
         return await _articleRpcWebRequest.CreateAsync(command, cancellationToken);
     }
+
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

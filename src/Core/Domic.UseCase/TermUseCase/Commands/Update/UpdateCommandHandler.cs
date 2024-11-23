@@ -10,6 +10,8 @@ namespace Domic.UseCase.TermUseCase.Commands.Update;
 public class UpdateCommandHandler(ITermRpcWebRequest termRpcWebRequest, IWebHostEnvironment webHostEnvironment) 
     : ICommandHandler<UpdateCommand, UpdateResponse>
 {
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public async Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
@@ -26,4 +28,6 @@ public class UpdateCommandHandler(ITermRpcWebRequest termRpcWebRequest, IWebHost
         
        return await termRpcWebRequest.UpdateAsync(command, cancellationToken);
     }
+
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

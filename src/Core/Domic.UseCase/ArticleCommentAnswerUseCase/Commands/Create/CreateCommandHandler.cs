@@ -12,7 +12,11 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, CreateRespons
 
     public CreateCommandHandler(IArticleCommentAnswerRpcWebRequest articleCommentAnswerRpcWebRequest)
         => _articleCommentAnswerRpcWebRequest = articleCommentAnswerRpcWebRequest;
-    
-    public async Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
-        => await _articleCommentAnswerRpcWebRequest.CreateAsync(command, cancellationToken);
+
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
+        => _articleCommentAnswerRpcWebRequest.CreateAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

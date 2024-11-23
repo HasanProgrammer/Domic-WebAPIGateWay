@@ -10,7 +10,11 @@ namespace Domic.UseCase.TicketUseCase.Commands.Create;
 public class CreateCommandHandler(ITicketRpcWebRequest ticketRpcWebRequest) 
     : ICommandHandler<CreateCommand, CreateResponse>
 {
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
         => ticketRpcWebRequest.CreateAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

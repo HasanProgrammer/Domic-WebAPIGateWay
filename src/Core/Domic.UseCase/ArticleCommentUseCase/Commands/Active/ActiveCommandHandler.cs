@@ -13,6 +13,10 @@ public class ActiveCommandHandler : ICommandHandler<ActiveCommand, ActiveRespons
     public ActiveCommandHandler(IArticleCommentRpcWebRequest articleCommentRpcWebRequest)
         => _articleCommentRpcWebRequest = articleCommentRpcWebRequest;
 
-    public async Task<ActiveResponse> HandleAsync(ActiveCommand command, CancellationToken cancellationToken)
-        => await _articleCommentRpcWebRequest.ActiveAsync(command, cancellationToken);
+    public Task BeforeHandleAsync(ActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<ActiveResponse> HandleAsync(ActiveCommand command, CancellationToken cancellationToken)
+        => _articleCommentRpcWebRequest.ActiveAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(ActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

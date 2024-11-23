@@ -11,6 +11,10 @@ public class ActiveCommandHandler : ICommandHandler<ActiveCommand, ActiveRespons
     public ActiveCommandHandler(IUserRpcWebRequest userRpcWebRequest) 
         => _userRpcWebRequest = userRpcWebRequest;
 
-    public async Task<ActiveResponse> HandleAsync(ActiveCommand command, CancellationToken cancellationToken) 
-        => await _userRpcWebRequest.ActiveAsync(command, cancellationToken);
+    public Task BeforeHandleAsync(ActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
+    public Task<ActiveResponse> HandleAsync(ActiveCommand command, CancellationToken cancellationToken) 
+        => _userRpcWebRequest.ActiveAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(ActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

@@ -10,6 +10,8 @@ namespace Domic.UseCase.VideoUseCase.Commands.Update;
 public class UpdateCommandHandler(IVideoRpcWebRequest videoRpcWebRequest, IWebHostEnvironment webHostEnvironment) 
     : ICommandHandler<UpdateCommand, UpdateResponse>
 {
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     public async Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
@@ -23,4 +25,6 @@ public class UpdateCommandHandler(IVideoRpcWebRequest videoRpcWebRequest, IWebHo
         
         return await videoRpcWebRequest.UpdateAsync(command, cancellationToken);
     }
+
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

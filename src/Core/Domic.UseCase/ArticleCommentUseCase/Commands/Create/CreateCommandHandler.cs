@@ -14,7 +14,11 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, CreateRespons
     public CreateCommandHandler(IArticleCommentRpcWebRequest articleCommentRpcWebRequest) 
         => _articleCommentRpcWebRequest = articleCommentRpcWebRequest;
 
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
-    public async Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
-        => await _articleCommentRpcWebRequest.CreateAsync(command, cancellationToken);
+    public Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
+        => _articleCommentRpcWebRequest.CreateAsync(command, cancellationToken);
+
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }
