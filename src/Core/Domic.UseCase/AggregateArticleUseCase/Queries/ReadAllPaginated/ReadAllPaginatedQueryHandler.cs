@@ -13,7 +13,7 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
     ) => _aggregateArticleRpcWebRequest = aggregateArticleRpcWebRequest;
 
     [WithValidation]
-    public async Task<ReadAllPaginatedResponse> HandleAsync(ReadAllPaginatedQuery query,
+    public Task<ReadAllPaginatedResponse> HandleAsync(ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
-    ) => await _aggregateArticleRpcWebRequest.ReadAllPaginatedAsync(query, cancellationToken);
+    ) => _aggregateArticleRpcWebRequest.ReadAllPaginatedAsync(query, cancellationToken);
 }

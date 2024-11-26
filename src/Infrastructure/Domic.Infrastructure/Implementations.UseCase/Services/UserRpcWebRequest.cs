@@ -256,7 +256,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         _loadGrpcChannelForAuthServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.AuthService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync("IdentityService", cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 

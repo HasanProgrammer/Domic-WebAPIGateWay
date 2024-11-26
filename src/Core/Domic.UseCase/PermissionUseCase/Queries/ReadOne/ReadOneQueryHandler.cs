@@ -11,6 +11,6 @@ public class ReadOneQueryHandler : IQueryHandler<ReadOneQuery, ReadOneResponse>
     public ReadOneQueryHandler(IPermissionRpcWebRequest permissionRpcWebRequest) 
         => _permissionRpcWebRequest = permissionRpcWebRequest;
 
-    public async Task<ReadOneResponse> HandleAsync(ReadOneQuery query, CancellationToken cancellationToken)
-        => await _permissionRpcWebRequest.ReadOneAsync(query, cancellationToken);
+    public Task<ReadOneResponse> HandleAsync(ReadOneQuery query, CancellationToken cancellationToken)
+        => _permissionRpcWebRequest.ReadOneAsync(query, cancellationToken);
 }

@@ -13,7 +13,7 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
         => _roleRpcWebRequest = roleRpcWebRequest;
 
     [WithValidation]
-    public async Task<ReadAllPaginatedResponse> HandleAsync(ReadAllPaginatedQuery query,
+    public Task<ReadAllPaginatedResponse> HandleAsync(ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
-    ) => await _roleRpcWebRequest.ReadAllPaginatedAsync(query, cancellationToken);
+    ) => _roleRpcWebRequest.ReadAllPaginatedAsync(query, cancellationToken);
 }

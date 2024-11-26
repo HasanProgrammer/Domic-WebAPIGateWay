@@ -11,6 +11,6 @@ public class ReadOneQueryHandler : IQueryHandler<ReadOneQuery, ReadOneResponse>
     public ReadOneQueryHandler(ICategoryRpcWebRequest categoryRpcWebRequest)
         => _categoryRpcWebRequest = categoryRpcWebRequest;
 
-    public async Task<ReadOneResponse> HandleAsync(ReadOneQuery query, CancellationToken cancellationToken)
-        => await _categoryRpcWebRequest.ReadOneAsync(query, cancellationToken);
+    public Task<ReadOneResponse> HandleAsync(ReadOneQuery query, CancellationToken cancellationToken)
+        => _categoryRpcWebRequest.ReadOneAsync(query, cancellationToken);
 }

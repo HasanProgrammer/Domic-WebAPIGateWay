@@ -11,6 +11,6 @@ public class ReadOneQueryHandler : IQueryHandler<ReadOneQuery, ReadOneResponse>
     public ReadOneQueryHandler(IRoleRpcWebRequest roleRpcWebRequest) 
         => _roleRpcWebRequest = roleRpcWebRequest;
 
-    public async Task<ReadOneResponse> HandleAsync(ReadOneQuery query, CancellationToken cancellationToken)
-        => await _roleRpcWebRequest.ReadOneAsync(query, cancellationToken);
+    public Task<ReadOneResponse> HandleAsync(ReadOneQuery query, CancellationToken cancellationToken)
+        => _roleRpcWebRequest.ReadOneAsync(query, cancellationToken);
 }

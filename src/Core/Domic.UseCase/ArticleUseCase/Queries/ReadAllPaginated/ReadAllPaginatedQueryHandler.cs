@@ -11,7 +11,7 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
     public ReadAllPaginatedQueryHandler(IArticleRpcWebRequest articleRpcWebRequest)
         => _articleRpcWebRequest = articleRpcWebRequest;
 
-    public async Task<ReadAllPaginatedResponse> HandleAsync(ReadAllPaginatedQuery query,
+    public Task<ReadAllPaginatedResponse> HandleAsync(ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
-    ) => await _articleRpcWebRequest.ReadAllPaginatedAsync(query, cancellationToken);
+    ) => _articleRpcWebRequest.ReadAllPaginatedAsync(query, cancellationToken);
 }
