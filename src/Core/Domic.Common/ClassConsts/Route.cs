@@ -151,3 +151,11 @@ public partial class Route
     public const string ReadAllPaginatedAggregateTermUrl  = "terms";
     public const string ReadAllPaginatedAggregateVideoUrl = "videos";
 }
+
+//Fiancial
+public partial class Route
+{
+    public const string BaseFinancialUrl   = "financials";
+    public const string CreateFinancialUrl = "";
+    public const string UpdateFinancialUrl = "";
+}
