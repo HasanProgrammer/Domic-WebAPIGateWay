@@ -3,4 +3,5 @@
 public class PaymentVerificationResponseBody
 {
     public bool Status { get; set; }
+    public string TransactionNumber { get; set; }
 }

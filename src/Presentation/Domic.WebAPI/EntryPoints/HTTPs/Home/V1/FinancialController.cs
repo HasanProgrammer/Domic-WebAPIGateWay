@@ -1,4 +1,5 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPost]
     [Route(Route.CreateFinancialUrl)]
+    [PermissionPolicy(Type = "Financial.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
@@ -35,6 +37,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.UpdateFinancialUrl)]
+    [PermissionPolicy(Type = "Financial.PaymentVerification")]
     public async Task<IActionResult> PaymentVerification([FromBody] PaymentVerificationCommand command, 
         CancellationToken cancellationToken
     )

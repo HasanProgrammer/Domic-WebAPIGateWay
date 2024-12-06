@@ -2,11 +2,13 @@
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Financial.Grpc;
+using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.FinancialUseCase.Contracts.Interfaces;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 using String             = Domic.Core.Financial.Grpc.String;
@@ -20,8 +22,9 @@ using PaymentVerificationResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPC
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
-public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfiguration configuration) 
-    : IFinancialRpcWebRequest
+public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfiguration configuration,
+    IHttpContextAccessor httpContextAccessor
+) : IFinancialRpcWebRequest
 {
     private GrpcChannel _channel;
 
@@ -42,7 +45,7 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new CreateResponseBody { TransactionId = result.Body.TransactionId }
+            Body    = new CreateResponseBody { BankGatewayUrl = result.Body.BankGatewayUrl }
         };
     }
 
@@ -63,7 +66,10 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new PaymentVerificationResponseBody { Status = result.Body.Status }
+            Body    = new PaymentVerificationResponseBody {
+                Status = result.Body.Status, 
+                TransactionNumber = result.Body.TransactionNumber.Value
+            }
         };
     }
 
@@ -80,6 +86,7 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
+            { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
             { Header.License , configuration.GetValue<string>("SecretKey") }
         };
         

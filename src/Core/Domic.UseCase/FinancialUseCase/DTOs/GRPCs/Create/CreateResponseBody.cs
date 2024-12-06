@@ -2,5 +2,5 @@
 
 public class CreateResponseBody
 {
-    public string TransactionId { get; set; }
+    public string BankGatewayUrl { get; set; }
 }
