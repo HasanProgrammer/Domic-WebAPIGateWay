@@ -7,6 +7,7 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.FinancialUseCase.Contracts.Interfaces;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
+using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,8 @@ using Int64              = Domic.Core.Financial.Grpc.Int64;
 using CreateResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
 using CreateResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
 using CreateRequest      = Domic.Core.Financial.Grpc.CreateRequest;
+using CreateTransactionRequestResponse = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
+using CreateTransactionRequestResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponseBody;
 using PaymentVerificationResponse = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
 using PaymentVerificationResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
 
@@ -69,6 +72,32 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
             Body    = new PaymentVerificationResponseBody {
                 Status = result.Body.Status, 
                 TransactionNumber = result.Body.TransactionNumber.Value
+            }
+        };
+    }
+
+    public async Task<CreateTransactionRequestResponse> CreateTransactionRequestAsync(CreateTransactionRequestCommand request, 
+        CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        CreateTransactionRequestObject payload = new();
+
+        payload.AccountId                = request.AccountId                != null ? new String { Value = request.AccountId }                : null;
+        payload.Status                   = request.Status                   != null ? new Int32  { Value = request.Status.Value }             : null;
+        payload.Amount                   = request.Amount                   != null ? new Int64  { Value = request.Amount.Value }             : null;
+        payload.BankTransferReceiptImage = request.BankTransferReceiptImage != null ? new String { Value = request.BankTransferReceiptImage } : null;
+        payload.RejectReason             = request.RejectReason             != null ? new String { Value = request.RejectReason }             : null;
+        
+        var result =
+            await loadData.client.CreateTransactionRequestAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new CreateTransactionRequestResponseBody {
+                Result = result.Body.Result
             }
         };
     }
