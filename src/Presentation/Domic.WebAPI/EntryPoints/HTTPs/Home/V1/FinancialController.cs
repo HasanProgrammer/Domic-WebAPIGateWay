@@ -55,7 +55,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    [Route(Route.UpdateFinancialUrl)]
+    [Route(Route.CreateTransactionRequestFinancialUrl)]
     [PermissionPolicy(Type = "Financial.CreateTransactionRequest")]
     public async Task<IActionResult> CreateTransactionRequest([FromBody] CreateTransactionRequestCommand command,
         CancellationToken cancellationToken
