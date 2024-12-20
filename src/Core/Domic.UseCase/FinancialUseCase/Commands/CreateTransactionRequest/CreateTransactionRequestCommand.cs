@@ -7,7 +7,4 @@ public class CreateTransactionRequestCommand : ICommand<CreateTransactionRequest
 {
     public string AccountId { get; set; }
     public long? Amount { get; set; }
-    public int? Status { get; set; }
-    public string RejectReason { get; set; }
-    public string BankTransferReceiptImage { get; set; }
 }

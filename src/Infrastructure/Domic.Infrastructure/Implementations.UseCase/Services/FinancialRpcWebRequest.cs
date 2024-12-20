@@ -84,11 +84,8 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
         
         CreateTransactionRequestObject payload = new();
 
-        payload.AccountId                = request.AccountId                != null ? new String { Value = request.AccountId }                : null;
-        payload.Status                   = request.Status                   != null ? new Int32  { Value = request.Status.Value }             : null;
-        payload.Amount                   = request.Amount                   != null ? new Int64  { Value = request.Amount.Value }             : null;
-        payload.BankTransferReceiptImage = request.BankTransferReceiptImage != null ? new String { Value = request.BankTransferReceiptImage } : null;
-        payload.RejectReason             = request.RejectReason             != null ? new String { Value = request.RejectReason }             : null;
+        payload.AccountId = request.AccountId != null ? new String { Value = request.AccountId }    : null;
+        payload.Amount    = request.Amount    != null ? new Int64  { Value = request.Amount.Value } : null;
         
         var result =
             await loadData.client.CreateTransactionRequestAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
