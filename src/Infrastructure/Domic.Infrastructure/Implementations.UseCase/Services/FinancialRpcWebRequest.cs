@@ -12,16 +12,16 @@ using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-using String             = Domic.Core.Financial.Grpc.String;
-using Int32              = Domic.Core.Financial.Grpc.Int32;
-using Int64              = Domic.Core.Financial.Grpc.Int64;
-using CreateResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
-using CreateResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
-using CreateRequest      = Domic.Core.Financial.Grpc.CreateRequest;
-using CreateTransactionRequestResponse = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
+using String                               = Domic.Core.Financial.Grpc.String;
+using Int32                                = Domic.Core.Financial.Grpc.Int32;
+using Int64                                = Domic.Core.Financial.Grpc.Int64;
+using CreateResponse                       = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
+using CreateResponseBody                   = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
+using CreateRequest                        = Domic.Core.Financial.Grpc.CreateRequest;
+using CreateTransactionRequestResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
 using CreateTransactionRequestResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponseBody;
-using PaymentVerificationResponse = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
-using PaymentVerificationResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
+using PaymentVerificationResponse          = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
+using PaymentVerificationResponseBody      = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
