@@ -30,6 +30,13 @@ builder.RegisterServices();
 builder.RegisterServiceDiscovery();
 builder.RegisterExternalStorage();
 
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: "CORS", policy  => {
+        policy.WithOrigins(Environment.GetEnvironmentVariable("ClientOrigins").Split(","))
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 builder.Services.AddMvc();
 builder.Services.AddApiVersioning();
 builder.Services.AddHttpContextAccessor();

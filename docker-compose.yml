@@ -28,6 +28,10 @@ services:
       - Elastic-Index=apigateway
       - Elastic-Username=domic
       - Elastic-Password=Domic123!@#
+      - Minio-EndPoint=
+      - Minio-AccessKey=
+      - Minio-SecretKey=
+      - Minio-Bucket=domic
       - E-RabbitMQ-Host=domic.rabbit.mq
       - E-RabbitMQ-Port=5672
       - E-RabbitMQ-Username=domic
@@ -42,10 +46,7 @@ services:
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=
       - ServiceDiscoveryAddress=https://domic.discovery.api:443
-      - Minio-EndPoint=
-      - Minio-AccessKey=
-      - Minio-SecretKey=
-      - Minio-Bucket=domic
+      - ClientOrigins=
       - Host=domic.web.api.gateway
       - Port=80
       - ASPNETCORE_ENVIRONMENT=Production

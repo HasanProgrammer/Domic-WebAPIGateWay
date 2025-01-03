@@ -21,8 +21,8 @@
         "Elastic-Username": "domic",
         "Elastic-Password": "Domic123!@#",
         "Minio-EndPoint": "localhost:9000",
-        "Minio-AccessKey": "Pvu0rPocBtyetguBEGRq",
-        "Minio-SecretKey": "IzJZQ89eRfCE5vF3Msr0ErUXD6DkPTEijFIgVPSv",
+        "Minio-AccessKey": "RoPDc8CvC56x4RRhahwh",
+        "Minio-SecretKey": "3pQPt9KgLUHSIL7B96m7Si0inHkQP5oedcTfSsM1",
         "Minio-Bucket": "domic",
         "E-RabbitMQ-Host": "localhost",
         "E-RabbitMQ-Port": "5672",
@@ -41,6 +41,7 @@
         "C-SqlServerConnectionString": "",
         "Q-SqlServerConnectionString": "",
         "ServiceDiscoveryAddress": "https://localhost:9009",
+        "ClientOrigins": "http://localhost:3000,https://localhost:3000",
         "Host": "localhost",
         "Port": "5001",
         "ASPNETCORE_ENVIRONMENT": "Development"

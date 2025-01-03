@@ -9,7 +9,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [Authorize]
 [ApiExplorerSettings(GroupName = "Home/Storage")]
-[Route($"{Route.BaseHomeUrl} {Route.BaseStorageUrl}")]
+[Route($"{Route.BaseHomeUrl}{Route.BaseStorageUrl}")]
 [ApiVersion("1.0")]
 public class StorageController(IExternalStorageManager externalStorageManager, IConfiguration configuration) 
     : ControllerBase
@@ -21,6 +21,7 @@ public class StorageController(IExternalStorageManager externalStorageManager, I
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost(Route.UploadStorageUrl)]
+    [DisableRequestSizeLimit]
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
         var uploadPath = await externalStorageManager.UploadAsync(file, cancellationToken);
