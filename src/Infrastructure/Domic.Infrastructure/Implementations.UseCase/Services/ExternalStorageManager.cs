@@ -9,9 +9,17 @@ public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IE
 {
     public async Task<string> UploadAsync(IFormFile file, CancellationToken cancellationToken)
     {
-        using var minioClient = minioClientFactory.CreateClient();
+        var bucket = Environment.GetEnvironmentVariable("Minio-Bucket");
         
-        var putObjectArgs = new PutObjectArgs().WithBucket(Environment.GetEnvironmentVariable("Minio-Bucket"))
+        using var minioClient = minioClientFactory.CreateClient();
+
+        if (!await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket), cancellationToken))
+            await minioClient.MakeBucketAsync(
+                new MakeBucketArgs{ IsBucketCreationRequest = true }.WithBucket(bucket),
+                cancellationToken
+            );
+        
+        var putObjectArgs = new PutObjectArgs().WithBucket(bucket)
                                                .WithObject($"{Guid.NewGuid().ToString()}{Path.GetExtension(file.FileName)}")
                                                .WithStreamData(file.OpenReadStream())
                                                .WithContentType(file.ContentType)
@@ -21,7 +29,7 @@ public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IE
         
         if (response.ResponseStatusCode == System.Net.HttpStatusCode.OK)
         {
-            var getObjectArgs = new PresignedGetObjectArgs().WithBucket(Environment.GetEnvironmentVariable("Minio-Bucket"))
+            var getObjectArgs = new PresignedGetObjectArgs().WithBucket(bucket)
                                                             .WithObject(response.ObjectName)
                                                             .WithExpiry(1200);
             
@@ -31,6 +39,5 @@ public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IE
         }
 
         return string.Empty;
-
     }
 }
