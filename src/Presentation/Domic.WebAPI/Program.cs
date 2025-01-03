@@ -28,6 +28,7 @@ builder.RegisterDistributedCaching();
 builder.RegisterServicesOfGrpcClientWebRequest();
 builder.RegisterServices();
 builder.RegisterServiceDiscovery();
+builder.RegisterExternalStorage();
 
 builder.Services.AddMvc();
 builder.Services.AddApiVersioning();

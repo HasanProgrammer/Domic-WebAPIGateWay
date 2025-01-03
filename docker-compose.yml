@@ -42,6 +42,10 @@ services:
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=
       - ServiceDiscoveryAddress=https://domic.discovery.api:443
+      - Minio-EndPoint=
+      - Minio-AccessKey=
+      - Minio-SecretKey=
+      - Minio-Bucket=domic
       - Host=domic.web.api.gateway
       - Port=80
       - ASPNETCORE_ENVIRONMENT=Production
@@ -50,6 +54,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
     depends_on:
       - domic.web.api.gateway.redis
+      - domic.minio
   
   domic.web.api.gateway.redis:
     networks:
@@ -59,6 +64,22 @@ services:
     command: 'redis-server'
     ports:
       - 6300:6379
+  
+  domic.minio:
+    image: 'minio/minio:latest'
+    container_name: 'web_api_gateway_minio'
+    restart: on-failure
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      - MINIO_ROOT_USER=domic
+      - MINIO_ROOT_PASSWORD=domic123
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - domic
   
 volumes:
   log:

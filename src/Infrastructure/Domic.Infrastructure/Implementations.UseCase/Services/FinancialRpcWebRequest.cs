@@ -5,6 +5,7 @@ using Domic.Core.Financial.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
+using Domic.UseCase.FinancialUseCase.Commands.ChangeStatusTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Contracts.Interfaces;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
@@ -12,16 +13,18 @@ using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-using String                               = Domic.Core.Financial.Grpc.String;
-using Int32                                = Domic.Core.Financial.Grpc.Int32;
-using Int64                                = Domic.Core.Financial.Grpc.Int64;
-using CreateResponse                       = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
-using CreateResponseBody                   = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
-using CreateRequest                        = Domic.Core.Financial.Grpc.CreateRequest;
-using CreateTransactionRequestResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
-using CreateTransactionRequestResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponseBody;
-using PaymentVerificationResponse          = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
-using PaymentVerificationResponseBody      = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
+using String                                     = Domic.Core.Financial.Grpc.String;
+using Int32                                      = Domic.Core.Financial.Grpc.Int32;
+using Int64                                      = Domic.Core.Financial.Grpc.Int64;
+using CreateResponse                             = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
+using CreateResponseBody                         = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
+using CreateRequest                              = Domic.Core.Financial.Grpc.CreateRequest;
+using CreateTransactionRequestResponse           = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
+using CreateTransactionRequestResponseBody       = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponseBody;
+using PaymentVerificationResponse                = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
+using PaymentVerificationResponseBody            = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
+using ChangeStatusTransactionRequestResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponse;
+using ChangeStatusTransactionRequestResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -94,6 +97,31 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new CreateTransactionRequestResponseBody {
+                Result = result.Body.Result
+            }
+        };
+    }
+
+    public async Task<ChangeStatusTransactionRequestResponse> ChangeStatusTransactionRequestAsync(
+        ChangeStatusTransactionRequestCommand request, CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        ChangeStatusTransactionRequestObject payload = new();
+
+        payload.Id = !string.IsNullOrEmpty(request.Id) ? new String { Value = request.Id } : null;
+        payload.Status = new Int32 { Value = (int)request.Status };
+        payload.RejectReason = !string.IsNullOrEmpty(request.RejectReason) ? new String { Value = request.RejectReason } : null;
+        payload.BankTransferReceiptImage = !string.IsNullOrEmpty(request.BankTransferReceiptImage) ? new String { Value = request.BankTransferReceiptImage } : null;
+        
+        var result =
+            await loadData.client.ChangeStatusTransactionRequestAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ChangeStatusTransactionRequestResponseBody {
                 Result = result.Body.Result
             }
         };

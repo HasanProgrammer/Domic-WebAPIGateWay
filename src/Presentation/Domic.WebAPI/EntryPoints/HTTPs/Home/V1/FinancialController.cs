@@ -1,5 +1,6 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
+using Domic.UseCase.FinancialUseCase.Commands.ChangeStatusTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
@@ -59,6 +60,24 @@ public class FinancialController(IMediator mediator) : ControllerBase
     //[PermissionPolicy(Type = "Financial.CreateTransactionRequest")]
     public async Task<IActionResult> CreateTransactionRequest([FromBody] CreateTransactionRequestCommand command,
         CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch]
+    [Route(Route.ChangeStatusTransactionRequestFinancialUrl)]
+    //[PermissionPolicy(Type = "Financial.ChangeStatusTransactionRequest")]
+    public async Task<IActionResult> ChangeStatusTransactionRequest(
+        [FromBody] ChangeStatusTransactionRequestCommand command, CancellationToken cancellationToken
     )
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);

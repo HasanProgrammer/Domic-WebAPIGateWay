@@ -6,6 +6,13 @@ public partial class Route
     public const string BaseBackOfficeUrl = "api/v{version:apiVersion}/admin/";
 }
 
+//Storage
+public partial class Route
+{
+    public const string BaseStorageUrl = "storages";
+    public const string UploadStorageUrl = "upload";
+}
+
 //User
 public partial class Route
 {
@@ -159,4 +166,5 @@ public partial class Route
     public const string CreateFinancialUrl = "";
     public const string UpdateFinancialUrl = "";
     public const string CreateTransactionRequestFinancialUrl = "transaction-requests";
+    public const string ChangeStatusTransactionRequestFinancialUrl = "transaction-requests";
 }

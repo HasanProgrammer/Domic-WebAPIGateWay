@@ -212,3 +212,31 @@
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
 
+
+ Date: 1403/10/13 | Message: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index') | Source: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery.LoadAddressInMemoryAsync(String serviceName, CancellationToken cancellationToken)
+   at Domic.Infrastructure.Implementations.UseCase.Services.FinancialRpcWebRequest._loadGrpcChannelAsync(Boolean isIdempotent, CancellationToken cancellationToken) in D:\Programming\Domic\Domic-WebAPIGateWay\src\Infrastructure\Domic.Infrastructure\Implementations.UseCase\Services\FinancialRpcWebRequest.cs:line 109
+   at Domic.Infrastructure.Implementations.UseCase.Services.FinancialRpcWebRequest.CreateTransactionRequestAsync(CreateTransactionRequestCommand request, CancellationToken cancellationToken) in D:\Programming\Domic\Domic-WebAPIGateWay\src\Infrastructure\Domic.Infrastructure\Implementations.UseCase\Services\FinancialRpcWebRequest.cs:line 83
+   at Domic.Core.Infrastructure.Concretes.Mediator._InvokeHandleMethodAsync[TResult](Object commandHandler, MethodInfo commandHandlerMethod, MethodInfo commandAfterHandlerMethod, ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.Mediator.DispatchAsync[TResult](ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.WebAPI.EntryPoints.HTTPs.Home.V1.FinancialController.CreateTransactionRequest(CreateTransactionRequestCommand command, CancellationToken cancellationToken) in D:\Programming\Domic\Domic-WebAPIGateWay\src\Presentation\Domic.WebAPI\EntryPoints\HTTPs\Home\V1\FinancialController.cs:line 64
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Domic.Core.WebAPI.Middlewares.ExceptionHandler.Invoke(HttpContext context) 
+
