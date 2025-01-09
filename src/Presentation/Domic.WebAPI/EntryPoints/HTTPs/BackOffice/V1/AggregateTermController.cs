@@ -24,7 +24,7 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateTermUrl)]
-    [PermissionPolicy(Type = "AggregateTerm.ReadAllPaginated")]
+    [PermissionPolicy(Type = "AggregateTerm.ReadAllTransactionRequestPaginated")]
     public async Task<IActionResult> ReadAllTermsPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
@@ -42,7 +42,7 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateVideoUrl)]
-    [PermissionPolicy(Type = "AggregateVideo.ReadAllPaginated")]
+    [PermissionPolicy(Type = "AggregateVideo.ReadAllTransactionRequestPaginated")]
     public async Task<IActionResult> ReadAllVideosPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )

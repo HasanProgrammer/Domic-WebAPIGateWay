@@ -9,11 +9,23 @@ using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest;
 using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification;
+using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequest;
 
 namespace Domic.UseCase.FinancialUseCase.Contracts.Interfaces;
 
 public interface IFinancialRpcWebRequest : IRpcWebRequest
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task<ReadAllTransactionRequestPaginatedResponse> ReadAllTransactionRequestPaginatedAsync(
+        ReadAllTransactionRequestPaginatedQuery request, CancellationToken cancellationToken
+    );
+    
     /// <summary>
     /// 
     /// </summary>

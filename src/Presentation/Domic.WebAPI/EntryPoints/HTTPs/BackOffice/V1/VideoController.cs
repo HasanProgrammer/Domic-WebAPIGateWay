@@ -52,7 +52,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedVideoUrl)]
-    [PermissionPolicy(Type = "Video.ReadAllPaginated")]
+    [PermissionPolicy(Type = "Video.ReadAllTransactionRequestPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )

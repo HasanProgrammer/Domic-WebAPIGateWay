@@ -162,7 +162,8 @@ public partial class Route
 //Fiancial
 public partial class Route
 {
-    public const string BaseFinancialUrl   = "financials";
+    public const string BaseFinancialUrl = "financials";
+    public const string GetAllTransactionRequestFinancialUrl = "transaction-requests";
     public const string CreateFinancialUrl = "";
     public const string UpdateFinancialUrl = "";
     public const string CreateTransactionRequestFinancialUrl = "transaction-requests";

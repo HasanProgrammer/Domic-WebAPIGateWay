@@ -50,7 +50,7 @@ public class TermController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedTermUrl)]
-    [PermissionPolicy(Type = "Term.ReadAllPaginated")]
+    [PermissionPolicy(Type = "Term.ReadAllTransactionRequestPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )

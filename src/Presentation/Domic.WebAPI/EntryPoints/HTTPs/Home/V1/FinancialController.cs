@@ -5,17 +5,29 @@ using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
+[Authorize]
 [ApiExplorerSettings(GroupName = "Home/Financial")]
 [ApiVersion("1.0")]
 [Route(Route.BaseHomeUrl + Route.BaseFinancialUrl)]
 public class FinancialController(IMediator mediator) : ControllerBase
 {
+    [HttpPost]
+    [Route(Route.GetAllTransactionRequestFinancialUrl)]
+    [PermissionPolicy(Type = "Financial.ReadAllTransactionRequestPaginated")]
+    public async Task<IActionResult> GetAll([FromBody] CreateCommand command, CancellationToken cancellationToken)
+    {
+        var result = await mediator.DispatchAsync(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
     /// <summary>
     /// new transaction
     /// </summary>

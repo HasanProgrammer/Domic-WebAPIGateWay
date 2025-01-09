@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
+using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Financial.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -12,6 +13,8 @@ using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.DecreaseAccountBalance;
+using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequest;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -27,6 +30,8 @@ using PaymentVerificationResponse                = Domic.UseCase.FinancialUseCas
 using PaymentVerificationResponseBody            = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
 using ChangeStatusTransactionRequestResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponse;
 using ChangeStatusTransactionRequestResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponseBody;
+using ReadAllTransactionRequestPaginatedResponse = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllTransactionRequestPaginatedResponse;
+using ReadAllTransactionRequestPaginatedResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllTransactionRequestPaginatedResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -35,6 +40,31 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
 ) : IFinancialRpcWebRequest
 {
     private GrpcChannel _channel;
+
+    public async Task<ReadAllTransactionRequestPaginatedResponse> ReadAllTransactionRequestPaginatedAsync(
+        ReadAllTransactionRequestPaginatedQuery request, CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        ReadAllTransactionRequestPaginatedObject payload = new();
+
+        payload.PageNumber = request.PageNumber != null ? new Int32 { Value = request.PageNumber.Value } : default;
+        payload.CountPerPage = request.CountPerPage != null ? new Int32 { Value = request.CountPerPage.Value } : default;
+        
+        var result =
+            await loadData.client.ReadAllTransactionRequestPaginatedAsync(payload, headers: loadData.headers, 
+                cancellationToken: cancellationToken
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadAllTransactionRequestPaginatedResponseBody {
+                TransactionRequests = result.Body.TransactionRequests.DeSerialize<PaginatedCollection<TransactionRequestDto>>()
+            }
+        };
+    }
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
     {
@@ -135,7 +165,7 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
         
         DecreaseBalanceOfWalletRequest payload = new();
 
-        payload.AccountId = string.IsNullOrEmpty(request.AccountId) ? new String { Value = request.AccountId } : default;
+        payload.AccountId = !string.IsNullOrEmpty(request.AccountId) ? new String { Value = request.AccountId } : default;
         payload.Value = request.Value != null ? new Int64 { Value = request.Value.Value } : default;
         
         var result =

@@ -29,7 +29,7 @@
     <PackageReference Include="Domic.Grpc.Permission" Version="1.1.0" />
     <PackageReference Include="Domic.Grpc.Role" Version="1.1.0" />
     <PackageReference Include="Domic.Grpc.User" Version="1.1.0" />
-    <PackageReference Include="Domic.Grpc.Financial" Version="1.0.7" />
+    <PackageReference Include="Domic.Grpc.Financial" Version="1.0.8" />
     
     <!--ForPrivateService-->
     <PackageReference Include="Domic.Grpc.Term" Version="1.1.0" />
