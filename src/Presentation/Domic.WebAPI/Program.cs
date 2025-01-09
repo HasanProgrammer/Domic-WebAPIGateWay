@@ -71,7 +71,7 @@ application.UseCors("CORS");
 
 application.UseAuthentication();
 
-application.UseAuthorization();
+application.UseAuthorization(); 
 
 application.UseEndpoints(endpoints => {
     
