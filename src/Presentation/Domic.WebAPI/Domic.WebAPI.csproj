@@ -30,9 +30,6 @@
     <PackageReference Include="Domic.Architecture.Presentation" Version="9.7.5" />
     <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\scalar.html" />
-  </ItemGroup>
   <!--CorePackage | Presentation-->
   
 </Project>
