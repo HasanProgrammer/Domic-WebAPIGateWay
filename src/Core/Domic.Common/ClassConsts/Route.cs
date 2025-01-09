@@ -167,4 +167,5 @@ public partial class Route
     public const string UpdateFinancialUrl = "";
     public const string CreateTransactionRequestFinancialUrl = "transaction-requests";
     public const string ChangeStatusTransactionRequestFinancialUrl = "transaction-requests";
+    public const string DecreaseWalletFinancialUrl = "decrease-wallet";
 }

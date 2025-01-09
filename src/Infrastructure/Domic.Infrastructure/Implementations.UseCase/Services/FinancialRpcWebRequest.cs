@@ -9,7 +9,9 @@ using Domic.UseCase.FinancialUseCase.Commands.ChangeStatusTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Contracts.Interfaces;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
+using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
+using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.DecreaseAccountBalance;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -122,6 +124,29 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ChangeStatusTransactionRequestResponseBody {
+                Result = result.Body.Result
+            }
+        };
+    }
+
+    public async Task<DecreaseAccountBalanceResponse> DecreaseAccountBalanceAsync(DecreaseAccountBalanceCommand request, CancellationToken cancellationToken)
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        DecreaseBalanceOfWalletRequest payload = new();
+
+        payload.AccountId = string.IsNullOrEmpty(request.AccountId) ? new String { Value = request.AccountId } : default;
+        payload.Value = request.Value != null ? new Int64 { Value = request.Value.Value } : default;
+        
+        var result =
+            await loadData.client.DecreaseBalanceOfWalletAsync(payload, headers: loadData.headers, 
+                cancellationToken: cancellationToken
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new DecreaseAccountBalanceResponseBody {
                 Result = result.Body.Result
             }
         };

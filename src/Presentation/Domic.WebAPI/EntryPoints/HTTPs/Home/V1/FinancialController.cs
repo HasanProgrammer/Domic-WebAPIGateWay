@@ -3,6 +3,7 @@ using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.FinancialUseCase.Commands.ChangeStatusTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
+using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,6 +79,24 @@ public class FinancialController(IMediator mediator) : ControllerBase
     //[PermissionPolicy(Type = "Financial.ChangeStatusTransactionRequest")]
     public async Task<IActionResult> ChangeStatusTransactionRequest(
         [FromBody] ChangeStatusTransactionRequestCommand command, CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// todo: for test
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch]
+    [Route(Route.DecreaseWalletFinancialUrl)]
+    //[PermissionPolicy(Type = "Financial.DecreaseWallet")]
+    public async Task<IActionResult> DecreaseWallet(
+        [FromBody] DecreaseAccountBalanceCommand command, CancellationToken cancellationToken
     )
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
