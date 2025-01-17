@@ -167,7 +167,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         UpdateRequest payload = new();
 
-        payload.TargetId    = request.UserId      != null ? new String { Value = request.UserId }      : null;
+        payload.TargetId    = request.Id          != null ? new String { Value = request.Id }          : null;
         payload.Username    = request.Username    != null ? new String { Value = request.Username }    : null;
         payload.Password    = request.Password    != null ? new String { Value = request.Password }    : null;
         payload.FirstName   = request.FirstName   != null ? new String { Value = request.FirstName }   : null;
@@ -175,7 +175,6 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         payload.PhoneNumber = request.PhoneNumber != null ? new String { Value = request.PhoneNumber } : null;
         payload.Email       = request.EMail       != null ? new String { Value = request.EMail }       : null;
         payload.Description = request.Description != null ? new String { Value = request.Description } : null;
-        payload.IsActive    = request.IsActive;
         
         payload.Roles       = ( request.Roles       != null || request.Roles.Count > 0 )       ? new String { Value = request.Roles.Serialize() }       : null;
         payload.Permissions = ( request.Permissions != null || request.Permissions.Count > 0 ) ? new String { Value = request.Permissions.Serialize() } : null;
@@ -243,7 +242,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         var metaData = new Metadata {
             { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.License , _configuration.GetValue<string>("SecretKey") } //todo: must be handled dynamicly in redis! insted configuration
         };
         
         if(isIdempotent == false)

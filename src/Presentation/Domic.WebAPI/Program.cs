@@ -30,6 +30,7 @@ builder.RegisterServices();
 builder.RegisterServiceDiscovery();
 builder.RegisterExternalStorage();
 
+//todo: must be handled in [CoreService]
 builder.Services.AddCors(options => {
     options.AddPolicy(name: "CORS", policy  => {
         policy.WithOrigins(Environment.GetEnvironmentVariable("ClientOrigins").Split(","))

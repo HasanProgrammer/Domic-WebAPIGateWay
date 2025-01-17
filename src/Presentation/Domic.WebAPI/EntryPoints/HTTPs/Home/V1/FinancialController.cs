@@ -18,16 +18,6 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [Route(Route.BaseHomeUrl + Route.BaseFinancialUrl)]
 public class FinancialController(IMediator mediator) : ControllerBase
 {
-    [HttpPost]
-    [Route(Route.GetAllTransactionRequestFinancialUrl)]
-    [PermissionPolicy(Type = "Financial.ReadAllTransactionRequestPaginated")]
-    public async Task<IActionResult> GetAll([FromBody] CreateCommand command, CancellationToken cancellationToken)
-    {
-        var result = await mediator.DispatchAsync(command, cancellationToken);
-
-        return new JsonResult(result);
-    }
-    
     /// <summary>
     /// new transaction
     /// </summary>
