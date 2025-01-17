@@ -195,11 +195,11 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         ActiveRequest payload = new();
 
-        payload.TargetId = request.UserId is not null ? new String { Value = request.UserId } : null;
+        payload.TargetId = request.Id is not null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
-
+        
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
@@ -213,11 +213,11 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         InActiveRequest payload = new();
 
-        payload.TargetId = request.UserId is not null ? new String { Value = request.UserId } : null;
+        payload.TargetId = request.Id is not null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.InActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
-
+        
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,

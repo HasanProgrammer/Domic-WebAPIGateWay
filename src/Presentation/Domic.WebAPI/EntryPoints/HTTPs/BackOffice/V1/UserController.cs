@@ -80,7 +80,7 @@ public class UserController : ControllerBase
     [Route(Route.CreateUserUrl)]
     [PermissionPolicy(Type = Permission.UserCreate)]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
-    { 
+    {
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
         return new JsonResult(result);

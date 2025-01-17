@@ -5,6 +5,7 @@ namespace Domic.UseCase.UserUseCase.Commands.Update;
 
 public class UpdateCommand : ICommand<UpdateResponse>
 {
+    public string Token             { get; set; }
     public string Id                { get; set; }
     public string Username          { get; set; }
     public string Password          { get; set; }
@@ -13,7 +14,6 @@ public class UpdateCommand : ICommand<UpdateResponse>
     public string PhoneNumber       { get; set; }
     public string EMail             { get; set; }
     public string Description       { get; set; }
-    public bool IsActive            { get; set; }
     public List<string> Roles       { get; set; }
     public List<string> Permissions { get; set; }
 }

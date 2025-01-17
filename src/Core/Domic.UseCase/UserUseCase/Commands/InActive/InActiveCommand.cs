@@ -5,5 +5,6 @@ namespace Domic.UseCase.UserUseCase.Commands.InActive;
 
 public class InActiveCommand : ICommand<InActiveResponse>
 {
-    public required string UserId { get; init; }
+    public required string Token { get; set; }
+    public required string Id { get; init; }
 }
