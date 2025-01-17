@@ -1,10 +1,10 @@
 ﻿using Domic.Core.Common.ClassConsts;
+using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.InActive;
-using Domic.UseCase.UserUseCase.Commands.Revoke;
 using Domic.UseCase.UserUseCase.Commands.Update;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
@@ -113,6 +113,8 @@ public class UserController : ControllerBase
     [PermissionPolicy(Type = Permission.UserActive)]
     public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
     {
+        command.Token = HttpContext.GetRowToken();
+        
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
         return new JsonResult(result);
@@ -129,26 +131,10 @@ public class UserController : ControllerBase
     [PermissionPolicy(Type = Permission.ArticleInActive)]
     public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
     {
+        command.Token = HttpContext.GetRowToken();
+        
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
         return new JsonResult(result);
-    }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="command"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpPost]
-    [Route(Route.RevokeUrl)]
-    [PermissionPolicy(Type = Permission.UserRevoke)]
-    public async Task<IActionResult> Revoke([FromBody] RevokeCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.DispatchAsync<bool>(command, cancellationToken);
-
-        return result ? 
-            new JsonResult(new { Code = 200, Message = "عملیات ابطال دسترسی با موفقیت انجام گردید" , Body = new {} }): 
-            new JsonResult(new { Code = 400, Message = "عملیات ابطال دسترسی با موفقیت انجام نگردید", Body = new {} });
     }
 }
