@@ -10,17 +10,15 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, UpdateRespons
 {
     private readonly IUserRpcWebRequest _userRpcWebRequest;
     private readonly IExternalDistributedCache _externalDistributedCache;
-    private readonly ISerializer _serializer;
     private readonly IIdentityUser _identityUser;
 
     public UpdateCommandHandler(IUserRpcWebRequest userRpcWebRequest, 
-        IExternalDistributedCache externalDistributedCache, ISerializer serializer, 
+        IExternalDistributedCache externalDistributedCache, 
         [FromKeyedServices("Http1")] IIdentityUser identityUser
     )
     {
         _userRpcWebRequest = userRpcWebRequest;
         _externalDistributedCache = externalDistributedCache;
-        _serializer = serializer;
         _identityUser = identityUser;
     }
 
@@ -30,11 +28,11 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, UpdateRespons
     {
         var result = await _userRpcWebRequest.UpdateAsync(command, cancellationToken);
 
+        //todo: shoud be used [Polly] for retry perform below action! ( action = update cache permissions )
         if (result.Code == 200)
-            //todo: shoud be used [Polly] for retry perform below action! ( action = update cache permissions )
             await _externalDistributedCache.SetCacheValueAsync(
                 new KeyValuePair<string, string>(
-                    $"{_identityUser.GetUsername()}-permissions", _serializer.Serialize(result.Body.UserId)
+                    $"{_identityUser.GetUsername()}-permissions", result.Body.UserId //todo: must be used permissions name insted of [UserId]
                 ),
                 cancellationToken: cancellationToken
             );
