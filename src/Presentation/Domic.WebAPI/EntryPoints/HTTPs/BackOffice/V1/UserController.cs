@@ -1,5 +1,4 @@
 ﻿using Domic.Core.Common.ClassConsts;
-using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.UserUseCase.Commands.Active;
@@ -113,8 +112,6 @@ public class UserController : ControllerBase
     [PermissionPolicy(Type = Permission.UserActive)]
     public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
     {
-        command.Token = HttpContext.GetRowToken();
-        
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
         return new JsonResult(result);
@@ -131,8 +128,6 @@ public class UserController : ControllerBase
     [PermissionPolicy(Type = Permission.ArticleInActive)]
     public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
     {
-        command.Token = HttpContext.GetRowToken();
-        
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
         return new JsonResult(result);
