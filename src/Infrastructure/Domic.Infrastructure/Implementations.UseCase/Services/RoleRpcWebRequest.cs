@@ -113,7 +113,7 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
         
         UpdateRequest payload = new();
         
-        payload.TargetId = request.RoleId != null ? new String { Value = request.RoleId } : null;
+        payload.TargetId = request.Id != null ? new String { Value = request.Id } : null;
         payload.Name     = request.Name   != null ? new String { Value = request.Name }   : null;
         
         var result = 
@@ -131,7 +131,7 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         var payload = new DeleteRequest {
-            TargetId = request.RoleId != null ? new String { Value = request.RoleId } : null
+            TargetId = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result = 

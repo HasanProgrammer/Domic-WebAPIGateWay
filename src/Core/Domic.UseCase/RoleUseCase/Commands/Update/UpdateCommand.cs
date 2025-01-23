@@ -5,6 +5,6 @@ namespace Domic.UseCase.RoleUseCase.Commands.Update;
 
 public class UpdateCommand : ICommand<UpdateResponse>
 {
-    public string RoleId { get; set; }
-    public string Name   { get; set; }
+    public string Id   { get; set; }
+    public string Name { get; set; }
 }

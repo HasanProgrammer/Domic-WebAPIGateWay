@@ -5,5 +5,5 @@ namespace Domic.UseCase.RoleUseCase.Commands.SoftDelete;
 
 public class DeleteCommand : ICommand<DeleteResponse>
 {
-    public string RoleId { get; set; }
+    public string Id { get; set; }
 }
