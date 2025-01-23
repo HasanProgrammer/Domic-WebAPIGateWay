@@ -97,12 +97,17 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         var loadData = await _loadGrpcChannelForUserServiceAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
-            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
-            CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
+            PageNumber   = request.PageNumber   != null ? new Int32  { Value = (int)request.PageNumber }   : null ,
+            CountPerPage = request.CountPerPage != null ? new Int32  { Value = (int)request.CountPerPage } : null ,
+            FirstName    = request.FirstName    != null ? new String { Value = request.FirstName }         : null ,
+            LastName     = request.LastName     != null ? new String { Value = request.LastName }          : null ,
+            Username     = request.Username     != null ? new String { Value = request.Username }          : null ,
+            PhoneNumber  = request.PhoneNumber  != null ? new String { Value = request.PhoneNumber }       : null ,
+            Email        = request.Email        != null ? new String { Value = request.Email }             : null
         };
         
         var result = 
-            await loadData.client.ReadAllPaginateAsync(payload, headers: loadData.headers, 
+            await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
         
