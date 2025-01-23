@@ -32,7 +32,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, UpdateRespons
         if (result.Code == 200)
             await _externalDistributedCache.SetCacheValueAsync(
                 new KeyValuePair<string, string>(
-                    $"{_identityUser.GetUsername()}-permissions", result.Body.UserId //todo: must be used permissions name insted of [UserId]
+                    $"{_identityUser.GetUsername()}-permissions", result.Body.UserId //todo: must be used permissions name insted of [Id]
                 ),
                 cancellationToken: cancellationToken
             );

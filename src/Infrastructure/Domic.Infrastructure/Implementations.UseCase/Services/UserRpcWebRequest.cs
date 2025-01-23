@@ -75,7 +75,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         var loadData = await _loadGrpcChannelForUserServiceAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
-            TargetId = request.UserId != null ? new String { Value = request.UserId } : null
+            TargetId = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result = 

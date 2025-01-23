@@ -17,13 +17,12 @@ public partial class Route
 public partial class Route
 {
     public const string BaseUserUrl             = "users";
-    public const string ReadOneUserUrl          = "{UserId}";
+    public const string ReadOneUserUrl          = "{Id}";
     public const string ReadAllPaginatedUserUrl = "";
     public const string CreateUserUrl           = "";
     public const string UpdateUserUrl           = "";
     public const string ActiveUserUrl           = "active";
     public const string InActiveUserUrl         = "inactive";
-    public const string RevokeUrl               = "revoke";
     public const string SignInUserUrl           = "signin";
     public const string SignUpUserUrl           = "signup";
 }
