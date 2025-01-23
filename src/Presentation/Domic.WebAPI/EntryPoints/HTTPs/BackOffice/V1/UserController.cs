@@ -20,11 +20,11 @@ using InActiveResponse         = Domic.UseCase.UserUseCase.DTOs.GRPCs.InActive.I
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
+[BlackListPolicy]
 [Authorize(Roles = "SuperAdmin,Admin")]
 [ApiExplorerSettings(GroupName = "BackOffice/User")]
 [ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseUserUrl)]
-[BlackListPolicy]
 public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
