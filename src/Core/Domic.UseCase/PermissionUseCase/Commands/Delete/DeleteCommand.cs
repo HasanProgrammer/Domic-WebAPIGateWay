@@ -5,5 +5,5 @@ namespace Domic.UseCase.PermissionUseCase.Commands.Delete;
 
 public class DeleteCommand : ICommand<DeleteResponse>
 {
-    public string PermissionId { get; set; }
+    public required string Id { get; set; }
 }

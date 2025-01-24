@@ -10,7 +10,7 @@ using Domic.UseCase.RoleUseCase.Commands.Create;
 using Domic.UseCase.RoleUseCase.Commands.SoftDelete;
 using Domic.UseCase.RoleUseCase.Commands.Update;
 using Domic.UseCase.RoleUseCase.Contracts.Interfaces;
-using Domic.UseCase.RoleUseCase.DTOs.ViewModels;
+using Domic.UseCase.RoleUseCase.DTOs;
 using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.RoleUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
@@ -53,7 +53,7 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
-            TargetId = request.RoleId != null ? new String { Value = request.RoleId } : null
+            TargetId = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result = 
@@ -62,7 +62,7 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Role = result.Body.Role.DeSerialize<RolesViewModel>() } 
+            Body    = new ReadOneResponseBody { Role = result.Body.Role.DeSerialize<RoleDto>() } 
         };
     }
 
@@ -78,14 +78,14 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
         };
 
         var result = 
-            await loadData.client.ReadAllPaginateAsync(payload, headers: loadData.headers, 
+            await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
         
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadAllPaginatedResponseBody { Roles = result.Body.Roles.DeSerialize<PaginatedCollection<RolesViewModel>>() } 
+            Body    = new ReadAllPaginatedResponseBody { Roles = result.Body.Roles.DeSerialize<PaginatedCollection<RoleDto>>() } 
         };
     }
 

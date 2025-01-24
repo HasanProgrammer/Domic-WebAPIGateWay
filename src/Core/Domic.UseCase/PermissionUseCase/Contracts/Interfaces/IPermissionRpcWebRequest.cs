@@ -9,6 +9,8 @@ using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Update;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadOne;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllBasedOnRolesPaginated;
+using Domic.UseCase.PermissionUseCase.Queries.ReadAllBasedOnRolesPaginated;
 
 namespace Domic.UseCase.RoleUseCase.Contracts.Interfaces;
 
@@ -33,6 +35,17 @@ public interface IPermissionRpcWebRequest : IRpcWebRequest
     /// <exception cref="NotImplementedException"></exception>
     public Task<ReadAllPaginatedResponse> ReadAllPaginatedAsync(ReadAllPaginatedQuery request,
         CancellationToken cancellationToken
+    ) => throw new NotImplementedException();
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public Task<ReadAllBasedOnRolesPaginatedResponse> ReadAllBasedOnRolesPaginatedAsync(
+        ReadAllBasedOnRolesPaginatedQuery request, CancellationToken cancellationToken
     ) => throw new NotImplementedException();
     
     /// <summary>

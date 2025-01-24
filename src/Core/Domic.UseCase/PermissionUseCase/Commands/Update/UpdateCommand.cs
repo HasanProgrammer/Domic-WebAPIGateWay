@@ -5,7 +5,7 @@ namespace Domic.UseCase.PermissionUseCase.Commands.Update;
 
 public class UpdateCommand : ICommand<UpdateResponse>
 {
-    public string PermissionId { get; set; }
-    public string RoleId       { get; set; }
-    public string Name         { get; set; }
+    public string Id     { get; set; }
+    public string RoleId { get; set; }
+    public string Name   { get; set; }
 }

@@ -9,7 +9,8 @@ using Domic.Infrastructure.Extensions;
 using Domic.UseCase.PermissionUseCase.Commands.Create;
 using Domic.UseCase.PermissionUseCase.Commands.Delete;
 using Domic.UseCase.PermissionUseCase.Commands.Update;
-using Domic.UseCase.PermissionUseCase.DTOs.ViewModels;
+using Domic.UseCase.PermissionUseCase.DTOs;
+using Domic.UseCase.PermissionUseCase.Queries.ReadAllBasedOnRolesPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadOne;
 using Domic.UseCase.RoleUseCase.Contracts.Interfaces;
@@ -22,6 +23,8 @@ using CreateResponse               = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.
 using CreateResponseBody           = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Create.CreateResponseBody;
 using DeleteResponse               = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Delete.DeleteResponse;
 using DeleteResponseBody           = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Delete.DeleteResponseBody;
+using ReadAllBasedOnRolesPaginatedResponse = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllBasedOnRolesPaginated.ReadAllBasedOnRolesPaginatedResponse;
+using ReadAllBasedOnRolesPaginatedResponseBody = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllBasedOnRolesPaginated.ReadAllBasedOnRolesPaginatedResponseBody;
 using ReadAllPaginatedResponse     = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
 using ReadOneResponse              = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
@@ -53,7 +56,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
-            TargetId = request.PermissionId != null ? new String { Value = request.PermissionId } : null
+            TargetId = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result = 
@@ -63,7 +66,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadOneResponseBody {
-                Permission = new PermissionsViewModel {
+                Permission = new PermissionDto {
                     Id       = result.Body.Permission.Id     ,
                     Name     = result.Body.Permission.Name   ,
                     RoleId   = result.Body.Permission.RoleId ,
@@ -85,7 +88,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
         };
 
         var result = 
-            await loadData.client.ReadAllPaginateAsync(payload, headers: loadData.headers, 
+            await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
         
@@ -93,8 +96,35 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Permissions = result.Body.Permissions.DeSerialize<PaginatedCollection<PermissionsViewModel>>()
+                Permissions = result.Body.Permissions.DeSerialize<PaginatedCollection<PermissionDto>>()
             } 
+        };
+    }
+
+    public async Task<ReadAllBasedOnRolesPaginatedResponse> ReadAllBasedOnRolesPaginatedAsync(
+        ReadAllBasedOnRolesPaginatedQuery request, CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
+        
+        ReadAllBasedOnRolesPaginatedRequest payload = new() {
+            PageNumber   = request?.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
+            CountPerPage = request?.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
+        };
+        
+        payload.Roles = !string.IsNullOrEmpty(request.Roles) ? new String { Value = request.Roles } : null;
+
+        var result =
+            await loadData.client.ReadAllBasedOnRolesPaginatedAsync(payload, headers: loadData.headers, 
+                cancellationToken: cancellationToken
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadAllBasedOnRolesPaginatedResponseBody {
+                Permissions = result.Body.Permissions.DeSerialize<PaginatedCollection<PermissionDto>>()
+            }
         };
     }
 
@@ -125,9 +155,9 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
         
         UpdateRequest payload = new();
         
-        payload.TargetId = request.PermissionId != null ? new String { Value = request.PermissionId } : null;
-        payload.RoleId   = request.RoleId       != null ? new String { Value = request.RoleId }       : null;
-        payload.Name     = request.Name         != null ? new String { Value = request.Name }         : null;
+        payload.TargetId = request.Id     != null ? new String { Value = request.Id }     : null;
+        payload.RoleId   = request.RoleId != null ? new String { Value = request.RoleId } : null;
+        payload.Name     = request.Name   != null ? new String { Value = request.Name }   : null;
 
         var result = 
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -145,7 +175,7 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
         
         DeleteRequest payload = new();
 
-        payload.TargetId = request.PermissionId != null ? new String { Value = request.PermissionId } : null;
+        payload.TargetId = request.Id != null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.DeleteAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);

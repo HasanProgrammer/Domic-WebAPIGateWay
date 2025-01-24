@@ -31,7 +31,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseRoleUrl             = "roles";
-    public const string ReadOneRoleUrl          = "{RoleId}";
+    public const string ReadOneRoleUrl          = "{Id}";
     public const string ReadAllPaginatedRoleUrl = "";
     public const string CreateRoleUrl           = "";
     public const string UpdateRoleUrl           = "";
@@ -41,12 +41,13 @@ public partial class Route
 //Permission
 public partial class Route
 {
-    public const string BasePermissionUrl             = "permissions";
-    public const string ReadOnePermissionUrl          = "{PermissionId}";
-    public const string ReadAllPaginatedPermissionUrl = "";
-    public const string CreatePermissionUrl           = "";
-    public const string UpdatePermissionUrl           = "";
-    public const string DeletePermissionUrl           = "";
+    public const string BasePermissionUrl                         = "permissions";
+    public const string ReadOnePermissionUrl                      = "{Id}";
+    public const string ReadAllPaginatedPermissionUrl             = "";
+    public const string ReadAllBasedOnRolesPaginatedPermissionUrl = "based-on-roles";
+    public const string CreatePermissionUrl                       = "";
+    public const string UpdatePermissionUrl                       = "";
+    public const string DeletePermissionUrl                       = "";
 }
 
 //Category

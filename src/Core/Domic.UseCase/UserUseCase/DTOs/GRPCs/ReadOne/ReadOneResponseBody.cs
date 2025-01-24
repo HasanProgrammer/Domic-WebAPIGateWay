@@ -1,8 +1,8 @@
-﻿using Domic.UseCase.UserUseCase.DTOs.ViewModels;
+﻿using Domic.UseCase.UserUseCase.DTOs;
 
 namespace Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {
-    public UsersViewModel User { get; set; }
+    public UserDto User { get; set; }
 }

@@ -4,17 +4,19 @@ using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.PermissionUseCase.Commands.Create;
 using Domic.UseCase.PermissionUseCase.Commands.Delete;
 using Domic.UseCase.PermissionUseCase.Commands.Update;
-using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Create;
-using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Delete;
-using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllPaginated;
-using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadOne;
-using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Update;
+using Domic.UseCase.PermissionUseCase.Queries.ReadAllBasedOnRolesPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-using Route = Domic.Common.ClassConsts.Route;
+using CreateResponse                       = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Create.CreateResponse;
+using UpdateResponse                       = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Update.UpdateResponse;
+using DeleteResponse                       = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.Delete.DeleteResponse;
+using ReadAllPaginatedResponse             = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllBasedOnRolesPaginatedResponse = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllBasedOnRolesPaginated.ReadAllBasedOnRolesPaginatedResponse;
+using ReadOneResponse                      = Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using Route                                = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
@@ -59,6 +61,24 @@ public class PermissionController : ControllerBase
     )
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route(Route.ReadAllBasedOnRolesPaginatedPermissionUrl)]
+    [PermissionPolicy(Type = Permission.PermissionReadAllPaginated)]
+    public async Task<IActionResult> ReadAllBasedOnRolesPaginated([FromQuery] ReadAllBasedOnRolesPaginatedQuery query,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await _mediator.DispatchAsync<ReadAllBasedOnRolesPaginatedResponse>(query, cancellationToken);
 
         return new JsonResult(result);
     }

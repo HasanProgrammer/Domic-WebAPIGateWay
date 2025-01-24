@@ -13,7 +13,7 @@ using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.InActive;
 using Domic.UseCase.UserUseCase.Commands.SignIn;
 using Domic.UseCase.UserUseCase.Contracts.Interfaces;
-using Domic.UseCase.UserUseCase.DTOs.ViewModels;
+using Domic.UseCase.UserUseCase.DTOs;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
@@ -86,7 +86,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { User = result.Body.User.DeSerialize<UsersViewModel>() } 
+            Body    = new ReadOneResponseBody { User = result.Body.User.DeSerialize<UserDto>() } 
         };
     }
 
@@ -115,7 +115,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Users = result.Body.Users.DeSerialize<PaginatedCollection<UsersViewModel>>()
+                Users = result.Body.Users.DeSerialize<PaginatedCollection<UserDto>>()
             }
         };
     }

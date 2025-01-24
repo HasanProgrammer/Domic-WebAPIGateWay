@@ -5,5 +5,5 @@ namespace Domic.UseCase.RoleUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {
-    public string RoleId { get; set; }
+    public required string Id { get; set; }
 }
