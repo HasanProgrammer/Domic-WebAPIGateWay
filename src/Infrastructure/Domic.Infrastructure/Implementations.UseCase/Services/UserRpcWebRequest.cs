@@ -2,7 +2,7 @@
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
-using Domic.Core.Auth.Grpc;
+using Domic.Core.Identity.Grpc;
 using Domic.Core.User.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 using String                       = Domic.Core.User.Grpc.String;
-using AuthString                   = Domic.Core.Auth.Grpc.String;
+using AuthString                   = Domic.Core.Identity.Grpc.String;
 using Int32                        = Domic.Core.User.Grpc.Int32;
 using ReadOneResponse              = Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
 using ReadOneResponseBody          = Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
@@ -256,7 +256,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         return ( metaData, new UserService.UserServiceClient(_channel) );
     }
     
-    private async Task<(Metadata headers, AuthService.AuthServiceClient client)>
+    private async Task<(Metadata headers, IdentityService.IdentityServiceClient client)>
         _loadGrpcChannelForAuthServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
@@ -271,6 +271,6 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         if(isIdempotent == false)
             metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
         
-        return ( metaData, new AuthService.AuthServiceClient(_channel) );
+        return ( metaData, new IdentityService.IdentityServiceClient(_channel) );
     }
 }

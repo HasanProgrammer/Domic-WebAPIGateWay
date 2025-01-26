@@ -24,7 +24,7 @@
     <PackageReference Include="Domic.Grpc.Article" Version="1.1.0" />
     <PackageReference Include="Domic.Grpc.AggregateArticle" Version="1.1.0" />
     <PackageReference Include="Domic.Grpc.Comment" Version="1.1.0" />
-    <PackageReference Include="Domic.Grpc.Auth" Version="1.1.0" />
+    <PackageReference Include="Domic.Grpc.Identity" Version="1.1.1" />
     <PackageReference Include="Domic.Grpc.Category" Version="1.1.0" />
     <PackageReference Include="Domic.Grpc.Permission" Version="1.1.2" />
     <PackageReference Include="Domic.Grpc.Role" Version="1.1.1" />
