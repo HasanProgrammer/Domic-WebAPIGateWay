@@ -11,6 +11,8 @@ using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.Update;
 using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.InActive;
+using Domic.UseCase.UserUseCase.Commands.OtpGeneration;
+using Domic.UseCase.UserUseCase.Commands.OtpVerification;
 using Domic.UseCase.UserUseCase.Commands.SignIn;
 using Domic.UseCase.UserUseCase.Contracts.Interfaces;
 using Domic.UseCase.UserUseCase.DTOs;
@@ -36,6 +38,10 @@ using ActiveResponse               = Domic.UseCase.UserUseCase.DTOs.GRPCs.Active
 using ActiveResponseBody           = Domic.UseCase.UserUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
 using InActiveResponse             = Domic.UseCase.UserUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 using InActiveResponseBody         = Domic.UseCase.UserUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
+using OtpGenerationResponse = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration.OtpGenerationResponse;
+using OtpGenerationResponseBody = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration.OtpGenerationResponseBody;
+using OtpVerificationResponse = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification.OtpVerificationResponse;
+using OtpVerificationResponseBody = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification.OtpVerificationResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -163,6 +169,47 @@ public class UserRpcWebRequest : IUserRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new SignInResponseBody { Token = result.Body.Token }
+        };
+    }
+
+    public async Task<OtpGenerationResponse> OtpGenerationAsync(OtpGenerationCommand request, 
+        CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
+
+        OtpGenerationRequest payload = new();
+        
+        payload.PhoneNumber = !string.IsNullOrEmpty(request.PhoneNumber) ? new AuthString { Value = request.PhoneNumber } : default;
+        
+        var result = 
+            await loadData.client.OtpGenerationAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new OtpGenerationResponseBody { Result = result.Body.Result }
+        };
+    }
+
+    public async Task<OtpVerificationResponse> OtpVerificationAsync(OtpVerificationCommand request, 
+        CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
+
+        OtpVerificationRequest payload = new();
+        
+        payload.Code        = !string.IsNullOrEmpty(request.Code)        ? new AuthString { Value = request.Code }        : default;
+        payload.PhoneNumber = !string.IsNullOrEmpty(request.PhoneNumber) ? new AuthString { Value = request.PhoneNumber } : default;
+        
+        var result =
+            await loadData.client.OtpVerificationAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new OtpVerificationResponseBody { Token = result.Body.Token }
         };
     }
 
