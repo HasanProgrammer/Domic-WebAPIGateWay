@@ -38,10 +38,10 @@ using ActiveResponse               = Domic.UseCase.UserUseCase.DTOs.GRPCs.Active
 using ActiveResponseBody           = Domic.UseCase.UserUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
 using InActiveResponse             = Domic.UseCase.UserUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 using InActiveResponseBody         = Domic.UseCase.UserUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
-using OtpGenerationResponse = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration.OtpGenerationResponse;
-using OtpGenerationResponseBody = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration.OtpGenerationResponseBody;
-using OtpVerificationResponse = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification.OtpVerificationResponse;
-using OtpVerificationResponseBody = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification.OtpVerificationResponseBody;
+using OtpGenerationResponse        = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration.OtpGenerationResponse;
+using OtpGenerationResponseBody    = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration.OtpGenerationResponseBody;
+using OtpVerificationResponse      = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification.OtpVerificationResponse;
+using OtpVerificationResponseBody  = Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification.OtpVerificationResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
