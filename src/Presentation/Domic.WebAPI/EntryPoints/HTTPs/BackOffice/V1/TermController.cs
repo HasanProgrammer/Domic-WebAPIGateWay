@@ -68,7 +68,7 @@ public class TermController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPost]
     [Route(Route.CreateTermUrl)]
-    [PermissionPolicy(Type = "Term.Create")]
+//  [PermissionPolicy(Type = "Term.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
