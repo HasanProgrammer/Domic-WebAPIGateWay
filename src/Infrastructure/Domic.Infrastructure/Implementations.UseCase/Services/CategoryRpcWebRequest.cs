@@ -73,7 +73,7 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
-            TargetId = request.CategoryId != null ? new String { Value = request.CategoryId } : null
+            TargetId = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result =

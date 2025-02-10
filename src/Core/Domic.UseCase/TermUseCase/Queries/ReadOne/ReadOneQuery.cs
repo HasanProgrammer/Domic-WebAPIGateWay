@@ -5,5 +5,5 @@ namespace Domic.UseCase.TermUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {
-    public required string TermId { get; set; }
+    public required string Id { get; set; }
 }

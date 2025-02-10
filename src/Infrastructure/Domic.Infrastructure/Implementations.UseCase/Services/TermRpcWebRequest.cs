@@ -31,6 +31,8 @@ using ActiveResponse               = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active
 using ActiveResponseBody           = Domic.UseCase.TermUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
 using CheckExistRequest            = Domic.Core.Term.Grpc.CheckExistRequest;
 using CreateRequest                = Domic.Core.Term.Grpc.CreateRequest;
+using DeleteResponse = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.DeleteResponse;
+using DeleteResponseBody = Domic.UseCase.TermUseCase.DTOs.GRPCs.Update.DeleteResponseBody;
 using InActiveRequest              = Domic.Core.Term.Grpc.InActiveRequest;
 using InActiveResponse             = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 using InActiveResponseBody         = Domic.UseCase.TermUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
@@ -65,7 +67,7 @@ public class TermRpcWebRequest(
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
-            TermId = request.TermId != null ? new String { Value = request.TermId } : null
+            TermId = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result =
@@ -134,13 +136,12 @@ public class TermRpcWebRequest(
         
         UpdateRequest payload = new();
 
-        payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }            : null;
-        payload.CategoryId  = request.TermId      != null ? new String { Value = request.TermId }            : null;
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }              : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description }       : null;
-        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }          : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }       : null;
-        payload.Price       = request.Price       != null ? new String { Value = request.Status.ToString() } : null;
+        payload.TermId      = request.Id          != null ? new String { Value = request.Id }               : null;
+        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }       : null;
+        payload.Name        = request.Name        != null ? new String { Value = request.Name }             : null;
+        payload.Description = request.Description != null ? new String { Value = request.Description }      : null;
+        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }         : null;
+        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }      : null; payload.Price       = request.Price       != null ? new String { Value = request.Price.ToString() } : null;
         
         var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -152,13 +153,31 @@ public class TermRpcWebRequest(
         };
     }
 
+    public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        DeleteRequest payload = new();
+
+        payload.TermId = request.Id is not null ? new String { Value = request.Id } : null;
+
+        var result = 
+            await loadData.client.DeleteAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new DeleteResponseBody { TermId = result.Body.TermId } 
+        };
+    }
+
     public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
     {
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         ActiveRequest payload = new();
 
-        payload.TermId = request.TermId is not null ? new String { Value = request.TermId } : null;
+        payload.TermId = request.Id is not null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -176,7 +195,7 @@ public class TermRpcWebRequest(
         
         InActiveRequest payload = new();
 
-        payload.TermId = request.TermId is not null ? new String { Value = request.TermId } : null;
+        payload.TermId = request.Id is not null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.InActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);

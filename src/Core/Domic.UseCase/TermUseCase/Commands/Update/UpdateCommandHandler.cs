@@ -1,4 +1,3 @@
-using Domic.Core.Common.ClassExtensions;
 using Domic.Core.UseCase.Attributes;
 using Domic.UseCase.TermUseCase.Contracts.Interfaces;
 using Domic.UseCase.TermUseCase.DTOs.GRPCs.Update;
@@ -13,21 +12,8 @@ public class UpdateCommandHandler(ITermRpcWebRequest termRpcWebRequest, IWebHost
     public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 
     [WithValidation]
-    public async Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
-    {
-        #region UploadFile
-
-        if (command.Image is not null)
-        {
-            var imageInfo = await command.Image.UploadAsync(webHostEnvironment, cancellationToken: cancellationToken);
-
-            command.ImageUrl = imageInfo.path;
-        }
-
-        #endregion
-        
-       return await termRpcWebRequest.UpdateAsync(command, cancellationToken);
-    }
+    public Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken) 
+        => termRpcWebRequest.UpdateAsync(command, cancellationToken);
 
     public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

@@ -56,7 +56,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseCategoryUrl             = "categories";
-    public const string ReadOneCategoryUrl          = "{CategoryId}";
+    public const string ReadOneCategoryUrl          = "{Id}";
     public const string ReadAllPaginatedCategoryUrl = "";
     public const string CreateCategoryUrl           = "";
     public const string UpdateCategoryUrl           = "";
@@ -109,13 +109,13 @@ public partial class Route
 public partial class Route
 {
     public const string BaseTermUrl             = "terms";
-    public const string ReadOneTermUrl          = "{TermId}";
+    public const string ReadOneTermUrl          = "{Id}";
     public const string ReadAllPaginatedTermUrl = "";
     public const string CreateTermUrl           = "";
     public const string ActiveTermUrl           = "active";
     public const string InActiveTermUrl         = "inactive";
     public const string UpdateTermUrl           = "";
-    public const string DeleteTermUrl           = "";
+    public const string DeleteTermUrl           = "{Id}";
 }
 
 //Video

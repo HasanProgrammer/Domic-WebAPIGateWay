@@ -5,5 +5,5 @@ namespace Domic.UseCase.TermUseCase.Commands.InActive;
 
 public class InActiveCommand : ICommand<InActiveResponse>
 {
-    public required string TermId { get; init; }
+    public required string Id { get; init; }
 }

@@ -5,5 +5,5 @@ namespace Domic.UseCase.TermUseCase.Commands.Update;
 
 public class DeleteCommand : ICommand<DeleteResponse>
 {
-    
+    public string Id { get; set; }
 }

@@ -5,5 +5,5 @@ namespace Domic.UseCase.CategoryUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {
-    public string CategoryId { get; set; }
+    public string Id { get; set; }
 }
