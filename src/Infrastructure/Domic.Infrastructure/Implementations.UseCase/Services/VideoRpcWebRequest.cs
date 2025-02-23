@@ -51,7 +51,7 @@ public class VideoRpcWebRequest(
     {
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
-        CheckExistRequest payload = new() { VideoId = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
+        CheckExistRequest payload = new() { Id = !string.IsNullOrEmpty(id) ? new String { Value = id } : null };
 
         var result =
             await loadData.client.CheckExistAsync(payload, headers: loadData.headers, 
@@ -66,7 +66,7 @@ public class VideoRpcWebRequest(
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadOneRequest payload = new() {
-            VideoId = request.VideoId != null ? new String { Value = request.VideoId } : null
+            Id = request.Id != null ? new String { Value = request.Id } : null
         };
 
         var result =
@@ -77,7 +77,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Video = result.Body.Video.DeSerialize<VideosDto>() } 
+            Body    = new ReadOneResponseBody { Video = result.Body.Video.DeSerialize<VideoDto>() } 
         };
     }
 
@@ -93,7 +93,7 @@ public class VideoRpcWebRequest(
         };
         
         var result =
-            await loadData.client.ReadAllPaginateAsync(payload, headers: loadData.headers, 
+            await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
         
@@ -101,7 +101,7 @@ public class VideoRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Videos = result.Body.Videos.DeSerialize<PaginatedCollection<VideosDto>>()
+                Videos = result.Body.Videos.DeSerialize<PaginatedCollection<VideoDto>>()
             }
         };
     }
@@ -146,7 +146,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new UpdateResponseBody { VideoId = result.Body.VideoId }
+            Body    = new UpdateResponseBody { VideoId = result.Body.Id }
         };
     }
 
@@ -156,7 +156,7 @@ public class VideoRpcWebRequest(
         
         ActiveRequest payload = new();
 
-        payload.VideoId = request.VideoId is not null ? new String { Value = request.VideoId } : null;
+        payload.Id = request.VideoId is not null ? new String { Value = request.VideoId } : null;
 
         var result = 
             await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -164,7 +164,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ActiveResponseBody { VideoId = result.Body.VideoId } 
+            Body    = new ActiveResponseBody { VideoId = result.Body.Id } 
         };
     }
 
@@ -174,7 +174,7 @@ public class VideoRpcWebRequest(
         
         InActiveRequest payload = new();
 
-        payload.VideoId = request.VideoId is not null ? new String { Value = request.VideoId } : null;
+        payload.Id = request.Id is not null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.InActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -182,7 +182,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new InActiveResponseBody { VideoId = result.Body.VideoId } 
+            Body    = new InActiveResponseBody { VideoId = result.Body.Id } 
         };
     }
 

@@ -4,5 +4,5 @@ namespace Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {
-    public VideosDto Video { get; set; }
+    public VideoDto Video { get; set; }
 }

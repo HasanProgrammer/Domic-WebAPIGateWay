@@ -1,6 +1,4 @@
-﻿using Domic.Common.ClassConsts;
-using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.WebAPI.Filters;
+﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.VideoUseCase.Commands.Active;
 using Domic.UseCase.VideoUseCase.Commands.Create;
 using Domic.UseCase.VideoUseCase.Commands.InActive;
@@ -36,7 +34,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadOneVideoUrl)]
-    [PermissionPolicy(Type = "Video.ReadOne")]
+  //[PermissionPolicy(Type = "Video.ReadOne")]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
@@ -52,7 +50,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedVideoUrl)]
-    [PermissionPolicy(Type = "Video.ReadAllTransactionRequestPaginated")]
+  //[PermissionPolicy(Type = "Video.ReadAllTransactionRequestPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
@@ -70,7 +68,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPost]
     [Route(Route.CreateVideoUrl)]
-    [PermissionPolicy(Type = "Video.Create")]
+  //[PermissionPolicy(Type = "Video.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
@@ -86,7 +84,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.UpdateVideoUrl)]
-    [PermissionPolicy(Type = "Video.Update")]
+  //[PermissionPolicy(Type = "Video.Update")]
     public async Task<IActionResult> Update([FromBody] UpdateCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
@@ -102,7 +100,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.ActiveVideoUrl)]
-    [PermissionPolicy(Type = "Video.Active")]
+  //[PermissionPolicy(Type = "Video.Active")]
     public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
@@ -118,7 +116,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.InActiveVideoUrl)]
-    [PermissionPolicy(Type = "Video.InActive")]
+  //[PermissionPolicy(Type = "Video.InActive")]
     public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
@@ -134,7 +132,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpDelete]
     [Route(Route.DeleteVideoUrl)]
-    [PermissionPolicy(Type = "Video.Delete")]
+  //[PermissionPolicy(Type = "Video.Delete")]
     public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);

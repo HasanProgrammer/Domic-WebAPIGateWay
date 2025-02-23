@@ -1,4 +1,3 @@
-using Domic.Core.Common.ClassExtensions;
 using Domic.Core.UseCase.Attributes;
 using Domic.UseCase.VideoUseCase.Contracts.Interfaces;
 using Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update;
@@ -13,18 +12,8 @@ public class UpdateCommandHandler(IVideoRpcWebRequest videoRpcWebRequest, IWebHo
     public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 
     [WithValidation]
-    public async Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
-    {
-        #region UploadFile
-
-        var videoInfo = await command.Video.UploadAsync(webHostEnvironment, cancellationToken: cancellationToken);
-
-        command.VideoUrl = videoInfo.path;
-
-        #endregion
-        
-        return await videoRpcWebRequest.UpdateAsync(command, cancellationToken);
-    }
+    public Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken) 
+        => videoRpcWebRequest.UpdateAsync(command, cancellationToken);
 
     public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 }

@@ -122,7 +122,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseVideoUrl             = "videos";
-    public const string ReadOneVideoUrl          = "{VideoId}";
+    public const string ReadOneVideoUrl          = "{Id}";
     public const string ReadAllPaginatedVideoUrl = "";
     public const string CreateVideoUrl           = "";
     public const string ActiveVideoUrl           = "active";

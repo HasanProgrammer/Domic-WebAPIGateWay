@@ -1,7 +1,8 @@
 namespace Domic.UseCase.VideoUseCase.DTOs;
 
-public class VideosDto
+public class VideoDto
 {
+    public string Id { get; set; }
     public string TermId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }

@@ -5,5 +5,5 @@ namespace Domic.UseCase.VideoUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {
-    public required string VideoId { get; set; }
+    public required string Id { get; set; }
 }

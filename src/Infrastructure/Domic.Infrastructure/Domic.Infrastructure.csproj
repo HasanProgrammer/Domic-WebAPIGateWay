@@ -32,8 +32,8 @@
     <PackageReference Include="Domic.Grpc.Financial" Version="1.0.8" />
     
     <!--ForPrivateService-->
-    <PackageReference Include="Domic.Grpc.Term" Version="1.1.0" />
-    <PackageReference Include="Domic.Grpc.Video" Version="4.0.0" />
+    <PackageReference Include="Domic.Grpc.Term" Version="1.1.1" />
+    <PackageReference Include="Domic.Grpc.Video" Version="1.1.2" />
     <PackageReference Include="Domic.Grpc.Ticket" Version="4.0.3" />
     <PackageReference Include="Domic.Grpc.AggregateTerm" Version="1.2.0" />
     <PackageReference Include="Domic.Grpc.AggregateTicket" Version="1.0.2" />
