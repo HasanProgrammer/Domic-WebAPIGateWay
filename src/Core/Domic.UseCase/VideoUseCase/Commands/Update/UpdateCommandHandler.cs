@@ -1,4 +1,3 @@
-using Domic.Core.UseCase.Attributes;
 using Domic.UseCase.VideoUseCase.Contracts.Interfaces;
 using Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -11,7 +10,6 @@ public class UpdateCommandHandler(IVideoRpcWebRequest videoRpcWebRequest, IWebHo
 {
     public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 
-    [WithValidation]
     public Task<UpdateResponse> HandleAsync(UpdateCommand command, CancellationToken cancellationToken) 
         => videoRpcWebRequest.UpdateAsync(command, cancellationToken);
 

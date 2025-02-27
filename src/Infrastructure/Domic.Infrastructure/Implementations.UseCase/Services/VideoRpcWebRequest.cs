@@ -32,6 +32,8 @@ using ActiveResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Activ
 using ActiveResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
 using CheckExistRequest            = Domic.Core.Video.Grpc.CheckExistRequest;
 using CreateRequest                = Domic.Core.Video.Grpc.CreateRequest;
+using DeleteResponse = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.DeleteResponse;
+using DeleteResponseBody = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.DeleteResponseBody;
 using InActiveRequest              = Domic.Core.Video.Grpc.InActiveRequest;
 using InActiveResponse             = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 using InActiveResponseBody         = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
@@ -134,6 +136,7 @@ public class VideoRpcWebRequest(
         
         UpdateRequest payload = new();
         
+        payload.Id          = request.Id          != null ? new String { Value = request.Id }          : null;
         payload.TermId      = request.TermId      != null ? new String { Value = request.TermId }      : null;
         payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
         payload.Description = request.Description != null ? new String { Value = request.Description } : null;
@@ -147,6 +150,24 @@ public class VideoRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new UpdateResponseBody { VideoId = result.Body.Id }
+        };
+    }
+
+    public async Task<DeleteResponse> DeleteAsync(DeleteCommand request, CancellationToken cancellationToken)
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        DeleteRequest payload = new();
+        
+        payload.Id = request.Id != null ? new String { Value = request.Id } : null;
+        
+        var result =
+            await loadData.client.DeleteAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new DeleteResponseBody { VideoId = result.Body.Id }
         };
     }
 
