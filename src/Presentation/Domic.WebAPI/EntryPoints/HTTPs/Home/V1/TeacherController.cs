@@ -1,6 +1,6 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated;
-using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
 using Microsoft.AspNetCore.Mvc;
 
 using Route = Domic.Common.ClassConsts.Route;
