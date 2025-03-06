@@ -12,6 +12,7 @@ using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
+using String                       = Domic.Core.AggregateTerm.Grpc.String;
 using Int32                        = Domic.Core.AggregateTerm.Grpc.Int32;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
@@ -20,8 +21,7 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class AggregateTermRpcWebRequest(
     IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
-)
-: IAggregateTermRpcWebRequest
+) : IAggregateTermRpcWebRequest
 {
     private GrpcChannel _channel;
 
@@ -36,8 +36,11 @@ public class AggregateTermRpcWebRequest(
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
 
+        payload.UserId     = !string.IsNullOrEmpty(request.UserId)     ? new String { Value = request.UserId }     : null;
+        payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
+
         var result =
-            await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken, 
+            await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken,
                 headers: loadData.headers
             );
         
@@ -45,7 +48,7 @@ public class AggregateTermRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Terms = result.Body.Terms.DeSerialize<PaginatedCollection<AggregateTermsDto>>()
+                Terms = result.Body.Terms.DeSerialize<PaginatedCollection<AggregateTermDto>>()
             }
         };
     }

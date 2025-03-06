@@ -4,5 +4,5 @@ namespace Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {
-    public AggregateTermsDto Terms { get; set; }
+    public AggregateTermDto Term { get; set; }
 }

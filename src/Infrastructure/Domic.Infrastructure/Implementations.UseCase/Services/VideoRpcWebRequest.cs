@@ -177,7 +177,7 @@ public class VideoRpcWebRequest(
         
         ActiveRequest payload = new();
 
-        payload.Id = request.VideoId is not null ? new String { Value = request.VideoId } : null;
+        payload.Id = request.Id is not null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
