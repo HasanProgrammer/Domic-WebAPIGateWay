@@ -10,8 +10,10 @@ public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IE
     public async Task<string> UploadAsync(IFormFile file, CancellationToken cancellationToken)
     {
         var bucket = Environment.GetEnvironmentVariable("Minio-Bucket");
-        
+
         using var minioClient = minioClientFactory.CreateClient();
+        
+        minioClient.SetTraceOn();
 
         if (!await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket), cancellationToken))
             await minioClient.MakeBucketAsync(
@@ -20,7 +22,7 @@ public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IE
             );
         
         var putObjectArgs = new PutObjectArgs().WithBucket(bucket)
-                                               .WithObject($"{Guid.NewGuid().ToString()}{Path.GetExtension(file.FileName)}")
+                                               .WithObject(file.FileName)
                                                .WithStreamData(file.OpenReadStream())
                                                .WithContentType(file.ContentType)
                                                .WithObjectSize(file.Length);

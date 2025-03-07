@@ -1,4 +1,5 @@
-﻿using Domic.Infrastructure.Implementations.UseCase.Services;
+﻿using System.Net;
+using Domic.Infrastructure.Implementations.UseCase.Services;
 using Domic.UseCase.Commons.Contracts.Interfaces;
 using Domic.WebAPI.Frameworks.Middlewares;
 using Minio;
@@ -24,6 +25,7 @@ public static class IApplicationBuilderExtension
                                Environment.GetEnvironmentVariable("Minio-SecretKey")
                            )
                            .WithSSL(false)
+            
         );
     }
     
