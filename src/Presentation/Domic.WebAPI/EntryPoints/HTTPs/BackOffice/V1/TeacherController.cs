@@ -10,7 +10,7 @@ using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[Authorize(Roles = "SuperAdmin,Admin")]
+[Authorize(Roles = "SuperAdmin,Admin,Author")]
 [BlackListPolicy]
 [ApiExplorerSettings(GroupName = "BackOffice/Teacher")]
 [Route($"{Route.BaseBackOfficeUrl}{Route.BaseAggregateTermUrl}")]
@@ -23,13 +23,13 @@ public class TeacherController(IMediator mediator, [FromKeyedServices("Http1")] 
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet]
-    [Route($"{Route.BaseAggregateTermUrl}/{Route.ReadAllPaginatedAggregateTermUrl}")]
+    [HttpGet($"{Route.BaseAggregateTermUrl}/{Route.ReadAllPaginatedAggregateTermUrl}")]
 //  [PermissionPolicy(Type = "Teacher.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
     {
+        query.Active = false; //all terms => active & inactive
         query.UserId = identityUser.GetIdentity();
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);

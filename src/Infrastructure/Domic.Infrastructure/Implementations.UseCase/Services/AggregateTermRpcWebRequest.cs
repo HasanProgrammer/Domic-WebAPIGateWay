@@ -36,6 +36,7 @@ public class AggregateTermRpcWebRequest(
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
 
+        payload.Active     = request.Active;
         payload.UserId     = !string.IsNullOrEmpty(request.UserId)     ? new String { Value = request.UserId }     : null;
         payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
 
