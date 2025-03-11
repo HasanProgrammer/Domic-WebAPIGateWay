@@ -5,6 +5,6 @@ namespace Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {
-    public required string TicketId { get; set; }
     public required string UserId   { get; set; }
+    public required string TicketId { get; set; }
 }

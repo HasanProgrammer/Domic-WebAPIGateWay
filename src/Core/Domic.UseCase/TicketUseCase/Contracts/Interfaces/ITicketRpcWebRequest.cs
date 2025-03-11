@@ -9,8 +9,10 @@ using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TicketUseCase.Queries.ReadOne;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.TicketUseCase.Commands.Create;
+using Domic.UseCase.TicketUseCase.Commands.CreateComment;
 using Domic.UseCase.TicketUseCase.Commands.InActive;
 using Domic.UseCase.TicketUseCase.Commands.Update;
+using Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment;
 
 namespace Domic.UseCase.TicketUseCase.Contracts.Interfaces;
 
@@ -45,6 +47,16 @@ public interface ITicketRpcWebRequest : IRpcWebRequest
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
+        => throw new NotImplementedException();
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public Task<CreateCommentResponse> CreateCommentAsync(CreateCommentCommand request, CancellationToken cancellationToken)
         => throw new NotImplementedException();
     
     /// <summary>

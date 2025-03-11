@@ -1,4 +1,5 @@
-﻿using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
@@ -17,7 +18,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [ApiExplorerSettings(GroupName = "Home/Ticket")]
 [Route(Route.BaseHomeUrl)]
 [ApiVersion("1.0")]
-public class TicketController(IMediator mediator) : ControllerBase
+public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) : ControllerBase
 {
     /// <summary>
     /// 
@@ -30,6 +31,8 @@ public class TicketController(IMediator mediator) : ControllerBase
     [PermissionPolicy(Type = "AggregateTicket.ReadOne")]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
+        query.UserId = identityUser.GetIdentity();
+        
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
         return new JsonResult(result);
@@ -43,11 +46,13 @@ public class TicketController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadAllPaginatedAggregateTicketUrl}")]
-    [PermissionPolicy(Type = "AggregateTicket.ReadAllTransactionRequestPaginated")]
+    [PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
     {
+        query.UserId = identityUser.GetIdentity();
+        
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
         return new JsonResult(result);

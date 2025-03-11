@@ -22,6 +22,22 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 public class TicketController(IMediator mediator) : ControllerBase
 {
     /// <summary>
+    /// for ticket answer
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [Route(Route.CreateTicketUrl)]
+    [PermissionPolicy(Type = "Ticket.Create")]
+    public async Task<IActionResult> Create([FromBody] UpdateCommand command, CancellationToken cancellationToken)
+    {
+        var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
     /// 
     /// </summary>
     /// <param name="command"></param>

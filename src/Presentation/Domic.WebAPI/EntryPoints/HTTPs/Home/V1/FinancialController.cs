@@ -60,7 +60,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPost]
     [Route(Route.CreateTransactionRequestFinancialUrl)]
-    //[PermissionPolicy(Type = "Financial.CreateTransactionRequest")]
+    [PermissionPolicy(Type = "Financial.CreateTransactionRequest")]
     public async Task<IActionResult> CreateTransactionRequest([FromBody] CreateTransactionRequestCommand command,
         CancellationToken cancellationToken
     )
@@ -78,7 +78,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.ChangeStatusTransactionRequestFinancialUrl)]
-    //[PermissionPolicy(Type = "Financial.ChangeStatusTransactionRequest")]
+    [PermissionPolicy(Type = "Financial.ChangeStatusTransactionRequest")]
     public async Task<IActionResult> ChangeStatusTransactionRequest(
         [FromBody] ChangeStatusTransactionRequestCommand command, CancellationToken cancellationToken
     )
@@ -96,7 +96,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPatch]
     [Route(Route.DecreaseWalletFinancialUrl)]
-    //[PermissionPolicy(Type = "Financial.DecreaseWallet")]
+    [PermissionPolicy(Type = "Financial.DecreaseWallet")]
     public async Task<IActionResult> DecreaseWallet(
         [FromBody] DecreaseAccountBalanceCommand command, CancellationToken cancellationToken
     )

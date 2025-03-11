@@ -6,6 +6,6 @@ namespace Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 
 public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>
 {
-    public required string UserId { get; init; }
+    public required string UserId { get; set; }
     public required string SearchText { get; init; }
 }

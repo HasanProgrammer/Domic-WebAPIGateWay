@@ -10,12 +10,14 @@ using Domic.UseCase.TicketUseCase.Contracts.Interfaces;
 using Domic.UseCase.TicketUseCase.Commands.Active;
 using Domic.UseCase.TicketUseCase.Commands.Update;
 using Domic.UseCase.TicketUseCase.Commands.Create;
+using Domic.UseCase.TicketUseCase.Commands.CreateComment;
 using Domic.UseCase.TicketUseCase.Commands.InActive;
 using Domic.UseCase.TicketUseCase.DTOs;
 using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+
 using String                       = Domic.Core.Ticket.Grpc.String;
 using Int32                        = Domic.Core.Ticket.Grpc.Int32;
 using ActiveRequest                = Domic.Core.Ticket.Grpc.ActiveRequest;
@@ -30,6 +32,8 @@ using UpdateResponseBody           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Upda
 using ActiveResponse               = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using ActiveResponseBody           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
 using CheckExistRequest            = Domic.Core.Ticket.Grpc.CheckExistRequest;
+using CreateCommentResponse        = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponse;
+using CreateCommentResponseBody    = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponseBody;
 using CreateRequest                = Domic.Core.Ticket.Grpc.CreateRequest;
 using InActiveRequest              = Domic.Core.Ticket.Grpc.InActiveRequest;
 using InActiveResponse             = Domic.UseCase.TicketUseCase.DTOs.GRPCs.InActive.InActiveResponse;
@@ -111,7 +115,7 @@ public class TicketRpcWebRequest(
         
         CreateRequest payload = new();
         
-        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }    : null;
+        payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }   : null;
         payload.Title       = request.Title       != null ? new String { Value = request.Title }        : null;
         payload.Description = request.Description != null ? new String { Value = request.Description }  : null;
         payload.Priority    = request.Priority    != null ? new Int32 { Value = (int)request.Priority } : null;
@@ -124,6 +128,27 @@ public class TicketRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new CreateResponseBody { TicketId = result.Body.TicketId }
+        };
+    }
+
+    public async Task<CreateCommentResponse> CreateCommentAsync(CreateCommentCommand request, 
+        CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        CreateCommentRequest payload = new();
+        
+        payload.TicketId = !string.IsNullOrEmpty(request.TicketId) ? new String { Value = request.TicketId } : null;
+        payload.Comment  = !string.IsNullOrEmpty(request.Comment)  ? new String { Value = request.Comment }  : null;
+        
+        var result =
+            await loadData.client.CreateCommentAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new CreateCommentResponseBody { TicketCommentId = result.Body.TicketCommentId }
         };
     }
 

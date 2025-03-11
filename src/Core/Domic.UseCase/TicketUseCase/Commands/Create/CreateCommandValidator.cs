@@ -12,12 +12,6 @@ public class CreateCommandValidator(ICategoryRpcWebRequest categoryRpcWebRequest
         
         if(!targetCategory)
             throw new UseCaseException("دسته بندی مورد نظر موجود نمی باشد !");
-        
-        if (string.IsNullOrEmpty(input.Title))
-            throw new UseCaseException("فیلد فیلم آموزشی الزامی می باشد !");
-        
-        if (string.IsNullOrEmpty(input.Description))
-            throw new UseCaseException("فرمت فیلم آموزشی صحیح نمی باشد !");
 
         return default;
     }
