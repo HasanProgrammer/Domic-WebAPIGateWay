@@ -41,7 +41,7 @@
         "C-SqlServerConnectionString": "",
         "Q-SqlServerConnectionString": "",
         "ServiceDiscoveryAddress": "https://localhost:9009",
-        "ClientOrigins": "http://localhost:3000,https://localhost:3000",
+        "ClientOrigins": "http://localhost:6600,https://localhost:6600",
         "Host": "localhost",
         "Port": "5001",
         "ASPNETCORE_ENVIRONMENT": "Development"
