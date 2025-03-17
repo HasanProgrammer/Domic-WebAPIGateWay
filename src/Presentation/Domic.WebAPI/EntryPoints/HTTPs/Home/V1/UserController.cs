@@ -19,7 +19,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [ApiExplorerSettings(GroupName = "Home/User")]
 [ApiVersion("1.0")]
 [Route(Route.BaseHomeUrl + Route.BaseUserUrl)]
-public class UserController(IMediator mediator, IIdentityUser identityUser) : ControllerBase
+public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) : ControllerBase
 {
     /// <summary>
     /// 
