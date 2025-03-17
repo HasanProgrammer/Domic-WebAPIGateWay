@@ -1,4 +1,6 @@
-﻿using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.OtpGeneration;
 using Domic.UseCase.UserUseCase.Commands.OtpVerification;
@@ -8,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.Create;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification;
+using Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne;
+using Microsoft.AspNetCore.Authorization;
 using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
@@ -15,16 +19,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [ApiExplorerSettings(GroupName = "Home/User")]
 [ApiVersion("1.0")]
 [Route(Route.BaseHomeUrl + Route.BaseUserUrl)]
-public class UserController : ControllerBase
+public class UserController(IMediator mediator, IIdentityUser identityUser) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Mediator"></param>
-    public UserController(IMediator Mediator) => _mediator = Mediator;
-
     /// <summary>
     /// 
     /// </summary>
@@ -35,7 +31,7 @@ public class UserController : ControllerBase
     [Route(Route.SignInUserUrl)]
     public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
     {
-        var result = await _mediator.DispatchAsync<SignInResponse>(command, cancellationToken);
+        var result = await mediator.DispatchAsync<SignInResponse>(command, cancellationToken);
 
         return new JsonResult(result);
     }
@@ -52,7 +48,7 @@ public class UserController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        var result = await _mediator.DispatchAsync<OtpGenerationResponse>(command, cancellationToken);
+        var result = await mediator.DispatchAsync<OtpGenerationResponse>(command, cancellationToken);
 
         return new JsonResult(result);
     }
@@ -69,7 +65,7 @@ public class UserController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        var result = await _mediator.DispatchAsync<OtpVerificationResponse>(command, cancellationToken);
+        var result = await mediator.DispatchAsync<OtpVerificationResponse>(command, cancellationToken);
 
         return new JsonResult(result);
     }
@@ -84,7 +80,24 @@ public class UserController : ControllerBase
     [Route(Route.SignUpUserUrl)]
     public async Task<IActionResult> SignUp([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
-        var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+        var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize]
+    [HttpGet(Route.ProfileUserUrl)]
+    public async Task<IActionResult> GetUserProfile(CancellationToken cancellationToken)
+    {
+        var query = new ReadOneQuery { Id = identityUser.GetIdentity() };
+        
+        var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
         return new JsonResult(result);
     }

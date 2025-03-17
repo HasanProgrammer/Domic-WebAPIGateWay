@@ -18,6 +18,7 @@ public partial class Route
 {
     public const string BaseUserUrl             = "users";
     public const string ReadOneUserUrl          = "{Id}";
+    public const string ProfileUserUrl          = "current-profile";
     public const string ReadAllPaginatedUserUrl = "";
     public const string CreateUserUrl           = "";
     public const string UpdateUserUrl           = "";
