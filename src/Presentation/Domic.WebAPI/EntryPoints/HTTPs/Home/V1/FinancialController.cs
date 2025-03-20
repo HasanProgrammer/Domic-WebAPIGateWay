@@ -5,6 +5,7 @@ using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -49,7 +50,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -67,7 +68,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -85,7 +86,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -103,6 +104,6 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

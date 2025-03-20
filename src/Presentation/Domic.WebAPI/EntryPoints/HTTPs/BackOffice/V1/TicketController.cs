@@ -1,6 +1,7 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TicketUseCase.Commands.Update;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -28,6 +29,6 @@ public class TicketController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

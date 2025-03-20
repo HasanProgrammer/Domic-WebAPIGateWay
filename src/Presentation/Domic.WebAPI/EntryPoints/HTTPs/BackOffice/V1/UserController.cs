@@ -7,6 +7,7 @@ using Domic.UseCase.UserUseCase.Commands.InActive;
 using Domic.UseCase.UserUseCase.Commands.Update;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -48,7 +49,7 @@ public class UserController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -66,7 +67,7 @@ public class UserController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -82,7 +83,7 @@ public class UserController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -98,7 +99,7 @@ public class UserController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -114,7 +115,7 @@ public class UserController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -130,6 +131,6 @@ public class UserController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

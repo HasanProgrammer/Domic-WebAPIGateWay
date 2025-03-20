@@ -3,6 +3,7 @@ using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadOne;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ public class AggregateTicketController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -49,6 +50,6 @@ public class AggregateTicketController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

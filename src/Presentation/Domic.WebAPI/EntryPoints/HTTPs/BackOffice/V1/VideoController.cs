@@ -6,6 +6,7 @@ using Domic.UseCase.VideoUseCase.Commands.Update;
 using Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.VideoUseCase.Queries.ReadOne;
 using Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -39,7 +40,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -73,7 +74,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -89,7 +90,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -105,7 +106,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -121,7 +122,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -137,6 +138,6 @@ public class VideoController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

@@ -2,6 +2,7 @@
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +34,7 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -51,6 +52,6 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

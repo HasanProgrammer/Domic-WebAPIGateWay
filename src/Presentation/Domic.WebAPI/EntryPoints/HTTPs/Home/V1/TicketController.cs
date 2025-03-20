@@ -5,6 +5,7 @@ using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
 using Domic.UseCase.TicketUseCase.Commands.CreateComment;
 using Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,7 +37,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
         
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -56,7 +57,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -72,7 +73,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     {
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -87,6 +88,6 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     {
         var result = await mediator.DispatchAsync<CreateCommentResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

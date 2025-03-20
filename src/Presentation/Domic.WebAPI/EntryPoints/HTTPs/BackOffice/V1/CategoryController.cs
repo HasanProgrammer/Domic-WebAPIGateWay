@@ -10,6 +10,7 @@ using Domic.UseCase.CategoryUseCase.DTOs.GRPCs.ReadOne;
 using Domic.UseCase.CategoryUseCase.DTOs.GRPCs.Update;
 using Domic.UseCase.CategoryUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.CategoryUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +47,7 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -63,7 +64,7 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -78,7 +79,7 @@ public class CategoryController : ControllerBase
     { 
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -93,7 +94,7 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -108,6 +109,6 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

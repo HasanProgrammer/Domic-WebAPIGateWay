@@ -3,6 +3,7 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,6 @@ public class AggregateArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

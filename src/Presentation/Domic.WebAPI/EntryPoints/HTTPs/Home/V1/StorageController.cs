@@ -1,5 +1,6 @@
 ﻿using Domic.Core.Common.ClassExtensions;
 using Domic.UseCase.Commons.Contracts.Interfaces;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,10 +27,12 @@ public class StorageController(IExternalStorageManager externalStorageManager, I
     {
         var uploadPath = await externalStorageManager.UploadAsync(file, cancellationToken);
 
-        return Ok(new {
-            code = configuration.GetSuccessStatusCode(),
-            message = configuration.GetSuccessCreateMessage(),
-            body = new { uploadPath = uploadPath }
-        });
+        return HttpContext.OkResponse(
+            new {
+                Code = configuration.GetSuccessStatusCode(),
+                Message = configuration.GetSuccessCreateMessage(),
+                Body = new { uploadPath }
+            }
+        );
     }
 }

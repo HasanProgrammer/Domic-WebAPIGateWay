@@ -11,6 +11,7 @@ using Domic.UseCase.RoleUseCase.DTOs.GRPCs.ReadOne;
 using Domic.UseCase.RoleUseCase.DTOs.GRPCs.Update;
 using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.RoleUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -46,7 +47,7 @@ public class RoleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -64,7 +65,7 @@ public class RoleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -80,7 +81,7 @@ public class RoleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -96,7 +97,7 @@ public class RoleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -112,6 +113,6 @@ public class RoleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

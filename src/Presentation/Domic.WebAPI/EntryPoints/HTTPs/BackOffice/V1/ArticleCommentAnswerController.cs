@@ -12,6 +12,7 @@ using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.GRPCs.Create;
 using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.GRPCs.Delete;
 using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.GRPCs.InActive;
 using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.GRPCs.Update;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,7 +46,7 @@ public class ArticleCommentAnswerController : ControllerBase
         
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -61,7 +62,7 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -77,7 +78,7 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -93,7 +94,7 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -109,6 +110,6 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

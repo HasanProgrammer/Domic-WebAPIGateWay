@@ -11,7 +11,9 @@ using Domic.UseCase.UserUseCase.DTOs.GRPCs.Create;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
+
 using Route = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
@@ -33,7 +35,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<SignInResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -50,7 +52,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<OtpGenerationResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -67,7 +69,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<OtpVerificationResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -82,7 +84,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -99,6 +101,6 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
         
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

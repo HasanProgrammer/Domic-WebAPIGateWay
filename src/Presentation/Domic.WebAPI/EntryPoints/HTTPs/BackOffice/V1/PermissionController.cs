@@ -7,6 +7,7 @@ using Domic.UseCase.PermissionUseCase.Commands.Update;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllBasedOnRolesPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -44,7 +45,7 @@ public class PermissionController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -62,7 +63,7 @@ public class PermissionController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -80,7 +81,7 @@ public class PermissionController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllBasedOnRolesPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -98,7 +99,7 @@ public class PermissionController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -116,7 +117,7 @@ public class PermissionController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -134,6 +135,6 @@ public class PermissionController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

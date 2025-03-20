@@ -1,5 +1,4 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TermUseCase.Commands.Active;
 using Domic.UseCase.TermUseCase.Commands.Create;
 using Domic.UseCase.TermUseCase.Commands.InActive;
@@ -7,6 +6,7 @@ using Domic.UseCase.TermUseCase.Commands.Update;
 using Domic.UseCase.TermUseCase.DTOs.GRPCs.Update;
 using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TermUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -39,7 +39,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -73,7 +73,7 @@ public class TermController(IMediator mediator) : ControllerBase
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -105,7 +105,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -121,7 +121,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -137,6 +137,6 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

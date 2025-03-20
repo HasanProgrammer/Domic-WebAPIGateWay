@@ -16,6 +16,7 @@ using Domic.UseCase.ArticleUseCase.DTOs.GRPCs.ReadOne;
 using Domic.UseCase.ArticleUseCase.DTOs.GRPCs.Update;
 using Domic.UseCase.ArticleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.ArticleUseCase.Queries.ReadOne;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,7 +50,7 @@ public class ArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -67,7 +68,7 @@ public class ArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -85,7 +86,7 @@ public class ArticleController : ControllerBase
         
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -101,7 +102,7 @@ public class ArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -117,7 +118,7 @@ public class ArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -133,7 +134,7 @@ public class ArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
     
     /// <summary>
@@ -149,6 +150,6 @@ public class ArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
     
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }

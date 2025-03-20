@@ -2,6 +2,7 @@
 using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
 using Domic.WebAPI.DTOs;
+using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 using Route = Domic.Common.ClassConsts.Route;
@@ -35,6 +36,6 @@ public class TeacherController(IMediator mediator) : ControllerBase
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return new JsonResult(result);
+        return HttpContext.OkResponse(result);;
     }
 }
