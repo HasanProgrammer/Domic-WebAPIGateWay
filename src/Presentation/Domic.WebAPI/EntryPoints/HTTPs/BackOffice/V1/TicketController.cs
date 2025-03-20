@@ -1,5 +1,9 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
+using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne;
+using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.Queries.ReadOne;
 using Domic.UseCase.TicketUseCase.Commands.Active;
 using Domic.UseCase.TicketUseCase.Commands.InActive;
 using Domic.UseCase.TicketUseCase.Commands.Update;
@@ -7,11 +11,11 @@ using Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-using Route                    = Domic.Common.ClassConsts.Route;
-using UpdateResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponse;
-using ActiveResponse           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponse;
-using DeleteCommand            = Domic.UseCase.TicketUseCase.Commands.Update.DeleteCommand;
-using InActiveResponse         = Domic.UseCase.TicketUseCase.DTOs.GRPCs.InActive.InActiveResponse;
+using Route            = Domic.Common.ClassConsts.Route;
+using UpdateResponse   = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponse;
+using ActiveResponse   = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponse;
+using DeleteCommand    = Domic.UseCase.TicketUseCase.Commands.Update.DeleteCommand;
+using InActiveResponse = Domic.UseCase.TicketUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
@@ -22,17 +26,35 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 public class TicketController(IMediator mediator) : ControllerBase
 {
     /// <summary>
-    /// for ticket answer
+    /// 
     /// </summary>
-    /// <param name="command"></param>
+    /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost]
-    [Route(Route.CreateTicketUrl)]
-    [PermissionPolicy(Type = "Ticket.Create")]
-    public async Task<IActionResult> Create([FromBody] UpdateCommand command, CancellationToken cancellationToken)
+    [HttpGet]
+    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadOneAggregateTicketUrl}")] 
+    //[PermissionPolicy(Type = "AggregateTicket.ReadOne")]
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
-        var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
+        var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
+
+        return new JsonResult(result);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadAllPaginatedAggregateTicketUrl}")]
+    //[PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
+    public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
         return new JsonResult(result);
     }

@@ -139,6 +139,7 @@ public partial class Route
     public const string ReadOneTicketUrl          = "{TicketId}";
     public const string ReadAllPaginatedTicketUrl = "";
     public const string CreateTicketUrl           = "";
+    public const string CreateTicketCommentUrl    = "comments";
     public const string ActiveTicketUrl           = "active";
     public const string InActiveTicketUrl         = "inactive";
     public const string UpdateTicketUrl           = "";

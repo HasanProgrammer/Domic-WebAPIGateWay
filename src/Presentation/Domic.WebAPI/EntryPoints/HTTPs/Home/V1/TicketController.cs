@@ -1,9 +1,10 @@
 ﻿using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
+using Domic.UseCase.TicketUseCase.Commands.CreateComment;
+using Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,8 +28,8 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadOneAggregateTicketUrl}")]
-    [PermissionPolicy(Type = "AggregateTicket.ReadOne")]
+    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadOneAggregateTicketUrl}")] 
+  //[PermissionPolicy(Type = "AggregateTicket.ReadOne")]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         query.UserId = identityUser.GetIdentity();
@@ -46,7 +47,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <returns></returns>
     [HttpGet]
     [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadAllPaginatedAggregateTicketUrl}")]
-    [PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
+  //[PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
@@ -66,10 +67,25 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <returns></returns>
     [HttpPost]
     [Route($"{Route.BaseTicketUrl}/{Route.CreateTicketUrl}")]
-    [PermissionPolicy(Type = "Ticket.Create")]
+  //[PermissionPolicy(Type = "Ticket.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+
+        return new JsonResult(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost($"{Route.BaseTicketUrl}/{Route.CreateTicketCommentUrl}")]
+   //[PermissionPolicy(Type = "Ticket.CreateComment")]
+    public async Task<IActionResult> CreateComment([FromBody] CreateCommentCommand command, CancellationToken cancellationToken)
+    {
+        var result = await mediator.DispatchAsync<CreateCommentResponse>(command, cancellationToken);
 
         return new JsonResult(result);
     }
