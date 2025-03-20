@@ -31,7 +31,7 @@ public class StorageController(IExternalStorageManager externalStorageManager, I
             new {
                 Code = configuration.GetSuccessStatusCode(),
                 Message = configuration.GetSuccessCreateMessage(),
-                Body = new { uploadPath }
+                Body = new { UploadPath = uploadPath }
             }
         );
     }
