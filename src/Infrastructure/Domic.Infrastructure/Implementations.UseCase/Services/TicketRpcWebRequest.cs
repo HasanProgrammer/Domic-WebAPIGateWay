@@ -7,11 +7,9 @@ using Domic.Core.Ticket.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.TicketUseCase.Contracts.Interfaces;
-using Domic.UseCase.TicketUseCase.Commands.Active;
 using Domic.UseCase.TicketUseCase.Commands.Update;
 using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.TicketUseCase.Commands.CreateComment;
-using Domic.UseCase.TicketUseCase.Commands.InActive;
 using Domic.UseCase.TicketUseCase.DTOs;
 using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TicketUseCase.Queries.ReadOne;
@@ -20,7 +18,6 @@ using Microsoft.Extensions.Configuration;
 
 using String                       = Domic.Core.Ticket.Grpc.String;
 using Int32                        = Domic.Core.Ticket.Grpc.Int32;
-using ActiveRequest                = Domic.Core.Ticket.Grpc.ActiveRequest;
 using ReadOneResponse              = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
 using ReadOneResponseBody          = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
 using CreateResponse               = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponse;
@@ -29,15 +26,10 @@ using ReadAllPaginatedResponse     = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Read
 using ReadAllPaginatedResponseBody = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
 using UpdateResponse               = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponse;
 using UpdateResponseBody           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
-using ActiveResponse               = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponse;
-using ActiveResponseBody           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
 using CheckExistRequest            = Domic.Core.Ticket.Grpc.CheckExistRequest;
 using CreateCommentResponse        = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponse;
 using CreateCommentResponseBody    = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponseBody;
 using CreateRequest                = Domic.Core.Ticket.Grpc.CreateRequest;
-using InActiveRequest              = Domic.Core.Ticket.Grpc.InActiveRequest;
-using InActiveResponse             = Domic.UseCase.TicketUseCase.DTOs.GRPCs.InActive.InActiveResponse;
-using InActiveResponseBody         = Domic.UseCase.TicketUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
 using ReadAllPaginatedRequest      = Domic.Core.Ticket.Grpc.ReadAllPaginatedRequest;
 using ReadOneRequest               = Domic.Core.Ticket.Grpc.ReadOneRequest;
 using UpdateRequest                = Domic.Core.Ticket.Grpc.UpdateRequest;
@@ -172,42 +164,6 @@ public class TicketRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new UpdateResponseBody { TicketId = result.Body.TicketId }
-        };
-    }
-
-    public async Task<ActiveResponse> ActiveAsync(ActiveCommand request, CancellationToken cancellationToken)
-    {
-        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
-        
-        ActiveRequest payload = new();
-
-        payload.TicketId = request.TicketId is not null ? new String { Value = request.TicketId } : null;
-
-        var result = 
-            await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
-
-        return new() {
-            Code    = result.Code    ,
-            Message = result.Message ,
-            Body    = new ActiveResponseBody { TicketId = result.Body.TicketId } 
-        };
-    }
-
-    public async Task<InActiveResponse> InActiveAsync(InActiveCommand request, CancellationToken cancellationToken)
-    {
-        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
-        
-        InActiveRequest payload = new();
-
-        payload.TicketId = request.TicketId is not null ? new String { Value = request.TicketId } : null;
-
-        var result = 
-            await loadData.client.InActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
-
-        return new() {
-            Code    = result.Code    ,
-            Message = result.Message ,
-            Body    = new InActiveResponseBody { TicketId = result.Body.TicketId } 
         };
     }
 
