@@ -1,0 +1,54 @@
+# Rules
+
+1. All project entities must be created in the following path:
+
+   - `src -> Core -> Domic.Domain -> [EntityName]`
+
+   **Example:**
+
+   ```
+   src -> Core -> Domic.Domain -> Category
+   ```
+
+2. Inside the entity folder ( as per point 1 ), the following subfolders must be created:
+
+   - `Contracts -> Interfaces & Abstracts`
+   - `Entities`
+   - `Enumerations`
+   - `Events`
+   - `Exceptions`
+   - `ValueObjects`
+
+   If no files exist in the above folders, a `keep.` file must be created inside the respective folder.
+
+3. Any repository interface created for the entity must be placed in the following path:
+
+   - `src -> Core -> Domic.Domain -> [EntityName] -> Contracts -> Interfaces -> [RepositoryName]`
+
+   **Example:**
+
+   ```
+   src -> Core -> Domic.Domain -> Category -> Contracts -> Interfaces -> ICategoryCommandRepository
+   ```
+
+4. The defined repository can inherit from either `ICommandRepository<>` or `IQueryRepository<>`.  
+   When creating a repository, always ask which interface it should inherit from.
+
+   **Example 1:**
+
+   ```csharp
+   ICategoryCommandRepository : ICommandRepository<Category, string>
+   ```
+
+   **Example 2:**
+
+   ```csharp
+   ICategoryQueryRepository : IQueryRepository<CategoryQuery, string>
+   ```
+
+5. Before creating an entity, always ask whether it is for the **Query** side or the **Command** side.  
+   - If the entity is for **Query**, it must inherit from `EntityQuery<string>`.  
+   - If the entity is for **Command**, it must inherit from `Entity<string>`.
+
+6. When implementing a class, it must follow the **Rich Domain Model** approach.  
+   Additionally, for ID assignment, the `IGlobalUniqueIdGenerator` interface must be used.
