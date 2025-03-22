@@ -1,9 +1,3 @@
----
-description: 
-globs: 
-alwaysApply: true
----
-
 ## Stack & Technology
 
 - .Net 8
@@ -214,7 +208,7 @@ Example :
 ## Implementation of Entity
 To implement an entity class, follow the examples below :
 
-1 . If the desired entity is for the `Query` part, it must inherit from the `EntityQuery<string>` class.
+1 . If the desired entity is for the `Query` part, it must inherit from the `EntityQuery<string>` class
 
 Example :
 ```csharp
@@ -224,7 +218,7 @@ public class TicketQuery : EntityQuery<string>
 }
 ```
 
-2 . If the desired entity is for the `Command` part, it must inherit from the `Entity<string>` class and be implemented as a `Rich Domain Model`.
+2 . If the desired entity is for the `Command` part, it must inherit from the `Entity<string>` class and be implemented as a `Rich Domain Model`
 
 Example :
 ```csharp
@@ -425,7 +419,7 @@ public class TicketDeleted : DeleteDomainEvent<string> //any type of identity ke
     //payload
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //ExchangeType : Exchange.FanOut | Exchange.Direct | Exchange.Headers | Exchange.Topic
 
@@ -480,7 +474,7 @@ public class TicketDeleted : DeleteDomainEvent<string> //any type of identity ke
     //payload
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //Direct-Exchange
 

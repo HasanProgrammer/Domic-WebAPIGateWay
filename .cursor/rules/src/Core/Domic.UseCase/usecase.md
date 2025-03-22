@@ -199,7 +199,7 @@ Example :
 ## Position of Caches
 The location for creating a `Cache` manager is as follows :
 
-Example:
+Example :
 ```
 - CategoryUseCase
     - Caches
@@ -243,6 +243,8 @@ public class AllCategoryInternalDistributedCache : IInternalDistributedCacheHand
     }
 }
 
+/*---------------------------------------------------------------*/
+
 //for all services distributed cache (global | shared cache)
 public class AllCategoryExternalDistributedCache : IExternalDistributedCacheHandler<List<Dto>>
 {
@@ -269,7 +271,7 @@ public class AllCategoryExternalDistributedCache : IExternalDistributedCacheHand
 
 In the implementation of `Cache` according to the above instructions, there are a few points to note :
 
-1 . If you do not set a value for `Ttl` in the `ConfigAttribute` above, or set this `Property` to 0, the corresponding `Cache` will remain permanently and without expiration in `Redis` .
+1 . If you do not set a value for `Ttl` in the `ConfigAttribute` above, or set this `Property` to 0, the corresponding `Cache` will remain permanently and without expiration in `Redis`
 
 2 . To use the cached value (according to the above instructions), you must use the interface corresponding to `InternalCache` or `ExternalCache`. For this purpose, two interfaces `IInternalDistributedCacheMediator` and `IExternalDistributedCacheMediator` have been implemented, which can be used as follows :
 
@@ -305,7 +307,7 @@ public class QueryHandler : IQueryHandler<Query, List<Dto>>
 ## Position of Commands
 The location for creating a `Command` manager is as follows :
 
-Example:
+Example :
 ```
 - CategoryUseCase
     - Caches
@@ -386,7 +388,7 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 }
 ```
 
-2 . In the above code, in the section related to the corresponding `Validator` class, you can use the result of the `Validate` or `ValidateAsync` method, which is an `object`, inside the corresponding `CommandHandler` .
+2 . In the above code, in the section related to the corresponding `Validator` class, you can use the result of the `Validate` or `ValidateAsync` method, which is an `object`, inside the corresponding `CommandHandler`
 
 To do this, simply create a `readonly` variable of type object named `_validationResult` in your `CommandHandler` .
 
@@ -483,7 +485,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
     }
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //for async method (handle async)
 

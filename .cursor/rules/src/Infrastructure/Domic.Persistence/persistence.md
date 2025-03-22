@@ -203,7 +203,7 @@ Example:
 
 Regarding the above structure, there are some points to note :
 
-1 . All entities created in the `Domain` layer must be defined in the `SQLContext.cs` file .
+1 . All entities created in the `Domain` layer must be defined in the `SQLContext.cs` file
 
 Example :
 ```csharp
@@ -241,9 +241,9 @@ public partial class SQLContext
 }
 ```
 
-2 . To create a `Migration` file, you must follow the instructions in the `Guidance.txt` file .
+2 . To create a `Migration` file, you must follow the instructions in the `Guidance.txt` file
 
-3 . All entity configurations of the `Domain` layer must be placed in the `Configs` folder .
+3 . All entity configurations of the `Domain` layer must be placed in the `Configs` folder
 
 Example :
 ```csharp
@@ -266,7 +266,7 @@ public class CategoryQueryConfig : BaseEntityQueryConfig<CategoryQuery, string>
     }
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //for [Command] entity
 public class CategoryConfig : BaseEntityConfig<Category, string>

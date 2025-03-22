@@ -1,9 +1,3 @@
----
-description: 
-globs: 
-alwaysApply: true
----
-
 ## Stack & Technology
 
 - .Net 8
@@ -214,7 +208,7 @@ Example :
 ## Implementation of Entity
 To implement an entity class, follow the examples below :
 
-1 . If the desired entity is for the `Query` part, it must inherit from the `EntityQuery<string>` class.
+1 . If the desired entity is for the `Query` part, it must inherit from the `EntityQuery<string>` class
 
 Example :
 ```csharp
@@ -224,7 +218,7 @@ public class TicketQuery : EntityQuery<string>
 }
 ```
 
-2 . If the desired entity is for the `Command` part, it must inherit from the `Entity<string>` class and be implemented as a `Rich Domain Model`.
+2 . If the desired entity is for the `Command` part, it must inherit from the `Entity<string>` class and be implemented as a `Rich Domain Model`
 
 Example :
 ```csharp
@@ -425,7 +419,7 @@ public class TicketDeleted : DeleteDomainEvent<string> //any type of identity ke
     //payload
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //ExchangeType : Exchange.FanOut | Exchange.Direct | Exchange.Headers | Exchange.Topic
 
@@ -480,7 +474,7 @@ public class TicketDeleted : DeleteDomainEvent<string> //any type of identity ke
     //payload
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //Direct-Exchange
 
@@ -584,7 +578,6 @@ public interface ICategoryQueryRepository : IQueryRepository<CategoryQuery, stri
 }
 ```
 
-
 ## UseCase Folder Structure Details
 For each entity in the `Domain` layer, a folder must be created with the following structure :
 
@@ -617,7 +610,7 @@ Example :
 ## Position of Caches
 The location for creating a `Cache` manager is as follows :
 
-Example:
+Example :
 ```
 - CategoryUseCase
     - Caches
@@ -661,6 +654,8 @@ public class AllCategoryInternalDistributedCache : IInternalDistributedCacheHand
     }
 }
 
+/*---------------------------------------------------------------*/
+
 //for all services distributed cache (global | shared cache)
 public class AllCategoryExternalDistributedCache : IExternalDistributedCacheHandler<List<Dto>>
 {
@@ -687,7 +682,7 @@ public class AllCategoryExternalDistributedCache : IExternalDistributedCacheHand
 
 In the implementation of `Cache` according to the above instructions, there are a few points to note :
 
-1 . If you do not set a value for `Ttl` in the `ConfigAttribute` above, or set this `Property` to 0, the corresponding `Cache` will remain permanently and without expiration in `Redis` .
+1 . If you do not set a value for `Ttl` in the `ConfigAttribute` above, or set this `Property` to 0, the corresponding `Cache` will remain permanently and without expiration in `Redis`
 
 2 . To use the cached value (according to the above instructions), you must use the interface corresponding to `InternalCache` or `ExternalCache`. For this purpose, two interfaces `IInternalDistributedCacheMediator` and `IExternalDistributedCacheMediator` have been implemented, which can be used as follows :
 
@@ -723,7 +718,7 @@ public class QueryHandler : IQueryHandler<Query, List<Dto>>
 ## Position of Commands
 The location for creating a `Command` manager is as follows :
 
-Example:
+Example :
 ```
 - CategoryUseCase
     - Caches
@@ -804,7 +799,7 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 }
 ```
 
-2 . In the above code, in the section related to the corresponding `Validator` class, you can use the result of the `Validate` or `ValidateAsync` method, which is an `object`, inside the corresponding `CommandHandler` .
+2 . In the above code, in the section related to the corresponding `Validator` class, you can use the result of the `Validate` or `ValidateAsync` method, which is an `object`, inside the corresponding `CommandHandler`
 
 To do this, simply create a `readonly` variable of type object named `_validationResult` in your `CommandHandler` .
 
@@ -901,7 +896,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
     }
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //for async method (handle async)
 
@@ -1269,7 +1264,7 @@ Example:
 
 Regarding the above structure, there are some points to note :
 
-1 . All entities created in the `Domain` layer must be defined in the `SQLContext.cs` file .
+1 . All entities created in the `Domain` layer must be defined in the `SQLContext.cs` file
 
 Example :
 ```csharp
@@ -1307,9 +1302,9 @@ public partial class SQLContext
 }
 ```
 
-2 . To create a `Migration` file, you must follow the instructions in the `Guidance.txt` file .
+2 . To create a `Migration` file, you must follow the instructions in the `Guidance.txt` file
 
-3 . All entity configurations of the `Domain` layer must be placed in the `Configs` folder .
+3 . All entity configurations of the `Domain` layer must be placed in the `Configs` folder
 
 Example :
 ```csharp
@@ -1332,7 +1327,7 @@ public class CategoryQueryConfig : BaseEntityQueryConfig<CategoryQuery, string>
     }
 }
 
----------------------------------------------------------------------
+/*---------------------------------------------------------------*/
 
 //for [Command] entity
 public class CategoryConfig : BaseEntityConfig<Category, string>
