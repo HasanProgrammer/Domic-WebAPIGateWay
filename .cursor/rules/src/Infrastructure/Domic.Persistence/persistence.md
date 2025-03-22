@@ -13,9 +13,9 @@ alwaysApply: true
 
 ## Global Rules
 
-1 . All methods must be implemented using `async` and `await` .
+1 . All methods must be implemented using `async` and `await`
 
-2 . If there are no files in the respective folder, a `.keep` file must be placed inside .
+2 . If there are no files in the respective folder, a `.keep` file must be placed inside
 
 3 . The overall architecture of the project follows the structure below :
 
