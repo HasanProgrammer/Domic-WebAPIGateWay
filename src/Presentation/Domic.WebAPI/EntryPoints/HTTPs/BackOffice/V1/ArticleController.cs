@@ -1,5 +1,4 @@
 ﻿using Domic.Core.Common.ClassConsts;
-using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.ArticleUseCase.Commands.Active;
@@ -82,8 +81,6 @@ public class ArticleController : ControllerBase
     [PermissionPolicy(Type = Permission.ArticleCreate)]
     public async Task<IActionResult> Create([FromForm] CreateCommand command, CancellationToken cancellationToken)
     {
-        command.UserId = HttpContext.GetIdentityUserId().ToString();
-        
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
     
         return HttpContext.OkResponse(result);

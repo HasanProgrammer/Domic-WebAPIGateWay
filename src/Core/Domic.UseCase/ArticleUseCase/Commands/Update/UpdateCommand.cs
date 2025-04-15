@@ -6,7 +6,7 @@ namespace Domic.UseCase.ArticleUseCase.Commands.Update;
 
 public class UpdateCommand : ICommand<UpdateResponse>
 {
-    public string TargetId       { get; set; }
+    public string Id             { get; set; }
     public string CategoryId     { get; set; }
     public string Title          { get; set; }
     public string Summary        { get; set; }

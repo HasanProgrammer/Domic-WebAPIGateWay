@@ -123,7 +123,6 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         
         CreateRequest payload = new();
         
-        payload.UserId     = request.UserId     != null ? new String { Value = request.UserId }     : null;
         payload.CategoryId = request.CategoryId != null ? new String { Value = request.CategoryId } : null;
         payload.Title      = request.Title      != null ? new String { Value = request.Title }      : null;
         payload.Summary    = request.Summary    != null ? new String { Value = request.Summary }    : null;
@@ -151,7 +150,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         
         UpdateRequest payload = new();
         
-        payload.TargetId   = request.TargetId   != null ? new String { Value = request.TargetId }   : null;
+        payload.TargetId   = request.Id         != null ? new String { Value = request.Id }         : null;
         payload.CategoryId = request.CategoryId != null ? new String { Value = request.CategoryId } : null;
         payload.Title      = request.Title      != null ? new String { Value = request.Title }      : null;
         payload.Summary    = request.Summary    != null ? new String { Value = request.Summary }    : null;
