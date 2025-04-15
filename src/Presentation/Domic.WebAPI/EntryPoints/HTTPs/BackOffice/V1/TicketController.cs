@@ -29,6 +29,6 @@ public class TicketController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

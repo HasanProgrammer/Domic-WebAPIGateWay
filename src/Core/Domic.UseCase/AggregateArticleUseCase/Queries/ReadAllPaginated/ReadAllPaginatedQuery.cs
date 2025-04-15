@@ -8,4 +8,5 @@ public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResp
 {
     public required string UserId { get; init; }
     public required string SearchText { get; init; }
+    public required bool IsActive { get; init; }
 }

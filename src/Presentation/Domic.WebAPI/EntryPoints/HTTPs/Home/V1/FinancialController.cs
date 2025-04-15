@@ -32,7 +32,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -50,7 +50,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -86,7 +86,7 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -104,6 +104,6 @@ public class FinancialController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

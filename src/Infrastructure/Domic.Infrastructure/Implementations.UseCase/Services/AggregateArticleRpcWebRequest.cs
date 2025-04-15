@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 using Int32                        = Domic.Core.AggregateArticle.Grpc.Int32;
+using String                       = Domic.Core.AggregateArticle.Grpc.String;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
 
@@ -42,9 +43,13 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
-            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
-            CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
+            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null,
+            CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null,
         };
+
+        payload.IsActive   = request.IsActive;
+        payload.SearchText = !string.IsNullOrWhiteSpace(request.SearchText) ? new String { Value = request.SearchText } : null;
+        payload.UserId     = !string.IsNullOrWhiteSpace(request.UserId)     ? new String { Value = request.UserId }     : null;
 
         var result =
             await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken, 

@@ -37,6 +37,6 @@ public class AggregateArticleController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

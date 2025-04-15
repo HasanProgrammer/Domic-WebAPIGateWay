@@ -52,7 +52,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<OtpGenerationResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -69,7 +69,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<OtpVerificationResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -84,7 +84,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -101,6 +101,6 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
         
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

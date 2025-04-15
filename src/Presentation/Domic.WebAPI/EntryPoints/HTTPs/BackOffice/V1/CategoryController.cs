@@ -47,7 +47,7 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public class CategoryController : ControllerBase
     { 
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
     
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -94,7 +94,7 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
     
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -109,6 +109,6 @@ public class CategoryController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
     
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

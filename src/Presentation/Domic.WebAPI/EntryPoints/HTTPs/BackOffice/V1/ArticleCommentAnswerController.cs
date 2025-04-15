@@ -46,7 +46,7 @@ public class ArticleCommentAnswerController : ControllerBase
         
         var result = await _mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -62,7 +62,7 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -78,7 +78,7 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -94,7 +94,7 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -110,6 +110,6 @@ public class ArticleCommentAnswerController : ControllerBase
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

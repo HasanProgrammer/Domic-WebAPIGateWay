@@ -32,7 +32,7 @@ public class AggregateTicketController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -50,6 +50,6 @@ public class AggregateTicketController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

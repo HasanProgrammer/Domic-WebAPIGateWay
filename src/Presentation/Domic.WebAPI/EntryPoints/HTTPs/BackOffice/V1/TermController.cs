@@ -39,7 +39,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -73,7 +73,7 @@ public class TermController(IMediator mediator) : ControllerBase
     { 
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -105,7 +105,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -121,7 +121,7 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -137,6 +137,6 @@ public class TermController(IMediator mediator) : ControllerBase
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

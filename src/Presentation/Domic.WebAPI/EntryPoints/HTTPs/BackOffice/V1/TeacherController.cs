@@ -35,6 +35,6 @@ public class TeacherController(IMediator mediator, [FromKeyedServices("Http1")] 
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }

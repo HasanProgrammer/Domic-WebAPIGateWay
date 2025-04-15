@@ -37,7 +37,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
         
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -73,7 +73,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     {
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
     
     /// <summary>
@@ -88,6 +88,6 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     {
         var result = await mediator.DispatchAsync<CreateCommentResponse>(command, cancellationToken);
 
-        return HttpContext.OkResponse(result);;
+        return HttpContext.OkResponse(result);
     }
 }
