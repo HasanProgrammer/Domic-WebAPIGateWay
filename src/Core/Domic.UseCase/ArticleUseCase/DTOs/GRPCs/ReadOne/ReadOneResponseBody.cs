@@ -4,5 +4,5 @@ namespace Domic.UseCase.ArticleUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {
-    public ArticlesViewModel Article { get; set; }
+    public ArticleDto Article { get; set; }
 }

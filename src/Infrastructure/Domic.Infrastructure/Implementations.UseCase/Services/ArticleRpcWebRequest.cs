@@ -11,7 +11,7 @@ using Domic.UseCase.ArticleUseCase.Commands.Create;
 using Domic.UseCase.ArticleUseCase.Commands.Delete;
 using Domic.UseCase.ArticleUseCase.Commands.InActive;
 using Domic.UseCase.ArticleUseCase.Commands.Update;
-using Domic.UseCase.ArticleUseCase.DTOs.ViewModels;
+using Domic.UseCase.ArticleUseCase.DTOs;
 using Domic.UseCase.ArticleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.ArticleUseCase.Queries.ReadOne;
 using Domic.UseCase.RoleUseCase.Contracts.Interfaces;
@@ -87,7 +87,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadOneResponseBody {
-                Article = result.Body.Article.DeSerialize<ArticlesViewModel>()
+                Article = result.Body.Article.DeSerialize<ArticleDto>()
             }
         };
     }
@@ -112,7 +112,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Articles = result.Body.Articles.DeSerialize<PaginatedCollection<ArticlesViewModel>>()
+                Articles = result.Body.Articles.DeSerialize<PaginatedCollection<ArticleDto>>()
             }
         };
     }
