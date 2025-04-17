@@ -49,6 +49,12 @@ public class AggregateArticleController(IMediator mediator, [FromKeyedServices("
         return HttpContext.OkResponse(result);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateArticleCurrentUserUrl)]
     public async Task<IActionResult> ReadAllPaginatedCurrentUser([FromQuery] ReadAllPaginatedQuery query,
