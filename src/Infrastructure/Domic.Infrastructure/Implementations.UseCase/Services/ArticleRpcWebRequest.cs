@@ -215,7 +215,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new() {
-            TargetId = !string.IsNullOrEmpty(request.TargetId) ? new String { Value = request.TargetId } : null
+            TargetId = !string.IsNullOrEmpty(request.Id) ? new String { Value = request.Id } : null
         };
 
         var result = 
