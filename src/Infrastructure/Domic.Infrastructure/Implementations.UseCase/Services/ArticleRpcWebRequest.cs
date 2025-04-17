@@ -178,7 +178,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         
         ActiveRequest payload = new();
 
-        payload.TargetId = request.TargetId != null ? new String { Value = request.TargetId } : null;
+        payload.TargetId = request.Id != null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.ActiveAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -196,7 +196,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
         
         InActiveRequest payload = new();
 
-        payload.TargetId = request.TargetId != null ? new String { Value = request.TargetId } : null;
+        payload.TargetId = request.Id != null ? new String { Value = request.Id } : null;
 
         var result = 
             await loadData.client.InActiveAsync(payload, headers: loadData.headers, 
