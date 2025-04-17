@@ -5,6 +5,5 @@ namespace Domic.UseCase.AggregateArticleUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {
-    public string UserId { get; set; }
     public string Id { get; set; }
 }
