@@ -103,7 +103,7 @@ public class ArticleRpcWebRequest : IArticleRpcWebRequest
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
 
-        var result = 
+        var result =
             await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
