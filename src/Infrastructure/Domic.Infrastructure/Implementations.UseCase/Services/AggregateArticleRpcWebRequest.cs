@@ -76,7 +76,7 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CommentService, cancellationToken);
+            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.AggregateArticleService, cancellationToken);
         
         _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
 
