@@ -1,8 +1,6 @@
-using Domic.Core.UseCase.DTOs.ViewModels;
+namespace Domic.UseCase.ArticleCommentAnswerUseCase.DTOs;
 
-namespace Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.ViewModels;
-
-public class ArticleCommentAnswersViewModel : ViewModel
+public class ArticleCommentAnswerDto
 {
     public string Id            { get; set; }
     public string OwnerFullName { get; set; }

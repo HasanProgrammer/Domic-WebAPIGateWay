@@ -1,5 +1,4 @@
-﻿using Domic.UseCase.ArticleUseCase.DTOs.ViewModels;
-using Domic.Core.Common.ClassHelpers;
+﻿using Domic.Core.Common.ClassHelpers;
 
 namespace Domic.UseCase.ArticleUseCase.DTOs.GRPCs.ReadAllPaginated;
 

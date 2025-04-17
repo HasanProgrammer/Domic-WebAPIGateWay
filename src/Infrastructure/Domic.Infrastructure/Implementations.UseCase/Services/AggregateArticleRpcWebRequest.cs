@@ -8,7 +8,7 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.AggregateArticleUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.ArticleUseCase.DTOs.ViewModels;
+using Domic.UseCase.ArticleUseCase.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -60,7 +60,7 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Articles = result.Body.Articles.DeSerialize<PaginatedCollection<AggregateArticlesViewModel>>()
+                Articles = result.Body.Articles.DeSerialize<PaginatedCollection<AggregateArticleDto>>()
             }
         };
     }

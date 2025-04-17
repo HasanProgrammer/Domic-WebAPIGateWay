@@ -1,9 +1,8 @@
-using Domic.UseCase.ArticleCommentUseCase.DTOs.ViewModels;
-using Domic.Core.UseCase.DTOs.ViewModels;
+using Domic.UseCase.ArticleCommentUseCase.DTOs;
 
-namespace Domic.UseCase.ArticleUseCase.DTOs.ViewModels;
+namespace Domic.UseCase.ArticleUseCase.DTOs;
 
-public class AggregateArticlesViewModel : ViewModel
+public class AggregateArticleDto
 {
     //Article
     
@@ -15,8 +14,8 @@ public class AggregateArticlesViewModel : ViewModel
     public required bool IsActive              { get; set; }
     public required string CreatedAt_Persian   { get; set; }
     public required string UpdatedAt_Persian   { get; set; }
-    public required DateTime CreatedAt_English { get; set; }
-    public required DateTime UpdatedAt_English { get; set; }
+    public required DateTime? CreatedAt_English { get; set; }
+    public required DateTime? UpdatedAt_English { get; set; }
     
     //User
     
@@ -33,5 +32,5 @@ public class AggregateArticlesViewModel : ViewModel
     
     //Comment
     
-    public required List<ArticleCommentsViewModel> Comments { get; set; }
+    public required List<ArticleCommentDto> Comments { get; set; }
 }
