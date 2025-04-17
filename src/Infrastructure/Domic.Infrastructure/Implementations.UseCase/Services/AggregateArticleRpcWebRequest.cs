@@ -8,6 +8,7 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.AggregateArticleUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateArticleUseCase.Queries.ReadOne;
 using Domic.UseCase.ArticleUseCase.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,8 @@ using Int32                        = Domic.Core.AggregateArticle.Grpc.Int32;
 using String                       = Domic.Core.AggregateArticle.Grpc.String;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
+using ReadOneResponse              = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponseBody          = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -34,6 +37,28 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
         _serviceDiscovery    = serviceDiscovery;
         _httpContextAccessor = httpContextAccessor;
         _configuration       = configuration;
+    }
+
+    public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
+    {
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
+        
+        ReadOneRequest payload = new() {
+            Id = new String { Value = request.Id }
+        };
+
+        var result =
+            await loadData.client.ReadOneAsync(payload, cancellationToken: cancellationToken, 
+                headers: loadData.headers
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadOneResponseBody {
+                Article = result.Body.Article.DeSerialize<AggregateArticleDto>()
+            }
+        };
     }
 
     public async Task<ReadAllPaginatedResponse> ReadAllPaginatedAsync(ReadAllPaginatedQuery request, 

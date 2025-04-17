@@ -1,29 +1,22 @@
-﻿using Domic.Core.Common.ClassConsts;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using Route                    = Domic.Common.ClassConsts.Route;
-using ReadOneResponse          = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
 using ReadAllPaginatedResponse = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadOneResponse          = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using Route                    = Domic.Common.ClassConsts.Route;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
+namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
-[Authorize(Roles = "SuperAdmin,Admin")]
-[BlackListPolicy]
 [ApiVersion("1.0")]
-[Route(Route.BaseBackOfficeUrl + Route.BaseAggregateArticleUrl)]
-[ApiExplorerSettings(GroupName = "BackOffice/AggregateArticle")]
-public class AggregateArticleController : ControllerBase
+[ApiExplorerSettings(GroupName = "Home/Article")]
+[Route($"{Route.BaseHomeUrl}{Route.BaseAggregateArticleUrl}")]
+public class AggregateArticleController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) 
+    : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public AggregateArticleController(IMediator mediator) => _mediator = mediator;
-    
     /// <summary>
     /// 
     /// </summary>
@@ -34,11 +27,11 @@ public class AggregateArticleController : ControllerBase
     [Route(Route.ReadOneAggregateArticleUrl)]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
-        var result = await _mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
+        var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -47,12 +40,24 @@ public class AggregateArticleController : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateArticleUrl)]
-    [PermissionPolicy(Type = Permission.AggregateArticleReadAllPaginated)]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
     {
-        var result = await _mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
+        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+
+    [HttpGet]
+    [Route(Route.ReadAllPaginatedAggregateArticleCurrentUserUrl)]
+    public async Task<IActionResult> ReadAllPaginatedCurrentUser([FromQuery] ReadAllPaginatedQuery query,
+        CancellationToken cancellationToken
+    )
+    {
+        query.UserId = identityUser.GetIdentity();
+
+        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }
