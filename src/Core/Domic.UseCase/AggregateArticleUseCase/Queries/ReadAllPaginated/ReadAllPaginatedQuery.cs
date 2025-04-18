@@ -7,6 +7,6 @@ namespace Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
 public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>
 {
     public required string UserId { get; set; }
-    public required string SearchText { get; init; }
+    public required string SearchText { get; set; }
     public required bool IsActive { get; set; } = true;
 }

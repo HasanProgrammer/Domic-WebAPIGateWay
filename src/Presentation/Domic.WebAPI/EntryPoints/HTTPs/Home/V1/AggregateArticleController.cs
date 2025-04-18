@@ -1,8 +1,11 @@
 ﻿using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadOne;
+using Domic.WebAPI.DTOs;
 using Domic.WebAPI.Frameworks.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using ReadAllPaginatedResponse = Domic.UseCase.AggregateArticleUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
@@ -40,10 +43,18 @@ public class AggregateArticleController(IMediator mediator, [FromKeyedServices("
     /// <returns></returns>
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateArticleUrl)]
-    public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
+    public async Task<IActionResult> ReadAllPaginated([FromQuery] LandingArticleDto dto,
         CancellationToken cancellationToken
     )
     {
+        var query = new ReadAllPaginatedQuery {
+            UserId = dto.UserId,
+            SearchText = dto.SearchText,
+            PageNumber = dto.PageNumber,
+            CountPerPage = dto.CountPerPage,
+            IsActive = true
+        };
+        
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
@@ -55,13 +66,20 @@ public class AggregateArticleController(IMediator mediator, [FromKeyedServices("
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet]
-    [Route(Route.ReadAllPaginatedAggregateArticleCurrentUserUrl)]
-    public async Task<IActionResult> ReadAllPaginatedCurrentUser([FromQuery] ReadAllPaginatedQuery query,
+    [Authorize]
+    [PermissionPolicy(Type = "Article.ReadAllPaginatedCurrentUser")]
+    [HttpGet(Route.ReadAllPaginatedAggregateArticleCurrentUserUrl)]
+    public async Task<IActionResult> ReadAllPaginatedCurrentUser([FromQuery] LandingArticleCurrentUserDto dto,
         CancellationToken cancellationToken
     )
     {
-        query.UserId = identityUser.GetIdentity();
+        var query = new ReadAllPaginatedQuery {
+            UserId = identityUser.GetIdentity(),
+            SearchText = dto.SearchText,
+            PageNumber = dto.PageNumber,
+            CountPerPage = dto.CountPerPage,
+            IsActive = dto.IsActive
+        };
 
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
