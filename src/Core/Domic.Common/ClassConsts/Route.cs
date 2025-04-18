@@ -81,7 +81,7 @@ public partial class Route
 public partial class Route
 {
     public const string BaseAggregateArticleUrl             = "aggregate-articles";
-    public const string ReadOneAggregateArticleUrl          = "{ArticleId}";
+    public const string ReadOneAggregateArticleUrl          = "{Id}";
     public const string ReadAllPaginatedAggregateArticleUrl = "";
     public const string ReadAllPaginatedAggregateArticleCurrentUserUrl = "current-user";
 }
