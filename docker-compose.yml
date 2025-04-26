@@ -48,7 +48,7 @@ services:
       - ServiceDiscoveryAddress=https://domic.discovery.api:443
       - ClientOrigins=
       - Host=domic.web.api.gateway
-      - Port=80
+      - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
@@ -64,7 +64,7 @@ services:
     container_name: 'web_api_gateway_redis'
     command: 'redis-server'
     ports:
-      - 6300:6379
+      - 4350:6379
   
   domic.minio:
     image: 'minio/minio:latest'
