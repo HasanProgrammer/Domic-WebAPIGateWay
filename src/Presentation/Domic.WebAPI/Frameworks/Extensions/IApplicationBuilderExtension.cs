@@ -14,7 +14,7 @@ public static class IApplicationBuilderExtension
     /// <param name="builder"></param>
     public static void RegisterExternalStorage(this WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IExternalStorageManager, ExternalStorageManager>();
+        //builder.Services.AddScoped<IExternalStorageManager, ExternalStorageManager>();
 
         builder.Services.AddMinio(configureClient => 
             configureClient.WithEndpoint(
