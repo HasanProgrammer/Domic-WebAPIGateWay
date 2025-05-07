@@ -28,7 +28,7 @@ builder.RegisterDistributedCaching();
 builder.RegisterServicesOfGrpcClientWebRequest();
 builder.RegisterServices();
 builder.RegisterServiceDiscovery();
-builder.RegisterExternalStorage();
+//builder.RegisterExternalStorage();
 
 //todo: must be handled in [CoreService]
 builder.Services.AddCors(options => {
