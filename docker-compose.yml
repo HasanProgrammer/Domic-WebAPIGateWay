@@ -84,6 +84,7 @@ services:
   
 volumes:
   log:
+  minio-data:
     
 networks:
   domic:
