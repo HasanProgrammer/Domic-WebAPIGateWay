@@ -49,7 +49,7 @@ services:
       - ClientOrigins=
       - Host=domic.web.api.gateway
       - Port=443
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
@@ -84,7 +84,7 @@ services:
   
 volumes:
   log:
-# minio-data:
+  # minio-data:
     
 networks:
   domic:
