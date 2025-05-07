@@ -55,7 +55,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
     depends_on:
       - domic.web.api.gateway.redis
-      - domic.minio
+    # - domic.minio
   
   domic.web.api.gateway.redis:
     networks:
@@ -66,25 +66,25 @@ services:
     ports:
       - 4350:6379
   
-  domic.minio:
-    image: 'minio/minio:latest'
-    container_name: 'web_api_gateway_minio'
-    restart: on-failure
-    ports:
-      - '9000:9000'
-      - '9001:9001'
-    environment:
-      - MINIO_ROOT_USER=domic
-      - MINIO_ROOT_PASSWORD=domic123
-    volumes:
-      - minio-data:/data
-    command: server /data --console-address ":9001"
-    networks:
-      - domic
+  # domic.minio:
+  #   image: 'minio/minio:latest'
+  #   container_name: 'web_api_gateway_minio'
+  #   restart: on-failure
+  #   ports:
+  #     - '9000:9000'
+  #     - '9001:9001'
+  #   environment:
+  #     - MINIO_ROOT_USER=domic
+  #     - MINIO_ROOT_PASSWORD=domic123
+  #   volumes:
+  #     - minio-data:/data
+  #   command: server /data --console-address ":9001"
+  #   networks:
+  #     - domic
   
 volumes:
   log:
-  minio-data:
+# minio-data:
     
 networks:
   domic:
