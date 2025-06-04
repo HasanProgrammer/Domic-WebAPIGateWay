@@ -15,8 +15,6 @@ using Domic.UseCase.TermUseCase.DTOs;
 using Domic.UseCase.TermUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TermUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using String                       = Domic.Core.Term.Grpc.String;
 using Int32                        = Domic.Core.Term.Grpc.Int32;
 using ActiveRequest                = Domic.Core.Term.Grpc.ActiveRequest;
@@ -44,7 +42,8 @@ using UpdateRequest                = Domic.Core.Term.Grpc.UpdateRequest;
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class TermRpcWebRequest(
-    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
+    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
+    IExternalDistributedCache distributedCache
 ) : ITermRpcWebRequest
 {
     private GrpcChannel _channel;
@@ -215,14 +214,18 @@ public class TermRpcWebRequest(
     private async Task<(Metadata headers, TermService.TermServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await serviceDiscovery.LoadAddressInMemoryAsync(Service.TermService, cancellationToken);
+        var targetServiceInstanceTask =
+            serviceDiscovery.LoadAddressInMemoryAsync(Service.TermService, cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
             { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

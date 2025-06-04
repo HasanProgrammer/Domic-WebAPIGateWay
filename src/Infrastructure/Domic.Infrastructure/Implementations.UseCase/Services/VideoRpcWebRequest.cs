@@ -15,8 +15,6 @@ using Domic.UseCase.VideoUseCase.DTOs;
 using Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.VideoUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using String                       = Domic.Core.Video.Grpc.String;
 using Int32                        = Domic.Core.Video.Grpc.Int32;
 using ActiveRequest                = Domic.Core.Video.Grpc.ActiveRequest;
@@ -44,7 +42,8 @@ using UpdateRequest                = Domic.Core.Video.Grpc.UpdateRequest;
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class VideoRpcWebRequest(
-    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
+    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
+    IExternalDistributedCache distributedCache
 ) : IVideoRpcWebRequest
 {
     private GrpcChannel _channel;
@@ -214,14 +213,18 @@ public class VideoRpcWebRequest(
     private async Task<(Metadata headers, VideoService.VideoServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await serviceDiscovery.LoadAddressInMemoryAsync(Service.TermService, cancellationToken);
+        var targetServiceInstanceTask =
+            serviceDiscovery.LoadAddressInMemoryAsync(Service.TermService, cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
             { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

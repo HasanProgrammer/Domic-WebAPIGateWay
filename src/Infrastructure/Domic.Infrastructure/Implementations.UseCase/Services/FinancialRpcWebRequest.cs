@@ -16,8 +16,6 @@ using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated;
 using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequest;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using String                                     = Domic.Core.Financial.Grpc.String;
 using Int32                                      = Domic.Core.Financial.Grpc.Int32;
 using Int64                                      = Domic.Core.Financial.Grpc.Int64;
@@ -35,8 +33,8 @@ using ReadAllTransactionRequestPaginatedResponseBody = Domic.UseCase.FinancialUs
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
-public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfiguration configuration,
-    IHttpContextAccessor httpContextAccessor
+public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery,
+    IHttpContextAccessor httpContextAccessor, IExternalDistributedCache distributedCache
 ) : IFinancialRpcWebRequest
 {
     private GrpcChannel _channel;
@@ -189,14 +187,18 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery, IConfigu
     private async Task<(Metadata headers, FinancialService.FinancialServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await serviceDiscovery.LoadAddressInMemoryAsync(Service.FinancialService, cancellationToken);
+        var targetServiceInstanceTask = 
+            serviceDiscovery.LoadAddressInMemoryAsync(Service.FinancialService, cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
             { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

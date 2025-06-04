@@ -30,19 +30,21 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequest
 {
-    private readonly IServiceDiscovery    _serviceDiscovery;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IConfiguration       _configuration;
+    private readonly IServiceDiscovery         _serviceDiscovery;
+    private readonly IExternalDistributedCache _distributedCache;
+    private readonly IHttpContextAccessor      _httpContextAccessor;
+    private readonly IConfiguration            _configuration;
     
     private GrpcChannel _channel;
 
     public ArticleCommentAnswerRpcWebRequest(IConfiguration configuration, IHttpContextAccessor httpContextAccessor,
-        IServiceDiscovery serviceDiscovery
+        IServiceDiscovery serviceDiscovery, IExternalDistributedCache distributedCache
     )
     {
         _configuration       = configuration;
         _httpContextAccessor = httpContextAccessor;
         _serviceDiscovery    = serviceDiscovery;
+        _distributedCache    = distributedCache;
     }
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
@@ -148,14 +150,18 @@ public class ArticleCommentAnswerRpcWebRequest : IArticleCommentAnswerRpcWebRequ
     private async Task<(Metadata headers, ArticleCommentAnswerService.ArticleCommentAnswerServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CommentService, cancellationToken);
+        var targetServiceInstanceTask = 
+            _serviceDiscovery.LoadAddressInMemoryAsync(Service.CommentService, cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = _distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
             { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

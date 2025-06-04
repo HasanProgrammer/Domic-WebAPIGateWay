@@ -19,8 +19,6 @@ using Domic.UseCase.UserUseCase.DTOs;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using String                       = Domic.Core.User.Grpc.String;
 using AuthString                   = Domic.Core.Identity.Grpc.String;
 using Int32                        = Domic.Core.User.Grpc.Int32;
@@ -47,19 +45,19 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class UserRpcWebRequest : IUserRpcWebRequest
 {
-    private readonly IServiceDiscovery    _serviceDiscovery;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IConfiguration       _configuration;
-    
+    private readonly IServiceDiscovery         _serviceDiscovery;
+    private readonly IExternalDistributedCache _distributedCache;
+    private readonly IHttpContextAccessor      _httpContextAccessor;
+
     private GrpcChannel _channel;
 
-    public UserRpcWebRequest(IConfiguration configuration, IHttpContextAccessor httpContextAccessor,
-        IServiceDiscovery serviceDiscovery
+    public UserRpcWebRequest(IHttpContextAccessor httpContextAccessor,
+        IServiceDiscovery serviceDiscovery, IExternalDistributedCache distributedCache
     )
     {
-        _configuration       = configuration;
         _httpContextAccessor = httpContextAccessor;
         _serviceDiscovery    = serviceDiscovery;
+        _distributedCache    = distributedCache;
     }
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
@@ -287,14 +285,18 @@ public class UserRpcWebRequest : IUserRpcWebRequest
     private async Task<(Metadata headers, UserService.UserServiceClient client)>
         _loadGrpcChannelForUserServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
+        var targetServiceInstanceTask =
+            _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = _distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
             { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") } //todo: must be handled dynamicly in redis! insted configuration
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)
@@ -306,13 +308,17 @@ public class UserRpcWebRequest : IUserRpcWebRequest
     private async Task<(Metadata headers, IdentityService.IdentityServiceClient client)>
         _loadGrpcChannelForAuthServiceAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync("IdentityService", cancellationToken);
+        var targetServiceInstanceTask =
+            _serviceDiscovery.LoadAddressInMemoryAsync("IdentityService", cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = _distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

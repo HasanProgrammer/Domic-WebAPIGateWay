@@ -14,8 +14,6 @@ using Domic.UseCase.CategoryUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.CategoryUseCase.Queries.ReadOne;
 using Domic.UseCase.RoleUseCase.Contracts.Interfaces;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using CheckExistRequest            = Domic.Core.Category.Grpc.CheckExistRequest;
 using CreateRequest                = Domic.Core.Category.Grpc.CreateRequest;
 using String                       = Domic.Core.Category.Grpc.String;
@@ -39,19 +37,19 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class CategoryRpcWebRequest : ICategoryRpcWebRequest
 {
-    private readonly IServiceDiscovery    _serviceDiscovery;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IConfiguration       _configuration;
-    
+    private readonly IServiceDiscovery         _serviceDiscovery;
+    private readonly IExternalDistributedCache _distributedCache;
+    private readonly IHttpContextAccessor      _httpContextAccessor;
+
     private GrpcChannel _channel;
 
-    public CategoryRpcWebRequest(IConfiguration configuration, IHttpContextAccessor httpContextAccessor,
-        IServiceDiscovery serviceDiscovery
+    public CategoryRpcWebRequest(IHttpContextAccessor httpContextAccessor,
+        IServiceDiscovery serviceDiscovery, IExternalDistributedCache distributedCache
     )
     {
-        _configuration       = configuration;
         _httpContextAccessor = httpContextAccessor;
         _serviceDiscovery    = serviceDiscovery;
+        _distributedCache    = distributedCache;
     }
 
     public async Task<bool> CheckExistAsync(string id, CancellationToken cancellationToken)
@@ -82,7 +80,7 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Category = result.Body.Category.DeSerialize<CategoriesViewModel>() } 
+            Body    = new ReadOneResponseBody { Category = result.Body.Category.DeSerialize<CategoryDto>() } 
         };
     }
 
@@ -106,7 +104,7 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Categories = result.Body.Categories.DeSerialize<PaginatedCollection<CategoriesViewModel>>()
+                Categories = result.Body.Categories.DeSerialize<PaginatedCollection<CategoryDto>>()
             } 
         };
     }
@@ -176,14 +174,18 @@ public class CategoryRpcWebRequest : ICategoryRpcWebRequest
     private async Task<(Metadata headers, CategoryService.CategoryServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.CategoryService, cancellationToken);
+        var targetServiceInstanceTask = 
+            _serviceDiscovery.LoadAddressInMemoryAsync(Service.CategoryService, cancellationToken);
+
+        var secretKeyTask = _distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
             { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

@@ -4,5 +4,5 @@ namespace Domic.UseCase.CategoryUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {
-    public CategoriesViewModel Category { get; set; }
+    public CategoryDto Category { get; set; }
 }

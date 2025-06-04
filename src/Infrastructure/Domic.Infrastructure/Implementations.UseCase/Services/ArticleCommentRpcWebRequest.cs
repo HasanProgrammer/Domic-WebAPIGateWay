@@ -12,8 +12,6 @@ using Domic.UseCase.ArticleCommentUseCase.Commands.InActive;
 using Domic.UseCase.ArticleCommentUseCase.Commands.Update;
 using Domic.UseCase.ArticleCommentUseCase.Contracts.Interfaces;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using ActiveRequest        = Domic.Core.ArticleComment.Grpc.ActiveRequest;
 using String               = Domic.Core.ArticleComment.Grpc.String;
 using CreateResponse       = Domic.UseCase.ArticleCommentUseCase.DTOs.GRPCs.Create.CreateResponse;
@@ -35,19 +33,19 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
 {
-    private readonly IServiceDiscovery    _serviceDiscovery;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IConfiguration       _configuration;
-    
+    private readonly IServiceDiscovery         _serviceDiscovery;
+    private readonly IExternalDistributedCache _distributedCache;
+    private readonly IHttpContextAccessor      _httpContextAccessor;
+
     private GrpcChannel _channel;
 
-    public ArticleCommentRpcWebRequest(IConfiguration configuration, IHttpContextAccessor httpContextAccessor,
-        IServiceDiscovery serviceDiscovery
+    public ArticleCommentRpcWebRequest(IHttpContextAccessor httpContextAccessor,
+        IServiceDiscovery serviceDiscovery, IExternalDistributedCache distributedCache
     )
     {
-        _configuration       = configuration;
         _httpContextAccessor = httpContextAccessor;
         _serviceDiscovery    = serviceDiscovery;
+        _distributedCache    = distributedCache;
     }
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
@@ -153,14 +151,18 @@ public class ArticleCommentRpcWebRequest : IArticleCommentRpcWebRequest
     private async Task<(Metadata headers, ArticleCommentService.ArticleCommentServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.ArticleService, cancellationToken);
+        var targetServiceInstanceTask =
+            _serviceDiscovery.LoadAddressInMemoryAsync(Service.ArticleService, cancellationToken);
+
+        var secretKeyTask = _distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
             { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

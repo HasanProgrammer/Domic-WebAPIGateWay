@@ -5,5 +5,5 @@ namespace Domic.UseCase.CategoryUseCase.DTOs.GRPCs.ReadAllPaginated;
 
 public class ReadAllPaginatedResponseBody
 {
-    public PaginatedCollection<CategoriesViewModel> Categories { get; set; }
+    public PaginatedCollection<CategoryDto> Categories { get; set; }
 }

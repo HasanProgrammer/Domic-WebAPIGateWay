@@ -11,7 +11,6 @@ using Domic.UseCase.AggregateArticleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateArticleUseCase.Queries.ReadOne;
 using Domic.UseCase.ArticleUseCase.DTOs;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 using Int32                        = Domic.Core.AggregateArticle.Grpc.Int32;
 using String                       = Domic.Core.AggregateArticle.Grpc.String;
@@ -22,22 +21,13 @@ using ReadOneResponseBody          = Domic.UseCase.AggregateArticleUseCase.DTOs.
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
-public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
+public class AggregateArticleRpcWebRequest(
+    IServiceDiscovery         serviceDiscovery,
+    IHttpContextAccessor      httpContextAccessor,
+    IExternalDistributedCache distributedCache
+) : IAggregateArticleRpcWebRequest
 {
-    private readonly IServiceDiscovery    _serviceDiscovery;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IConfiguration       _configuration;
-    
     private GrpcChannel _channel;
-
-    public AggregateArticleRpcWebRequest(IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
-        IConfiguration configuration
-    )
-    {
-        _serviceDiscovery    = serviceDiscovery;
-        _httpContextAccessor = httpContextAccessor;
-        _configuration       = configuration;
-    }
 
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
     {
@@ -90,24 +80,25 @@ public class AggregateArticleRpcWebRequest : IAggregateArticleRpcWebRequest
         };
     }
 
-    public void Dispose()
-    {
-        _channel.Dispose();
-    }
+    public void Dispose() => _channel.Dispose();
     
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, AggregateArticleService.AggregateArticleServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.AggregateArticleService, cancellationToken);
+        var targetServiceInstanceTask = 
+            serviceDiscovery.LoadAddressInMemoryAsync(Service.AggregateArticleService, cancellationToken);
+
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
-            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

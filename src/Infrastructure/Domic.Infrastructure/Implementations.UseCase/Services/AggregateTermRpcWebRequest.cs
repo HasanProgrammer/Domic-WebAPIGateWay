@@ -10,7 +10,6 @@ using Domic.UseCase.AggregateTermUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTermUseCase.DTOs;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 using String                       = Domic.Core.AggregateTerm.Grpc.String;
 using Int32                        = Domic.Core.AggregateTerm.Grpc.Int32;
@@ -20,7 +19,8 @@ using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTermUseCase.DTOs.GRP
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class AggregateTermRpcWebRequest(
-    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
+    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, 
+    IExternalDistributedCache distributedCache
 ) : IAggregateTermRpcWebRequest
 {
     private GrpcChannel _channel;
@@ -64,14 +64,18 @@ public class AggregateTermRpcWebRequest(
     private async Task<(Metadata headers, AggregateTermService.AggregateTermServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await serviceDiscovery.LoadAddressInMemoryAsync("AggregateTermService", cancellationToken);
+        var targetServiceInstanceTask = 
+            serviceDiscovery.LoadAddressInMemoryAsync("AggregateTermService", cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
             { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

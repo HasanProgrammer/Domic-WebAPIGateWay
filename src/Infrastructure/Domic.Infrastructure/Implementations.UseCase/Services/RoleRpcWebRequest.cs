@@ -14,8 +14,6 @@ using Domic.UseCase.RoleUseCase.DTOs;
 using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.RoleUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using String                       = Domic.Core.Role.Grpc.String;
 using Int32                        = Domic.Core.Role.Grpc.Int32;
 using CreateResponse               = Domic.UseCase.RoleUseCase.DTOs.GRPCs.Create.CreateResponse;
@@ -33,19 +31,19 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class RoleRpcWebRequest : IRoleRpcWebRequest
 {
-    private readonly IServiceDiscovery    _serviceDiscovery;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IConfiguration       _configuration;
-    
+    private readonly IServiceDiscovery         _serviceDiscovery;
+    private readonly IExternalDistributedCache _distributedCache;
+    private readonly IHttpContextAccessor      _httpContextAccessor;
+
     private GrpcChannel _channel;
 
-    public RoleRpcWebRequest(IConfiguration configuration, IHttpContextAccessor httpContextAccessor,
-        IServiceDiscovery serviceDiscovery
+    public RoleRpcWebRequest(IHttpContextAccessor httpContextAccessor,
+        IServiceDiscovery serviceDiscovery, IExternalDistributedCache distributedCache
     )
     {
-        _configuration       = configuration;
         _httpContextAccessor = httpContextAccessor;
         _serviceDiscovery    = serviceDiscovery;
+        _distributedCache    = distributedCache;
     }
     
     public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
@@ -154,14 +152,18 @@ public class RoleRpcWebRequest : IRoleRpcWebRequest
     private async Task<(Metadata headers, RoleService.RoleServiceClient client)>
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
+        var targetServiceInstanceTask = 
+            _serviceDiscovery.LoadAddressInMemoryAsync(Service.UserService, cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = _distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
             { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , _configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

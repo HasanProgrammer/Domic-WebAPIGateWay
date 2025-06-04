@@ -14,8 +14,6 @@ using Domic.UseCase.TicketUseCase.DTOs;
 using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.TicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using String                       = Domic.Core.Ticket.Grpc.String;
 using Int32                        = Domic.Core.Ticket.Grpc.Int32;
 using ReadOneResponse              = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
@@ -37,7 +35,8 @@ using UpdateRequest                = Domic.Core.Ticket.Grpc.UpdateRequest;
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class TicketRpcWebRequest(
-    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
+    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
+    IExternalDistributedCache distributedCache
 ) : ITicketRpcWebRequest
 {
     private GrpcChannel _channel;
@@ -174,14 +173,18 @@ public class TicketRpcWebRequest(
     private async Task<(Metadata headers, TicketService.TicketServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await serviceDiscovery.LoadAddressInMemoryAsync(serviceName: "TicketService", cancellationToken);
+        var targetServiceInstanceTask =
+            serviceDiscovery.LoadAddressInMemoryAsync(serviceName: "TicketService", cancellationToken);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
+        
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
             { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)

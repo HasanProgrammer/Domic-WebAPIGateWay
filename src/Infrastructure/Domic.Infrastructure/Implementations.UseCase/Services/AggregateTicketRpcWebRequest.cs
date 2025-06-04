@@ -11,8 +11,6 @@ using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTicketUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-
 using Int32                        = Domic.Core.AggregateTicket.Grpc.Int32;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
@@ -23,7 +21,8 @@ using String                       = Domic.Core.AggregateTicket.Grpc.String;
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class AggregateTicketRpcWebRequest(
-    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor, IConfiguration configuration
+    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
+    IExternalDistributedCache distributedCache
 )
 : IAggregateTicketRpcWebRequest
 {
@@ -89,14 +88,18 @@ public class AggregateTicketRpcWebRequest(
     private async Task<(Metadata headers, AggregateTicketService.AggregateTicketServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
-        var targetServiceInstance =
-            await serviceDiscovery.LoadAddressInMemoryAsync("AggregateTicketService", cancellationToken);
+        var targetServiceInstanceTask = 
+            serviceDiscovery.LoadAddressInMemoryAsync("AggregateTicketService", cancellationToken);
+
+        var secretKeyTask = distributedCache.GetCacheValueAsync("SecretKey", cancellationToken);
+
+        await Task.WhenAll(targetServiceInstanceTask, secretKeyTask);
         
-        _channel = GrpcChannel.ForAddress(targetServiceInstance, new GrpcChannelOptions().GetAll());
+        _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
             { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
-            { Header.License , configuration.GetValue<string>("SecretKey") }
+            { Header.License , await secretKeyTask }
         };
         
         if(isIdempotent == false)
