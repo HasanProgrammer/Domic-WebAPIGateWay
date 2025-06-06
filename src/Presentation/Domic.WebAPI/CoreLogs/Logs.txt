@@ -1,0 +1,35 @@
+
+ Date: 1404/03/16 | Message: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered. | Source: System.InvalidOperationException: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/03/16 | Message: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered. | Source: System.InvalidOperationException: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/03/16 | Message: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered. | Source: System.InvalidOperationException: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/03/16 | Message: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered. | Source: System.InvalidOperationException: No service for type 'Domic.Core.UseCase.Contracts.Interfaces.IExternalDistributedCacheHandler`1[System.Collections.Generic.List`1[Domic.Core.Common.ClassModels.ServiceStatus]]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/03/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
