@@ -74,9 +74,13 @@ public class AggregateTermRpcWebRequest(
         _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
         var metaData = new Metadata {
-            { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
             { Header.License , await secretKeyTask }
         };
+
+        var token = httpContextAccessor.HttpContext.GetRowToken();
+        
+        if(token is not null)
+            metaData.Add(Header.Token, token);
         
         if(isIdempotent == false)
             metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
