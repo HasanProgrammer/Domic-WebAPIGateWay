@@ -55,11 +55,12 @@ WebApplication application = builder.Build();
 
 #region Middleware
 
-application.UsePreFlightCors();
-
 application.UseStaticFiles(new StaticFileOptions {
-    FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") )
+    FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") ),
+    RequestPath  = "/Files"
 });
+
+application.UsePreFlightCors();
 
 application.UseCoreExceptionHandler(application.Configuration);
 
