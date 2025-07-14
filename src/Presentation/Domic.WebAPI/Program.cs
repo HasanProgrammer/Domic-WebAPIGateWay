@@ -2,6 +2,7 @@ using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.WebAPI.Extensions;
 using Domic.Persistence.Contexts;
 using Domic.WebAPI.Frameworks.Extensions;
+using Microsoft.Extensions.FileProviders;
 
 /*-------------------------------------------------------------------*/
 
@@ -55,6 +56,10 @@ WebApplication application = builder.Build();
 #region Middleware
 
 application.UsePreFlightCors();
+
+application.UseStaticFiles(new StaticFileOptions {
+    FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") )
+});
 
 application.UseCoreExceptionHandler(application.Configuration);
 
