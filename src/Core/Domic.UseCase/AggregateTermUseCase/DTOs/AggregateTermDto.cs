@@ -1,4 +1,5 @@
 using Domic.Domain.Commons.Enumerations;
+using Domic.UseCase.VideoUseCase.DTOs;
 
 namespace Domic.UseCase.AggregateTermUseCase.DTOs;
 
@@ -16,4 +17,5 @@ public class AggregateTermDto
     public TermStatus Status { get; set; }
     public string CreateDate { get; set; }
     public string UpdateDate { get; set; }
+    public List<VideoDto> Videos { get; set; }
 }
