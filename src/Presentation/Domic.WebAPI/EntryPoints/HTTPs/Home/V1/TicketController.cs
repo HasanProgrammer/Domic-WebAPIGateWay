@@ -18,7 +18,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [Authorize]
 [ApiExplorerSettings(GroupName = "Home/Ticket")]
-[Route(Route.BaseHomeUrl)]
+[Route($"{Route.BaseHomeUrl}{Route.BaseAggregateTicketUrl}")]
 [ApiVersion("1.0")]
 public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) : ControllerBase
 {
@@ -29,7 +29,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadOneAggregateTicketUrl}")] 
+    [Route(Route.ReadOneAggregateTicketUrl)] 
   //[PermissionPolicy(Type = "AggregateTicket.ReadOne")]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
@@ -47,7 +47,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route($"{Route.BaseAggregateTicketUrl}/{Route.ReadAllPaginatedAggregateTicketUrl}")]
+    [Route(Route.ReadAllPaginatedAggregateTicketUrl)]
   //[PermissionPolicy(Type = "AggregateTicket.ReadAllPaginated")]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
@@ -67,7 +67,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    [Route($"{Route.BaseTicketUrl}/{Route.CreateTicketUrl}")]
+    [Route(Route.CreateTicketUrl)]
   //[PermissionPolicy(Type = "Ticket.Create")]
     public async Task<IActionResult> Create([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
@@ -82,7 +82,7 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost($"{Route.BaseTicketUrl}/{Route.CreateTicketCommentUrl}")]
+    [HttpPost(Route.CreateTicketCommentUrl)]
    //[PermissionPolicy(Type = "Ticket.CreateComment")]
     public async Task<IActionResult> CreateComment([FromBody] CreateCommentCommand command, CancellationToken cancellationToken)
     {

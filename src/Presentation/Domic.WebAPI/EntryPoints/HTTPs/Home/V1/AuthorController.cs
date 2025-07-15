@@ -15,9 +15,9 @@ using Route                    = Domic.Common.ClassConsts.Route;
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [ApiVersion("1.0")]
-[ApiExplorerSettings(GroupName = "Home/Article")]
+[ApiExplorerSettings(GroupName = "Home/Author")]
 [Route($"{Route.BaseHomeUrl}{Route.BaseAggregateArticleUrl}")]
-public class AggregateArticleController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) 
+public class AuthorController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) 
     : ControllerBase
 {
     /// <summary>

@@ -1,6 +1,8 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.Queries.ReadOne;
 using Domic.WebAPI.DTOs;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +19,26 @@ public class TeacherController(IMediator mediator) : ControllerBase
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route(Route.ReadOneAggregateTermUrl)]
+    public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
+    {
+        var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="dto"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Route($"{Route.BaseAggregateTermUrl}/{Route.ReadAllPaginatedAggregateTermUrl}")]
+    [Route(Route.ReadAllPaginatedAggregateTermUrl)]
     public async Task<IActionResult> ReadAllPaginated([FromQuery] LandingTermDto dto, 
         CancellationToken cancellationToken
     )

@@ -9,12 +9,15 @@ using Domic.Infrastructure.Extensions;
 using Domic.UseCase.AggregateTermUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTermUseCase.DTOs;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
 
 using String                       = Domic.Core.AggregateTerm.Grpc.String;
 using Int32                        = Domic.Core.AggregateTerm.Grpc.Int32;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
+using ReadOneResponse              = Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponseBody          = Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -24,6 +27,28 @@ public class AggregateTermRpcWebRequest(
 ) : IAggregateTermRpcWebRequest
 {
     private GrpcChannel _channel;
+
+    public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
+    {
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
+        
+        ReadOneRequest payload = new() {
+            Id = request.Id != null ? new String { Value = request.Id } : null
+        };
+
+        var result =
+            await loadData.client.ReadOneAsync(payload, cancellationToken: cancellationToken,
+                headers: loadData.headers
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadOneResponseBody {
+                Term = result.Body.Term.DeSerialize<AggregateTermDto>()
+            }
+        };
+    }
 
     public async Task<ReadAllPaginatedResponse> ReadAllPaginatedAsync(ReadAllPaginatedQuery request, 
         CancellationToken cancellationToken
