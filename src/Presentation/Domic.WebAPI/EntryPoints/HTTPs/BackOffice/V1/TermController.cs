@@ -101,7 +101,7 @@ public class TermController(IMediator mediator) : ControllerBase
     [HttpPatch]
     [Route(Route.ActiveTermUrl)]
 //  [PermissionPolicy(Type = "Term.Active")]
-    public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Active([FromRoute] ActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
@@ -117,7 +117,7 @@ public class TermController(IMediator mediator) : ControllerBase
     [HttpPatch]
     [Route(Route.InActiveTermUrl)]
 //  [PermissionPolicy(Type = "Term.InActive")]
-    public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> InActive([FromRoute] InActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 

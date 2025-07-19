@@ -114,8 +114,8 @@ public partial class Route
     public const string ReadOneTermUrl          = "{Id}";
     public const string ReadAllPaginatedTermUrl = "";
     public const string CreateTermUrl           = "";
-    public const string ActiveTermUrl           = "active";
-    public const string InActiveTermUrl         = "inactive";
+    public const string ActiveTermUrl           = "active/{Id}";
+    public const string InActiveTermUrl         = "inactive/{Id}";
     public const string UpdateTermUrl           = "";
     public const string DeleteTermUrl           = "{Id}";
 }
