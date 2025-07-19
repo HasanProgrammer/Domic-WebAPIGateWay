@@ -15,6 +15,7 @@ public class AggregateTermDto
     public long Price { get; set; }
     public string ImageUrl { get; set; }
     public TermStatus Status { get; set; }
+    public bool IsActive { get; set; }
     public string CreateDate { get; set; }
     public string UpdateDate { get; set; }
     public List<VideoDto> Videos { get; set; }
