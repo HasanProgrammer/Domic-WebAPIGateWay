@@ -1,0 +1,31 @@
+{
+  "LoggerType": {
+    "Messaging": true,
+    "Streaming": false
+  },
+  "IsExternalBrokerConsumingAsync": false,
+  "IsInternalBrokerConsumingAsync": false,
+  "ExternalTopicConfig": {
+    "Throttle": [
+      {
+        "Active": false,
+        "Topic": "یه چیزی",
+        "Limitation": 1000
+      }
+    ]
+  },
+  "ExternalQueueConfig": {
+    "Throttle": [
+      {
+        "Active": false,
+        "Queue": "یه چیزی",
+        "Size": 0,
+        "Limitation": 1000,
+        "IsGlobally": false
+      }
+    ]
+  },
+  "InternalQueueConfig": {
+    "Throttle": []
+  }
+}

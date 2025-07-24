@@ -1,0 +1,10 @@
+﻿using Domic.UseCase.ArticleUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.Core.UseCase.Contracts.Abstracts;
+using Domic.Core.UseCase.Contracts.Interfaces;
+
+namespace Domic.UseCase.ArticleUseCase.Queries.ReadAllPaginated;
+
+public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>
+{
+    
+}
