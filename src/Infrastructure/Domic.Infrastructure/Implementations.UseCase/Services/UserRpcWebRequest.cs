@@ -106,8 +106,8 @@ public class UserRpcWebRequest : IUserRpcWebRequest
             CountPerPage = request.CountPerPage != null ? new Int32  { Value = (int)request.CountPerPage } : null
         };
 
-        payload.Sort       = new Int32 { Value = Convert.ToInt32(Sort.Newest) };
-        payload.SearchText = string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
+        payload.Sort       = new Int32 { Value = request.Sort };
+        payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
         
         var result = 
             await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
