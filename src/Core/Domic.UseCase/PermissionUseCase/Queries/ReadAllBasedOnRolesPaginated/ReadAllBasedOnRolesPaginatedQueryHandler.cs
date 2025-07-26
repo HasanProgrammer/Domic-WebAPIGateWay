@@ -1,5 +1,4 @@
 ﻿using Domic.UseCase.RoleUseCase.Contracts.Interfaces;
-using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.PermissionUseCase.DTOs.GRPCs.ReadAllBasedOnRolesPaginated;
 
@@ -13,7 +12,7 @@ public class ReadAllBasedOnRolesPaginatedQueryHandler
     public ReadAllBasedOnRolesPaginatedQueryHandler(IPermissionRpcWebRequest permissionRpcWebRequest) 
         => _permissionRpcWebRequest = permissionRpcWebRequest;
 
-    [WithValidation]
+    //[WithValidation]
     public Task<ReadAllBasedOnRolesPaginatedResponse> HandleAsync(ReadAllBasedOnRolesPaginatedQuery query,
         CancellationToken cancellationToken
     ) => _permissionRpcWebRequest.ReadAllBasedOnRolesPaginatedAsync(query, cancellationToken);

@@ -6,6 +6,7 @@ using Domic.Core.Identity.Grpc;
 using Domic.Core.User.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Domain.Commons.Enumerations;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.Update;
@@ -82,7 +83,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
             TargetId = request.Id != null ? new String { Value = request.Id } : null
         };
 
-        var result = 
+        var result =
             await loadData.client.ReadOneAsync(payload, headers: loadData.headers, 
                 cancellationToken: cancellationToken
             );
@@ -102,13 +103,11 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         ReadAllPaginatedRequest payload = new() {
             PageNumber   = request.PageNumber   != null ? new Int32  { Value = (int)request.PageNumber }   : null ,
-            CountPerPage = request.CountPerPage != null ? new Int32  { Value = (int)request.CountPerPage } : null ,
-            FirstName    = request.FirstName    != null ? new String { Value = request.FirstName }         : null ,
-            LastName     = request.LastName     != null ? new String { Value = request.LastName }          : null ,
-            Username     = request.Username     != null ? new String { Value = request.Username }          : null ,
-            PhoneNumber  = request.PhoneNumber  != null ? new String { Value = request.PhoneNumber }       : null ,
-            Email        = request.Email        != null ? new String { Value = request.Email }             : null
+            CountPerPage = request.CountPerPage != null ? new Int32  { Value = (int)request.CountPerPage } : null
         };
+
+        payload.Sort       = new Int32 { Value = Convert.ToInt32(Sort.Newest) };
+        payload.SearchText = string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
         
         var result = 
             await loadData.client.ReadAllPaginatedAsync(payload, headers: loadData.headers, 
