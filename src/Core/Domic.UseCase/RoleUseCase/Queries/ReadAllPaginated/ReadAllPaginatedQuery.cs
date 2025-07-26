@@ -6,5 +6,6 @@ namespace Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 
 public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>
 {
-    
+    public int Sort          { get; set; }
+    public string SearchText { get; set; }
 }
