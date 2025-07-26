@@ -38,7 +38,7 @@ public partial class Route
     public const string ReadAllPaginatedRoleUrl = "";
     public const string CreateRoleUrl           = "";
     public const string UpdateRoleUrl           = "";
-    public const string DeleteRoleUrl           = "";
+    public const string DeleteRoleUrl           = "{Id}";
 }
 
 //Permission
@@ -50,7 +50,7 @@ public partial class Route
     public const string ReadAllBasedOnRolesPaginatedPermissionUrl = "based-on-roles";
     public const string CreatePermissionUrl                       = "";
     public const string UpdatePermissionUrl                       = "";
-    public const string DeletePermissionUrl                       = "";
+    public const string DeletePermissionUrl                       = "{Id}";
 }
 
 //Category

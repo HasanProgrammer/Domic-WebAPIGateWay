@@ -129,7 +129,7 @@ public class PermissionController : ControllerBase
     [HttpDelete]
     [Route(Route.DeletePermissionUrl)]
     [PermissionPolicy(Type = Permission.PermissionDelete)]
-    public async Task<IActionResult> Delete([FromBody] DeleteCommand command,
+    public async Task<IActionResult> Delete([FromRoute] DeleteCommand command,
         CancellationToken cancellationToken
     )
     {

@@ -109,7 +109,7 @@ public class RoleController : ControllerBase
     [HttpDelete]
     [Route(Route.DeleteRoleUrl)]
     [PermissionPolicy(Type = Permission.RoleDelete)]
-    public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete([FromRoute] DeleteCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
