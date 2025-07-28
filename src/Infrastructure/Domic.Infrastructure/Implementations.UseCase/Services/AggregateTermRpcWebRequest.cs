@@ -62,6 +62,7 @@ public class AggregateTermRpcWebRequest(
         };
 
         payload.Active     = request.Active;
+        payload.Sort       = new Int32 { Value = request.Sort };
         payload.UserId     = !string.IsNullOrEmpty(request.UserId)     ? new String { Value = request.UserId }     : null;
         payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
 

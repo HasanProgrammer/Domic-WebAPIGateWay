@@ -102,7 +102,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     [HttpPatch]
     [Route(Route.ActiveVideoUrl)]
   //[PermissionPolicy(Type = "Video.Active")]
-    public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Active([FromRoute] ActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
@@ -118,7 +118,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     [HttpPatch]
     [Route(Route.InActiveVideoUrl)]
   //[PermissionPolicy(Type = "Video.InActive")]
-    public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> InActive([FromRoute] InActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
@@ -134,7 +134,7 @@ public class VideoController(IMediator mediator) : ControllerBase
     [HttpDelete]
     [Route(Route.DeleteVideoUrl)]
   //[PermissionPolicy(Type = "Video.Delete")]
-    public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete([FromRoute] DeleteCommand command, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 

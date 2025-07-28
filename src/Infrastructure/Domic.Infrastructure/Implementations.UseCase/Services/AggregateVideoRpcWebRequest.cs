@@ -12,6 +12,7 @@ using Domic.UseCase.AggregateVideoUseCase.DTOs;
 using Microsoft.AspNetCore.Http;
 
 using Int32                        = Domic.Core.AggregateVideo.Grpc.Int32;
+using String                       = Domic.Core.AggregateVideo.Grpc.String;
 using ReadAllPaginatedRequest      = Domic.Core.AggregateVideo.Grpc.ReadAllPaginatedRequest;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
@@ -41,6 +42,9 @@ public class AggregateVideoRpcWebRequest(
             await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken, 
                 headers: loadData.headers
             );
+        
+        payload.Sort       = new Int32 { Value = request.Sort };
+        payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
         
         return new() {
             Code    = result.Code    ,

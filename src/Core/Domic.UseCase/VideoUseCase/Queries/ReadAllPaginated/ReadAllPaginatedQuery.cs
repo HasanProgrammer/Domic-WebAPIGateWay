@@ -4,4 +4,8 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 
 namespace Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>;
+public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResponse>
+{
+    public int Sort { get; set; }
+    public string SearchText { get; set; }
+}
