@@ -37,14 +37,14 @@ public class AggregateVideoRpcWebRequest(
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
-
-        var result =
-            await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken, 
-                headers: loadData.headers
-            );
         
         payload.Sort       = new Int32 { Value = request.Sort };
         payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
+
+        var result =
+            await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken,
+                headers: loadData.headers
+            );
         
         return new() {
             Code    = result.Code    ,
