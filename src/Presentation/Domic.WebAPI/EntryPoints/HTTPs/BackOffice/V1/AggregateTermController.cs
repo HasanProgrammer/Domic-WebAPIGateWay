@@ -6,7 +6,10 @@ using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using Route = Domic.Common.ClassConsts.Route;
+using Route                         = Domic.Common.ClassConsts.Route;
+using ReadAllAggregateVideoRequest  = Domic.UseCase.AggregateVideoUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
+using ReadAllAggregateVideoResponse = Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
@@ -46,11 +49,11 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateVideoUrl)]
   //[PermissionPolicy(Type = "AggregateVideo.ReadAllTransactionRequestPaginated")]
-    public async Task<IActionResult> ReadAllVideosPaginated([FromQuery] ReadAllPaginatedQuery query,
+    public async Task<IActionResult> ReadAllVideosPaginated([FromQuery] ReadAllAggregateVideoRequest query,
         CancellationToken cancellationToken
     )
     {
-        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
+        var result = await mediator.DispatchAsync<ReadAllAggregateVideoResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }
