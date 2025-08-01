@@ -127,8 +127,8 @@ public partial class Route
     public const string ReadOneVideoUrl          = "{Id}";
     public const string ReadAllPaginatedVideoUrl = "";
     public const string CreateVideoUrl           = "";
-    public const string ActiveVideoUrl           = "active";
-    public const string InActiveVideoUrl         = "inactive";
+    public const string ActiveVideoUrl           = "active/{Id}";
+    public const string InActiveVideoUrl         = "inactive/{Id}";
     public const string UpdateVideoUrl           = "";
     public const string DeleteVideoUrl           = "";
 }
