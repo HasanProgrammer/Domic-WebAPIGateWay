@@ -78,7 +78,7 @@ public class TermRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Term = result.Body.Term.DeSerialize<TermsDto>() } 
+            Body    = new ReadOneResponseBody { Term = result.Body.Term.DeSerialize<TermDto>() } 
         };
     }
 
@@ -102,7 +102,7 @@ public class TermRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Terms = result.Body.Terms.DeSerialize<PaginatedCollection<TermsDto>>()
+                Terms = result.Body.Terms.DeSerialize<PaginatedCollection<TermDto>>()
             }
         };
     }
@@ -115,10 +115,11 @@ public class TermRpcWebRequest(
 
         payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }       : null;
         payload.Name        = request.Name        != null ? new String { Value = request.Name }             : null;
+        payload.Summary     = request.Summary     != null ? new String { Value = request.Summary }          : null;
         payload.Description = request.Description != null ? new String { Value = request.Description }      : null;
         payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }         : null;
         payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }      : null;
-        payload.Price       = request.Price       != null ? new String { Value = request.Price.ToString() } : null;
+        payload.Price       = new Int32 { Value = request.Price };
         
         var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -139,9 +140,11 @@ public class TermRpcWebRequest(
         payload.Id          = request.Id          != null ? new String { Value = request.Id }          : null;
         payload.CategoryId  = request.CategoryId  != null ? new String { Value = request.CategoryId }  : null;
         payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
+        payload.Summary     = request.Summary     != null ? new String { Value = request.Summary }     : null;
         payload.Description = request.Description != null ? new String { Value = request.Description } : null;
         payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }    : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null; payload.Price = request.Price != null ? new String { Value = request.Price.ToString() } : null;
+        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null; 
+        payload.Price       = new Int32 { Value = request.Price };
         
         var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);

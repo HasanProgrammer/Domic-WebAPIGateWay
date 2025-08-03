@@ -118,6 +118,9 @@ public class VideoRpcWebRequest(
         payload.Description = request.Description != null ? new String { Value = request.Description } : null;
         payload.VideoUrl    = request.VideoUrl    != null ? new String { Value = request.VideoUrl }    : null;
         payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
+        payload.Price       = new Int32 { Value = request.Price };
+        payload.Duration    = new Int32 { Value = request.Duration };
+        
         
         var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -141,6 +144,8 @@ public class VideoRpcWebRequest(
         payload.Description = request.Description != null ? new String { Value = request.Description } : null;
         payload.VideoUrl    = request.VideoUrl    != null ? new String { Value = request.VideoUrl }    : null;
         payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
+        payload.Price       = new Int32 { Value = request.Price };
+        payload.Duration    = new Int32 { Value = request.Duration };
         
         var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);

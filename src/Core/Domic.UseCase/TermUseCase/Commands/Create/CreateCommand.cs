@@ -8,8 +8,9 @@ public class CreateCommand : ICommand<CreateResponse>
 {
     public required string CategoryId { get; set; }
     public required string Name { get; set; }
+    public required string Summary { get; set; }
     public required string Description { get; set; }
     public required string ImageUrl { get; set; }
-    public required long? Price { get; set; }
+    public required int Price { get; set; }
     public required TermStatus? Status { get; set; }
 }

@@ -11,6 +11,8 @@ public class AggregateVideosDto
     public string Teacher { get; set; }
     public string VideoUrl { get; set; }
     public string Type { get; set; }
+    public int Price { get; set; }
+    public int Duration { get; set; }
     public VideoStatus TypeValue { get; set; }
     public bool IsActive { get; set; }
     public DateTime EnCreatedAt { get; set; }

@@ -11,8 +11,10 @@ public class AggregateTermDto
     public string TeacherImageUrl { get; set; }
     public string CategoryName { get; set; }
     public string Name { get; set; }
+    public string Summary { get; set; }
     public string Description { get; set; }
-    public long Price { get; set; }
+    public int Price { get; set; }
+    public int Duration { get; set; }
     public string ImageUrl { get; set; }
     public TermStatus Status { get; set; }
     public bool IsActive { get; set; }

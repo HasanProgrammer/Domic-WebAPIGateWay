@@ -5,5 +5,5 @@ namespace Domic.UseCase.TermUseCase.DTOs.GRPCs.ReadAllPaginated;
 
 public class ReadAllPaginatedResponseBody
 {
-    public PaginatedCollection<TermsDto> Terms { get; set; }
+    public PaginatedCollection<TermDto> Terms { get; set; }
 }

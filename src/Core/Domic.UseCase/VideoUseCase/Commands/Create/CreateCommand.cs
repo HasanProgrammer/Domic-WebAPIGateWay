@@ -11,4 +11,6 @@ public class CreateCommand : ICommand<CreateResponse>
     public required string Description { get; set; }
     public required string VideoUrl { get; set; }
     public required VideoStatus? Status { get; set; }
+    public required int Price { get; set; }
+    public required int Duration { get; set; }
 }
