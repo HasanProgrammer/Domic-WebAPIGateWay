@@ -850,3 +850,1241 @@
    at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
    at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
 
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: Request body too large. The max request body size is 30000000 bytes. | Source: Microsoft.AspNetCore.Server.Kestrel.Core.BadHttpRequestException: Request body too large. The max request body size is 30000000 bytes.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.Http1ContentLengthMessageBody.OnReadStarting()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.MessageBody.TryStartAsync()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.Http1ContentLengthMessageBody.ReadAsyncInternal(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpRequestStream.ReadAsyncInternal(Memory`1 destination, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadBufferAsync(CancellationToken cancellationToken)
+   at System.IO.StreamReader.ReadToEndAsyncInternal(CancellationToken cancellationToken)
+   at Domic.Core.WebAPI.Extensions.HttpContextExtension.CentralRequestLoggerAsync(HttpContext context, IHostEnvironment hostEnvironment, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IExternalMessageBroker externalMessageBroker, IDateTime dateTime, String serviceName, CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/12 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/16 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64String(String s)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/17 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/18 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1404/05/19 | Message: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. | Source: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at Domic.Core.Infrastructure.Concretes.ExternalDistributedCacheMediator.GetAsync[TResult](CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.ServiceDiscovery._LoadServicesInfoAsync(CancellationToken cancellationToken) 
+

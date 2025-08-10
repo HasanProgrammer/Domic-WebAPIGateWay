@@ -1,7 +1,7 @@
 ﻿using Domic.Core.Common.ClassHelpers;
 using Domic.UseCase.Commons.DTOs;
 
-namespace Domic.UseCase.ArticleCommentUseCase.DTOs.GRPCs.ReadAllPaginated;
+namespace Domic.UseCase.TermCommentUseCase.DTOs.GRPCs.ReadAllPaginated;
 
 public class ReadAllPaginatedResponseBody
 {

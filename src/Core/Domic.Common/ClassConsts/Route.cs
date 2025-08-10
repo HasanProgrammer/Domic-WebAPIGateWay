@@ -133,6 +133,17 @@ public partial class Route
     public const string DeleteVideoUrl           = "";
 }
 
+//TermComment
+public partial class Route
+{
+    public const string BaseTermCommentUrl     = "term-comments";
+    public const string CreateTermCommentUrl   = "";
+    public const string UpdateTermCommentUrl   = "";
+    public const string ActiveTermCommentUrl   = "active";
+    public const string InActiveTermCommentUrl = "inactive";
+    public const string DeleteTermCommentUrl   = "";
+}
+
 //Ticket
 public partial class Route
 {

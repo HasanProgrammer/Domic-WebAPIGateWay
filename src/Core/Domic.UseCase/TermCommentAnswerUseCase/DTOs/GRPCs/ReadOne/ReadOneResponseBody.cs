@@ -1,6 +1,6 @@
 ﻿using Domic.UseCase.Commons.DTOs;
 
-namespace Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.GRPCs.ReadOne;
+namespace Domic.UseCase.TermCommentAnswerUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {

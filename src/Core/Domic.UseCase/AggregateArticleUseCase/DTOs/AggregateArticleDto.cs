@@ -1,4 +1,4 @@
-using Domic.UseCase.ArticleCommentUseCase.DTOs;
+using Domic.UseCase.Commons.DTOs;
 
 namespace Domic.UseCase.ArticleUseCase.DTOs;
 
@@ -32,5 +32,5 @@ public class AggregateArticleDto
     
     //Comment
     
-    public required List<ArticleCommentDto> Comments { get; set; }
+    public required List<CommentDto> Comments { get; set; }
 }
