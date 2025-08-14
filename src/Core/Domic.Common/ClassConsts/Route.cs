@@ -139,9 +139,9 @@ public partial class Route
     public const string BaseTermCommentUrl     = "term-comments";
     public const string CreateTermCommentUrl   = "";
     public const string UpdateTermCommentUrl   = "";
-    public const string ActiveTermCommentUrl   = "active";
-    public const string InActiveTermCommentUrl = "inactive";
-    public const string DeleteTermCommentUrl   = "";
+    public const string ActiveTermCommentUrl   = "active/{Id}";
+    public const string InActiveTermCommentUrl = "inactive/{Id}";
+    public const string DeleteTermCommentUrl   = "{Id}";
 }
 
 //Ticket
