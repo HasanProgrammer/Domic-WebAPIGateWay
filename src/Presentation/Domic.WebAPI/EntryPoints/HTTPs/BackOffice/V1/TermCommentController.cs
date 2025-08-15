@@ -70,7 +70,7 @@ public class TermCommentController : ControllerBase
     [HttpPatch]
     [Route(Route.ActiveTermCommentUrl)]
     //[PermissionPolicy(Type = Permission.TermCommentActive)]
-    public async Task<IActionResult> Active([FromBody] ActiveCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Active([FromRoute] ActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<ActiveResponse>(command, cancellationToken);
 
@@ -86,7 +86,7 @@ public class TermCommentController : ControllerBase
     [HttpPatch]
     [Route(Route.InActiveTermCommentUrl)]
     //[PermissionPolicy(Type = Permission.TermCommentInActive)]
-    public async Task<IActionResult> InActive([FromBody] InActiveCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> InActive([FromRoute] InActiveCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<InActiveResponse>(command, cancellationToken);
 
@@ -102,7 +102,7 @@ public class TermCommentController : ControllerBase
     [HttpDelete]
     [Route(Route.DeleteTermCommentUrl)]
     //[PermissionPolicy(Type = Permission.TermCommentDelete)]
-    public async Task<IActionResult> Delete([FromBody] DeleteCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete([FromRoute] DeleteCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.DispatchAsync<DeleteResponse>(command, cancellationToken);
 
