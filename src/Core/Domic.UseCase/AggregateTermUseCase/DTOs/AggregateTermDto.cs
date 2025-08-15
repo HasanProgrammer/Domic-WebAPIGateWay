@@ -1,4 +1,5 @@
 using Domic.Domain.Commons.Enumerations;
+using Domic.UseCase.CommentUseCase.DTOs;
 using Domic.UseCase.VideoUseCase.DTOs;
 
 namespace Domic.UseCase.AggregateTermUseCase.DTOs;
@@ -21,4 +22,5 @@ public class AggregateTermDto
     public string CreateDate { get; set; }
     public string UpdateDate { get; set; }
     public List<VideoDto> Videos { get; set; }
+    public List<AggregateCommentDto> Comments { get; set; }
 }
