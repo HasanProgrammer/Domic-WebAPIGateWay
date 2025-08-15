@@ -144,6 +144,17 @@ public partial class Route
     public const string DeleteTermCommentUrl   = "{Id}";
 }
 
+//TermCommentAnswer ( CommentService | Command )
+public partial class Route
+{
+    public const string BaseTermCommentAnswerUrl     = "term-comment-answers";
+    public const string CreateTermCommentAnswerUrl   = "";
+    public const string ActiveTermCommentAnswerUrl   = "active/{Id}";
+    public const string InActiveTermCommentAnswerUrl = "inactive/{Id}";
+    public const string UpdateTermCommentAnswerUrl   = "";
+    public const string DeleteTermCommentAnswerUrl   = "{Id}";
+}
+
 //Ticket
 public partial class Route
 {
