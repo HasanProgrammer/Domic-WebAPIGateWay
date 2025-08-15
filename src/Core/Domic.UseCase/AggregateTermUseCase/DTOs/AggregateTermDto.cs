@@ -1,5 +1,5 @@
 using Domic.Domain.Commons.Enumerations;
-using Domic.UseCase.CommentUseCase.DTOs;
+using Domic.UseCase.AggregateTermCommentUseCase.DTOs;
 using Domic.UseCase.VideoUseCase.DTOs;
 
 namespace Domic.UseCase.AggregateTermUseCase.DTOs;

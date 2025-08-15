@@ -1,6 +1,7 @@
-﻿using Domic.UseCase.CommentAnswerUseCase.DTOs;
+﻿
+using Domic.UseCase.AggregateTermCommentAnswerUseCase.DTOs;
 
-namespace Domic.UseCase.CommentUseCase.DTOs;
+namespace Domic.UseCase.AggregateTermCommentUseCase.DTOs;
 
 public class AggregateCommentDto
 {

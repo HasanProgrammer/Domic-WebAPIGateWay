@@ -133,14 +133,14 @@ public partial class Route
     public const string DeleteVideoUrl           = "";
 }
 
-//TermComment
+//TermComment ( CommentService | Command )
 public partial class Route
 {
     public const string BaseTermCommentUrl     = "term-comments";
     public const string CreateTermCommentUrl   = "";
-    public const string UpdateTermCommentUrl   = "";
     public const string ActiveTermCommentUrl   = "active/{Id}";
     public const string InActiveTermCommentUrl = "inactive/{Id}";
+    public const string UpdateTermCommentUrl   = "";
     public const string DeleteTermCommentUrl   = "{Id}";
 }
 
@@ -169,10 +169,14 @@ public partial class Route
 //AggregateTerm
 public partial class Route
 {
-    public const string BaseAggregateTermUrl              = "aggregate-terms";
-    public const string ReadOneAggregateTermUrl           = "{Id}";
-    public const string ReadAllPaginatedAggregateTermUrl  = "terms";
-    public const string ReadAllPaginatedAggregateVideoUrl = "videos";
+    public const string BaseAggregateTermUrl                       = "aggregate-terms";
+    public const string ReadOneAggregateTermUrl                    = "{Id}";
+    public const string ReadAllPaginatedAggregateTermUrl           = "terms";
+    public const string ReadAllPaginatedAggregateVideoUrl          = "videos";
+    public const string ReadAllPaginatedAggregateCommentUrl        = "comments";
+    public const string ReadOneAggregateCommentUrl                 = "comments/{Id}";
+    public const string ReadAllPaginatedAggregateCommentAnswersUrl = "comments/{CommentId}/answers";
+    public const string ReadOneAggregateCommentAnswerUrl           = "answers/{Id}";
 }
 
 //Fiancial

@@ -1,4 +1,4 @@
-﻿namespace Domic.UseCase.CommentAnswerUseCase.DTOs;
+﻿namespace Domic.UseCase.AggregateTermCommentAnswerUseCase.DTOs;
 
 public class AggregateCommentAnswerDto
 {
@@ -10,5 +10,4 @@ public class AggregateCommentAnswerDto
     public string Answer { get; set; }
     public bool IsActive { get; set; }
     public DateTime EnCreatedAt { get; set; }
-    public string FrCreatedAt { get; set; }
 }
