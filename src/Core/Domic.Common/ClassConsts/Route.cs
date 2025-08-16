@@ -11,6 +11,7 @@ public partial class Route
 {
     public const string BaseStorageUrl = "storages";
     public const string UploadStorageUrl = "upload";
+    public const string DownloadStorageUrl = "download/{file}";
 }
 
 //User
