@@ -1,9 +1,9 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
-using Domic.UseCase.AggregateTermCommentUseCase.Queries.ReadOne;
-using Domic.UseCase.AggregateTermCommentUseCase.DTOs.GRPCs.ReadAllPaginated;
-using Domic.UseCase.AggregateTermCommentUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.AggregateTermCommentUseCase.DTOs.GRPCs.ReadOne;
+using Domic.UseCase.AggregateTermCommentAnswerUseCase.Queries.ReadOne;
+using Domic.UseCase.AggregateTermCommentAnswerUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateTermCommentAnswerUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTermCommentAnswerUseCase.DTOs.GRPCs.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,11 +47,12 @@ public class AggregateTermCommentAnswerController(IMediator mediator) : Controll
     [HttpGet]
     [Route(Route.ReadAllPaginatedAggregateCommentAnswersUrl)]
   //[PermissionPolicy(Type = "AggregateTermComment.ReadAllPaginated")]
-    public async Task<IActionResult> ReadAllPaginated([FromQuery] ReadAllPaginatedQuery query,
-        CancellationToken cancellationToken
+    public async Task<IActionResult> ReadAllPaginated([FromRoute] string CommentId, 
+        [FromQuery] ReadAllPaginatedQuery query, CancellationToken cancellationToken
     )
     {
         query.Active = false; //all
+        query.CommentId = CommentId;
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
