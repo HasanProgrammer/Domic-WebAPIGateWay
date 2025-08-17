@@ -5,6 +5,8 @@ using Domic.UseCase.FinancialUseCase.Commands.Create;
 using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
+using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionPaginated;
+using Domic.UseCase.FinancialUseCase.Queries.ReadCurrentUserBalence;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +21,39 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [Route(Route.BaseHomeUrl + Route.BaseFinancialUrl)]
 public class FinancialController(IMediator mediator) : ControllerBase
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route(Route.GetCurrentUserCurrentBalence)]
+    //[PermissionPolicy(Type = "Financial.CurrentBalence")]
+    public async Task<IActionResult> CurrentBalence(CancellationToken cancellationToken)
+    {
+        var result = await mediator.DispatchAsync(new ReadCurrentUserBalenceQuery(), cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route(Route.GetAllTransactionFinancialUrl)]
+    //[PermissionPolicy(Type = "Financial.ReadAllTransaction")]
+    public async Task<IActionResult> ReadAllTransaction([FromQuery] ReadAllTransactionPaginatedQuery query,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync(query, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
     /// <summary>
     /// new transaction
     /// </summary>

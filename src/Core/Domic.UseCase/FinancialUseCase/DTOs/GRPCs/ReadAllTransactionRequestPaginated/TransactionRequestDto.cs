@@ -1,4 +1,4 @@
-﻿namespace Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated;
+﻿namespace Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginated;
 
 public class TransactionRequestDto
 {

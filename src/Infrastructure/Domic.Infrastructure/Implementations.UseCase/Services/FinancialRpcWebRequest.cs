@@ -2,6 +2,7 @@
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
+using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.Financial.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -13,31 +14,88 @@ using Domic.UseCase.FinancialUseCase.Commands.CreateTransactionRequest;
 using Domic.UseCase.FinancialUseCase.Commands.DecreaseAccountBalance;
 using Domic.UseCase.FinancialUseCase.Commands.PaymentVerification;
 using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.DecreaseAccountBalance;
-using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated;
-using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequest;
+using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionPaginated;
+using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginated;
+using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionPaginated;
+using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequestPaginated;
+using Domic.UseCase.FinancialUseCase.Queries.ReadCurrentUserBalence;
 using Microsoft.AspNetCore.Http;
-using String                                     = Domic.Core.Financial.Grpc.String;
-using Int32                                      = Domic.Core.Financial.Grpc.Int32;
-using Int64                                      = Domic.Core.Financial.Grpc.Int64;
-using CreateResponse                             = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
-using CreateResponseBody                         = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
-using CreateRequest                              = Domic.Core.Financial.Grpc.CreateRequest;
-using CreateTransactionRequestResponse           = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
-using CreateTransactionRequestResponseBody       = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponseBody;
-using PaymentVerificationResponse                = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
-using PaymentVerificationResponseBody            = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
-using ChangeStatusTransactionRequestResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponse;
-using ChangeStatusTransactionRequestResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponseBody;
-using ReadAllTransactionRequestPaginatedResponse = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllTransactionRequestPaginatedResponse;
-using ReadAllTransactionRequestPaginatedResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllTransactionRequestPaginatedResponseBody;
+using Microsoft.Extensions.DependencyInjection;
+using String                                         = Domic.Core.Financial.Grpc.String;
+using Int32                                          = Domic.Core.Financial.Grpc.Int32;
+using Int64                                          = Domic.Core.Financial.Grpc.Int64;
+using CreateResponse                                 = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponse;
+using CreateResponseBody                             = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.Create.CreateResponseBody;
+using CreateRequest                                  = Domic.Core.Financial.Grpc.CreateRequest;
+using CreateTransactionRequestResponse               = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponse;
+using CreateTransactionRequestResponseBody           = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.CreateTransactionRequest.CreateTransactionRequestResponseBody;
+using PaymentVerificationResponse                    = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponse;
+using PaymentVerificationResponseBody                = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.PaymentVerification.PaymentVerificationResponseBody;
+using ChangeStatusTransactionRequestResponse         = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponse;
+using ChangeStatusTransactionRequestResponseBody     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ChangeStatusTransactionRequest.ChangeStatusTransactionRequestResponseBody;
+using CurrentBalenceResponse                         = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionPaginated.CurrentBalenceResponse;
+using CurrentBalenceResponseBody                     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionPaginated.CurrentBalenceResponseBody;
+using ReadAllTransactionRequestPaginatedResponse     = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginated.ReadAllTransactionRequestPaginatedResponse;
+using ReadAllTransactionRequestPaginatedResponseBody = Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginated.ReadAllTransactionRequestPaginatedResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery,
-    IHttpContextAccessor httpContextAccessor, IExternalDistributedCache distributedCache
+    IHttpContextAccessor httpContextAccessor, IExternalDistributedCache distributedCache,
+    [FromKeyedServices("Http1")] IIdentityUser identityUser
 ) : IFinancialRpcWebRequest
 {
     private GrpcChannel _channel;
+
+    public async Task<CurrentBalenceResponse> CurrentBalenceAsync(ReadCurrentUserBalenceQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        CurrentBalenceRequest payload = new();
+        
+        var result =
+            await loadData.client.CurrentBalenceAsync(payload, headers: loadData.headers, 
+                cancellationToken: cancellationToken
+            );
+
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new CurrentBalenceResponseBody { Amount = result.Body.Amount }
+        };
+    }
+
+    public async Task<ReadAllTransactionPaginatedResponse> ReadAllTransactionPaginatedAsync(ReadAllTransactionPaginatedQuery request, CancellationToken cancellationToken)
+    {
+        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
+        
+        ReadAllTransactionRequest payload = new();
+
+        payload.Sort = new Int32 { Value = Convert.ToInt32(request.Sort) };
+        payload.PageNumber = request.PageNumber != null ? new Int32 { Value = request.PageNumber.Value } : default;
+        payload.CountPerPage = request.CountPerPage != null ? new Int32 { Value = request.CountPerPage.Value } : default;
+        payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : default;
+
+        if (!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            payload.UserId = new String { Value = identityUser.GetIdentity() };
+        else
+            payload.UserId = default;
+        
+        var result =
+            await loadData.client.ReadAllTransactionPaginatedAsync(payload, headers: loadData.headers, 
+                cancellationToken: cancellationToken
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadAllTransactionPaginatedResponseBody {
+                Transactions = result.Body.Transactions.DeSerialize<PaginatedCollection<TransactionDto>>()
+            }
+        };
+    }
 
     public async Task<ReadAllTransactionRequestPaginatedResponse> ReadAllTransactionRequestPaginatedAsync(
         ReadAllTransactionRequestPaginatedQuery request, CancellationToken cancellationToken
@@ -47,8 +105,15 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery,
         
         ReadAllTransactionRequestPaginatedObject payload = new();
 
+        payload.Sort = new Int32 { Value = Convert.ToInt32(request.Sort) };
         payload.PageNumber = request.PageNumber != null ? new Int32 { Value = request.PageNumber.Value } : default;
         payload.CountPerPage = request.CountPerPage != null ? new Int32 { Value = request.CountPerPage.Value } : default;
+        payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : default;
+
+        if (!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            payload.UserId = new String { Value = identityUser.GetIdentity() };
+        else
+            payload.UserId = default;
         
         var result =
             await loadData.client.ReadAllTransactionRequestPaginatedAsync(payload, headers: loadData.headers, 

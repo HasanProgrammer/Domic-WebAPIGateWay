@@ -1,6 +1,6 @@
 ﻿using Domic.UseCase.Commons.DTOs.GRPCs;
 
-namespace Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllPaginated;
+namespace Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginated;
 
 public class ReadAllTransactionRequestPaginatedResponse : BaseResponse
 {
