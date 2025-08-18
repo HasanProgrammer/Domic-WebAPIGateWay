@@ -19,6 +19,7 @@ using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginat
 using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionPaginated;
 using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequestPaginated;
 using Domic.UseCase.FinancialUseCase.Queries.ReadCurrentUserBalence;
+using Google.Protobuf.Collections;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using String                                         = Domic.Core.Financial.Grpc.String;
@@ -134,11 +135,13 @@ public class FinancialRpcWebRequest(IServiceDiscovery serviceDiscovery,
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         CreateRequest payload = new();
-
+        
         payload.AccountId       = request.AccountId       != null ? new String { Value = request.AccountId }            : null;
         payload.IncreasedAmount = request.IncreasedAmount != null ? new Int64 { Value = request.IncreasedAmount.Value } : null;
         payload.DecreasedAmount = request.DecreasedAmount != null ? new Int64 { Value = request.DecreasedAmount.Value } : null;
         payload.TransactionType = new Int32 { Value = (int)request.TransactionType };
+        
+        payload.Items.AddRange(request.Items);
         
         var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
