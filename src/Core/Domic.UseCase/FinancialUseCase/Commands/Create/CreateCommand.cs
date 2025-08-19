@@ -7,7 +7,7 @@ namespace Domic.UseCase.FinancialUseCase.Commands.Create;
 
 public class CreateCommand : ICommand<CreateResponse>
 {
-    public required List<string> Items { get; init; }
+    public required List<string> Items { get; init; } = new();
     public required string AccountId { get; init; }
     public required long? IncreasedAmount { get; init; }
     public required long? DecreasedAmount { get; init; }
