@@ -19,7 +19,6 @@ using Domic.UseCase.FinancialUseCase.DTOs.GRPCs.ReadAllTransactionRequestPaginat
 using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionPaginated;
 using Domic.UseCase.FinancialUseCase.Queries.ReadAllTransactionRequestPaginated;
 using Domic.UseCase.FinancialUseCase.Queries.ReadCurrentUserBalence;
-using Google.Protobuf.Collections;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using String                                         = Domic.Core.Financial.Grpc.String;
