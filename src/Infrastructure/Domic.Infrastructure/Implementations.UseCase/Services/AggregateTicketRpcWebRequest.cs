@@ -3,6 +3,7 @@ using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.AggregateTicket.Grpc;
+using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
@@ -11,6 +12,7 @@ using Domic.UseCase.AggregateTicketUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTicketUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Int32                        = Domic.Core.AggregateTicket.Grpc.Int32;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
@@ -22,7 +24,7 @@ namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class AggregateTicketRpcWebRequest(
     IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
-    IExternalDistributedCache distributedCache
+    IExternalDistributedCache distributedCache, [FromKeyedServices("Http1")] IIdentityUser identityUser
 )
 : IAggregateTicketRpcWebRequest
 {
@@ -58,11 +60,16 @@ public class AggregateTicketRpcWebRequest(
         var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
         
         ReadAllPaginatedRequest payload = new() {
-            UserId       = request.UserId       != null ? new String { Value = request.UserId }           : null,
+            Sort         = new Int32 { Value = request.Sort },
             SearchText   = request.SearchText   != null ? new String { Value = request.SearchText }       : null,
             PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null,
             CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
         };
+
+        if (!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            payload.UserId = default;
+        else
+            payload.UserId = new String { Value = identityUser.GetIdentity() };
 
         var result =
             await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken, 

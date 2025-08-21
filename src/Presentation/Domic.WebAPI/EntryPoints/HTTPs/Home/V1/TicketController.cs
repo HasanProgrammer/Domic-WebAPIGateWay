@@ -53,8 +53,6 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
         CancellationToken cancellationToken
     )
     {
-        query.UserId = identityUser.GetIdentity();
-        
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
