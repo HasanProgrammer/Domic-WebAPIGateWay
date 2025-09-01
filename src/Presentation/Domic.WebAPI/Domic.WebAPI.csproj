@@ -12,6 +12,9 @@
     <None Include="Storages\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Storages\Images\.keep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EntryPoints" />
@@ -22,7 +25,7 @@
   </ItemGroup>
   <!--CorePackage | Presentation-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Presentation" Version="10.0.1" />
+    <PackageReference Include="Domic.Architecture.Presentation" Version="10.0.2" />
     <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
   <!--CorePackage | Presentation-->
