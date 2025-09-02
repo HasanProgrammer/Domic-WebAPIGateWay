@@ -10,6 +10,7 @@ public class AggregateTermDto
     public string TeacherId { get; set; }
     public string TeacherName { get; set; }
     public string TeacherImageUrl { get; set; }
+    public string TeacherDescription { get; set; }
     public string CategoryName { get; set; }
     public string Name { get; set; }
     public string Summary { get; set; }
