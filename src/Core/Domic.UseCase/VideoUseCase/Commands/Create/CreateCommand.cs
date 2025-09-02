@@ -6,7 +6,7 @@ namespace Domic.UseCase.VideoUseCase.Commands.Create;
 
 public class CreateCommand : ICommand<CreateResponse>
 {
-    public required string TermId { get; set; }
+    public required string SeasonId { get; set; }
     public required string Name { get; set; }
     public required string Description { get; set; }
     public required string VideoUrl { get; set; }

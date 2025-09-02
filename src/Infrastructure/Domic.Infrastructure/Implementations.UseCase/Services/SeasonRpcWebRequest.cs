@@ -3,48 +3,49 @@ using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Infrastructure.Extensions;
-using Domic.Core.Video.Grpc;
+using Domic.Core.Season.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
-using Domic.UseCase.VideoUseCase.Contracts.Interfaces;
-using Domic.UseCase.VideoUseCase.Commands.Active;
-using Domic.UseCase.VideoUseCase.Commands.Update;
-using Domic.UseCase.VideoUseCase.Commands.Create;
-using Domic.UseCase.VideoUseCase.Commands.InActive;
-using Domic.UseCase.VideoUseCase.DTOs;
-using Domic.UseCase.VideoUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.VideoUseCase.Queries.ReadOne;
+using Domic.UseCase.SeasonUseCase.Commands.Active;
+using Domic.UseCase.SeasonUseCase.Commands.Update;
+using Domic.UseCase.SeasonUseCase.Commands.Create;
+using Domic.UseCase.SeasonUseCase.Commands.InActive;
+using Domic.UseCase.SeasonUseCase.Contracts.Interfaces;
+using Domic.UseCase.SeasonUseCase.DTOs;
+using Domic.UseCase.SeasonUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.SeasonUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using String                       = Domic.Core.Video.Grpc.String;
-using Int32                        = Domic.Core.Video.Grpc.Int32;
-using ActiveRequest                = Domic.Core.Video.Grpc.ActiveRequest;
-using ReadOneResponse              = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadOneResponseBody          = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
-using CreateResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Create.CreateResponse;
-using CreateResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Create.CreateResponseBody;
-using ReadAllPaginatedResponse     = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using ReadAllPaginatedResponseBody = Domic.UseCase.VideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
-using UpdateResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.UpdateResponse;
-using UpdateResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
-using ActiveResponse               = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.ActiveResponse;
-using ActiveResponseBody           = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
-using CheckExistRequest            = Domic.Core.Video.Grpc.CheckExistRequest;
-using CreateRequest                = Domic.Core.Video.Grpc.CreateRequest;
-using DeleteResponse = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.DeleteResponse;
-using DeleteResponseBody = Domic.UseCase.VideoUseCase.DTOs.GRPCs.Update.DeleteResponseBody;
-using InActiveRequest              = Domic.Core.Video.Grpc.InActiveRequest;
-using InActiveResponse             = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponse;
-using InActiveResponseBody         = Domic.UseCase.VideoUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
-using ReadAllPaginatedRequest      = Domic.Core.Video.Grpc.ReadAllPaginatedRequest;
-using ReadOneRequest               = Domic.Core.Video.Grpc.ReadOneRequest;
-using UpdateRequest                = Domic.Core.Video.Grpc.UpdateRequest;
+
+using String                       = Domic.Core.Season.Grpc.String;
+using Int32                        = Domic.Core.Season.Grpc.Int32;
+using ActiveRequest                = Domic.Core.Season.Grpc.ActiveRequest;
+using CheckExistRequest            = Domic.Core.Season.Grpc.CheckExistRequest;
+using CreateRequest                = Domic.Core.Season.Grpc.CreateRequest;
+using InActiveRequest              = Domic.Core.Season.Grpc.InActiveRequest;
+using ReadAllPaginatedRequest      = Domic.Core.Season.Grpc.ReadAllPaginatedRequest;
+using ReadOneRequest               = Domic.Core.Season.Grpc.ReadOneRequest;
+using UpdateRequest                = Domic.Core.Season.Grpc.UpdateRequest;
+using ReadOneResponse              = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponseBody          = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
+using CreateResponse               = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Create.CreateResponse;
+using CreateResponseBody           = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Create.CreateResponseBody;
+using ReadAllPaginatedResponse     = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllPaginatedResponseBody = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
+using UpdateResponse               = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Update.UpdateResponse;
+using UpdateResponseBody           = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
+using ActiveResponse               = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Active.ActiveResponse;
+using ActiveResponseBody           = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Active.ActiveResponseBody;
+using DeleteResponse               = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Update.DeleteResponse;
+using DeleteResponseBody           = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Update.DeleteResponseBody;
+using InActiveResponse             = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.InActive.InActiveResponse;
+using InActiveResponseBody         = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
-public class VideoRpcWebRequest(
+public class SeasonRpcWebRequest(
     IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
     IExternalDistributedCache distributedCache
-) : IVideoRpcWebRequest
+) : ISeasonRpcWebRequest
 {
     private GrpcChannel _channel;
 
@@ -78,7 +79,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Video = result.Body.Video.DeSerialize<VideoDto>() } 
+            Body    = new ReadOneResponseBody { Season = result.Body.Season.DeSerialize<SeasonDto>() } 
         };
     }
 
@@ -102,7 +103,7 @@ public class VideoRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Videos = result.Body.Videos.DeSerialize<PaginatedCollection<VideoDto>>()
+                Seasons = result.Body.Seasons.DeSerialize<PaginatedCollection<SeasonDto>>()
             }
         };
     }
@@ -113,14 +114,8 @@ public class VideoRpcWebRequest(
         
         CreateRequest payload = new();
 
-        payload.SeasonId    = request.SeasonId    != null ? new String { Value = request.SeasonId }    : null;
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description } : null;
-        payload.VideoUrl    = request.VideoUrl    != null ? new String { Value = request.VideoUrl }    : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
-        payload.Price       = new Int32 { Value = request.Price };
-        payload.Duration    = new Int32 { Value = request.Duration };
-        
+        payload.TermId  = request.TermId != null ? new String { Value = request.TermId } : null;
+        payload.Name    = request.Name   != null ? new String { Value = request.Name }   : null;
         
         var result =
             await loadData.client.CreateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -128,7 +123,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new CreateResponseBody { VideoId = result.Body.VideoId }
+            Body    = new CreateResponseBody { Id = result.Body.SeasonId }
         };
     }
 
@@ -137,15 +132,10 @@ public class VideoRpcWebRequest(
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         UpdateRequest payload = new();
-        
-        payload.Id          = request.Id          != null ? new String { Value = request.Id }          : null;
-        payload.SeasonId    = request.SeasonId    != null ? new String { Value = request.SeasonId }    : null;
-        payload.Name        = request.Name        != null ? new String { Value = request.Name }        : null;
-        payload.Description = request.Description != null ? new String { Value = request.Description } : null;
-        payload.VideoUrl    = request.VideoUrl    != null ? new String { Value = request.VideoUrl }    : null;
-        payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status } : null;
-        payload.Price       = new Int32 { Value = request.Price };
-        payload.Duration    = new Int32 { Value = request.Duration };
+
+        payload.Id     = request.Id     != null ? new String { Value = request.Id }     : null;
+        payload.TermId = request.TermId != null ? new String { Value = request.TermId } : null;
+        payload.Name   = request.Name   != null ? new String { Value = request.Name }   : null;
         
         var result =
             await loadData.client.UpdateAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
@@ -153,7 +143,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new UpdateResponseBody { VideoId = result.Body.Id }
+            Body    = new UpdateResponseBody { Id = result.Body.Id }
         };
     }
 
@@ -162,16 +152,16 @@ public class VideoRpcWebRequest(
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
         DeleteRequest payload = new();
-        
-        payload.Id = request.Id != null ? new String { Value = request.Id } : null;
-        
-        var result =
+
+        payload.Id = request.Id is not null ? new String { Value = request.Id } : null;
+
+        var result = 
             await loadData.client.DeleteAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
-        
+
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new DeleteResponseBody { VideoId = result.Body.Id }
+            Body    = new DeleteResponseBody { Id = result.Body.Id } 
         };
     }
 
@@ -189,7 +179,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ActiveResponseBody { VideoId = result.Body.Id } 
+            Body    = new ActiveResponseBody { Id = result.Body.Id } 
         };
     }
 
@@ -207,7 +197,7 @@ public class VideoRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new InActiveResponseBody { VideoId = result.Body.Id } 
+            Body    = new InActiveResponseBody { Id = result.Body.Id } 
         };
     }
 
@@ -215,7 +205,7 @@ public class VideoRpcWebRequest(
     
     /*---------------------------------------------------------------*/
 
-    private async Task<(Metadata headers, VideoService.VideoServiceClient client)> 
+    private async Task<(Metadata headers, SeasonService.SeasonServiceClient client)> 
         _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
     {
         var targetServiceInstanceTask =
@@ -235,6 +225,6 @@ public class VideoRpcWebRequest(
         if(isIdempotent == false)
             metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
         
-        return ( metaData, new VideoService.VideoServiceClient(_channel) );
+        return ( metaData, new SeasonService.SeasonServiceClient(_channel) );
     }
 }

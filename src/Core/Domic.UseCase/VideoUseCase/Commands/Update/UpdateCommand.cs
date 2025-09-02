@@ -7,7 +7,7 @@ namespace Domic.UseCase.VideoUseCase.Commands.Update;
 public class UpdateCommand : ICommand<UpdateResponse>
 {
     public required string Id { get; set; }
-    public required string TermId { get; set; }
+    public required string SeasonId { get; set; }
     public required string Name { get; set; }
     public required string Description { get; set; }
     public required string VideoUrl { get; set; }

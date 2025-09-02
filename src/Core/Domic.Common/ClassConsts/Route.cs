@@ -121,6 +121,19 @@ public partial class Route
     public const string DeleteTermUrl           = "{Id}";
 }
 
+//Season
+public partial class Route
+{
+    public const string BaseSeasonUrl             = "seasons";
+    public const string ReadOneSeasonUrl          = "{Id}";
+    public const string ReadAllPaginatedSeasonUrl = "";
+    public const string CreateSeasonUrl           = "";
+    public const string ActiveSeasonUrl           = "active/{Id}";
+    public const string InActiveSeasonUrl         = "inactive/{Id}";
+    public const string UpdateSeasonUrl           = "";
+    public const string DeleteSeasonUrl           = "{Id}";
+}
+
 //Video
 public partial class Route
 {
