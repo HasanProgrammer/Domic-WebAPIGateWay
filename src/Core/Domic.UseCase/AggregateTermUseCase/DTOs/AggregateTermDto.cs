@@ -22,6 +22,7 @@ public class AggregateTermDto
     public bool IsActive { get; set; }
     public string CreateDate { get; set; }
     public string UpdateDate { get; set; }
+    public int CountOfStudents { get; set; }
     public List<VideoDto> Videos { get; set; }
     public List<AggregateCommentDto> Comments { get; set; }
 }
