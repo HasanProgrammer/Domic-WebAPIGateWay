@@ -1,6 +1,4 @@
-﻿using Domic.UseCase.AggregateTermUseCase.DTOs;
-
-namespace Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne;
+﻿namespace Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {

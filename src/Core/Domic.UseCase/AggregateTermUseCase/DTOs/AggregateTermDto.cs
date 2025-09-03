@@ -1,6 +1,6 @@
 using Domic.Domain.Commons.Enumerations;
+using Domic.UseCase.AggregateSeasonUseCase.DTOs;
 using Domic.UseCase.AggregateTermCommentUseCase.DTOs;
-using Domic.UseCase.VideoUseCase.DTOs;
 
 namespace Domic.UseCase.AggregateTermUseCase.DTOs;
 
@@ -18,11 +18,12 @@ public class AggregateTermDto
     public int Price { get; set; }
     public int Duration { get; set; }
     public string ImageUrl { get; set; }
+    public string TiserUrl { get; set; }
     public TermStatus Status { get; set; }
     public bool IsActive { get; set; }
     public string CreateDate { get; set; }
     public string UpdateDate { get; set; }
     public int CountOfStudents { get; set; }
-    public List<VideoDto> Videos { get; set; }
+    public List<AggregateSeasonDto> Seasons { get; set; }
     public List<AggregateCommentDto> Comments { get; set; }
 }
