@@ -127,7 +127,7 @@ public partial class Route
     public const string BaseSeasonUrl                 = "seasons";
     public const string ReadOneSeasonUrl              = "{Id}";
     public const string ReadAllPaginatedSeasonUrl     = "";
-    public const string ReadAllSeasonBasedOnTermIdUrl = "{TermId}";
+    public const string ReadAllSeasonBasedOnTermIdUrl = "based-on-term/{TermId}";
     public const string CreateSeasonUrl               = "";
     public const string ActiveSeasonUrl               = "active/{Id}";
     public const string InActiveSeasonUrl             = "inactive/{Id}";
