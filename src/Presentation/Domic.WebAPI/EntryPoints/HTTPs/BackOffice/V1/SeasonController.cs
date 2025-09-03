@@ -3,7 +3,9 @@ using Domic.UseCase.SeasonUseCase.Commands.Active;
 using Domic.UseCase.SeasonUseCase.Commands.Create;
 using Domic.UseCase.SeasonUseCase.Commands.InActive;
 using Domic.UseCase.SeasonUseCase.Commands.Update;
+using Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadAllBasedOnTermId;
 using Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Update;
+using Domic.UseCase.SeasonUseCase.Queries.ReadAllBasedOnTermId;
 using Domic.UseCase.SeasonUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.SeasonUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions;
@@ -38,6 +40,24 @@ public class SeasonController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route(Route.ReadAllSeasonBasedOnTermIdUrl)]
+//  [PermissionPolicy(Type = "Term.ReadAllTransactionRequestPaginated")]
+    public async Task<IActionResult> ReadAllBasedOneTermId([FromRoute] ReadAllBasedOnTermIdQuery query,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync<ReadAllBasedOnTermIdResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }

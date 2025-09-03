@@ -12,6 +12,7 @@ using Domic.UseCase.SeasonUseCase.Commands.Create;
 using Domic.UseCase.SeasonUseCase.Commands.InActive;
 using Domic.UseCase.SeasonUseCase.Contracts.Interfaces;
 using Domic.UseCase.SeasonUseCase.DTOs;
+using Domic.UseCase.SeasonUseCase.Queries.ReadAllBasedOnTermId;
 using Domic.UseCase.SeasonUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.SeasonUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +40,8 @@ using DeleteResponse               = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Upda
 using DeleteResponseBody           = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.Update.DeleteResponseBody;
 using InActiveResponse             = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 using InActiveResponseBody         = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.InActive.InActiveResponseBody;
+using ReadAllBasedOnTermIdResponse = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadAllBasedOnTermId.ReadAllBasedOnTermIdResponse;
+using ReadAllBasedOnTermIdResponseBody = Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadAllBasedOnTermId.ReadAllBasedOnTermIdResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -80,6 +83,28 @@ public class SeasonRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadOneResponseBody { Season = result.Body.Season.DeSerialize<SeasonDto>() } 
+        };
+    }
+
+    public async Task<ReadAllBasedOnTermIdResponse> ReadAllBasedOnTermIdAsync(ReadAllBasedOnTermIdQuery request,
+        CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
+        
+        ReadAllBasedOnTermIdRequest payload = new() { TermId = new String { Value = request.TermId } };
+        
+        var result =
+            await loadData.client.ReadAllBasedOnTermIdAsync(payload, headers: loadData.headers, 
+                cancellationToken: cancellationToken
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ReadAllBasedOnTermIdResponseBody {
+                Seasons = result.Body.Seasons.DeSerialize<List<SeasonDto>>()
+            }
         };
     }
 

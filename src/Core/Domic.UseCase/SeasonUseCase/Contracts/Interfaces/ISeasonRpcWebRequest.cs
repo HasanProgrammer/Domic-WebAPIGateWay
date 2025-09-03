@@ -11,6 +11,8 @@ using Domic.UseCase.SeasonUseCase.Commands.Create;
 using Domic.UseCase.SeasonUseCase.Commands.InActive;
 using Domic.UseCase.SeasonUseCase.Commands.Update;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.SeasonUseCase.DTOs.GRPCs.ReadAllBasedOnTermId;
+using Domic.UseCase.SeasonUseCase.Queries.ReadAllBasedOnTermId;
 
 namespace Domic.UseCase.SeasonUseCase.Contracts.Interfaces;
 
@@ -25,6 +27,17 @@ public interface ISeasonRpcWebRequest : IRpcWebRequest
     /// <exception cref="NotImplementedException"></exception>
     public Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken) 
         => throw new NotImplementedException();
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public Task<ReadAllBasedOnTermIdResponse> ReadAllBasedOnTermIdAsync(ReadAllBasedOnTermIdQuery request,
+        CancellationToken cancellationToken
+    ) => throw new NotImplementedException();
     
     /// <summary>
     /// 

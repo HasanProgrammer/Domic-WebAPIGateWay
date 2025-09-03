@@ -124,14 +124,15 @@ public partial class Route
 //Season
 public partial class Route
 {
-    public const string BaseSeasonUrl             = "seasons";
-    public const string ReadOneSeasonUrl          = "{Id}";
-    public const string ReadAllPaginatedSeasonUrl = "";
-    public const string CreateSeasonUrl           = "";
-    public const string ActiveSeasonUrl           = "active/{Id}";
-    public const string InActiveSeasonUrl         = "inactive/{Id}";
-    public const string UpdateSeasonUrl           = "";
-    public const string DeleteSeasonUrl           = "{Id}";
+    public const string BaseSeasonUrl                 = "seasons";
+    public const string ReadOneSeasonUrl              = "{Id}";
+    public const string ReadAllPaginatedSeasonUrl     = "";
+    public const string ReadAllSeasonBasedOnTermIdUrl = "{TermId}";
+    public const string CreateSeasonUrl               = "";
+    public const string ActiveSeasonUrl               = "active/{Id}";
+    public const string InActiveSeasonUrl             = "inactive/{Id}";
+    public const string UpdateSeasonUrl               = "";
+    public const string DeleteSeasonUrl               = "{Id}";
 }
 
 //Video
