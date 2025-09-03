@@ -118,7 +118,7 @@ public class TermRpcWebRequest(
         payload.Summary     = request.Summary     != null ? new String { Value = request.Summary }          : null;
         payload.Description = request.Description != null ? new String { Value = request.Description }      : null;
         payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }         : null;
-        payload.TiserUrl    = request.TizerUrl    != null ? new String { Value = request.TizerUrl }         : null;
+        payload.TiserUrl    = request.TiserUrl    != null ? new String { Value = request.TiserUrl }         : null;
         payload.Status      = request.Status      != null ? new Int32  { Value = (int)request.Status }      : null;
         payload.Price       = new Int32 { Value = request.Price };
         
