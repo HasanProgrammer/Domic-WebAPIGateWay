@@ -211,10 +211,14 @@ public class PermissionRpcWebRequest : IPermissionRpcWebRequest
         
         _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
 
+        var token = _httpContextAccessor.HttpContext.GetRowToken();
+
         var metaData = new Metadata {
-            { Header.Token   , _httpContextAccessor.HttpContext.GetRowToken() } ,
             { Header.License , await secretKeyTask }
         };
+        
+        if(!string.IsNullOrEmpty(token))
+            metaData.Add(Header.Token, token);
         
         if(isIdempotent == false)
             metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());

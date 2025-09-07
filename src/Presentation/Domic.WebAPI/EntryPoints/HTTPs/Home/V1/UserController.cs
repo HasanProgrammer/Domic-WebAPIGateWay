@@ -1,5 +1,6 @@
 ﻿using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.OtpGeneration;
@@ -13,6 +14,8 @@ using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
+
+using ReadAllPermissionPaginatedQuery = Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
 
 using Route = Domic.Common.ClassConsts.Route;
 
@@ -82,6 +85,17 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     [Route(Route.SignUpUserUrl)]
     public async Task<IActionResult> SignUp([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
+        //load guest role & permission
+
+        var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Guest" }, cancellationToken);
+        var guestPermission = await mediator.DispatchAsync(new ReadAllPermissionPaginatedQuery { SearchText = "Guest" }, cancellationToken);
+
+        if (guestRole.Code == 200)
+            command.Roles = new List<string> { guestRole.Body.Roles.Collection.FirstOrDefault().Id };
+        
+        if (guestPermission.Code == 200)
+            command.Permissions = new List<string> { guestPermission.Body.Permissions.Collection.FirstOrDefault().Id };
+        
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
 
         return HttpContext.OkResponse(result);

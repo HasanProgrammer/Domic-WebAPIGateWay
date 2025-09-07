@@ -12,6 +12,6 @@ public class CreateCommand : ICommand<CreateResponse>
     public string PhoneNumber       { get; set; }
     public string EMail             { get; set; }
     public string Description       { get; set; }
-    public List<string> Roles       { get; set; }
-    public List<string> Permissions { get; set; }
+    public List<string> Roles       { get; set; } = new();
+    public List<string> Permissions { get; set; } = new();
 }
