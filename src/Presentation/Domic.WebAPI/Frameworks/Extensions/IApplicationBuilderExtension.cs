@@ -1,7 +1,6 @@
 ﻿using Domic.Infrastructure.Implementations.UseCase.Services;
 using Domic.UseCase.Commons.Contracts.Interfaces;
 using Domic.WebAPI.Frameworks.Middlewares;
-using Minio;
 
 namespace Domic.WebAPI.Frameworks.Extensions;
 
@@ -15,7 +14,7 @@ public static class IApplicationBuilderExtension
     {
         builder.Services.AddScoped<IExternalStorageManager, ExternalStorageManager>();
 
-        builder.Services.AddMinio(configureClient => 
+        /*builder.Services.AddMinio(configureClient => 
             configureClient.WithEndpoint(
                                Environment.GetEnvironmentVariable("Minio-EndPoint")
                            )
@@ -25,7 +24,7 @@ public static class IApplicationBuilderExtension
                            )
                            .WithSSL(false)
             
-        );
+        );*/
     }
     
     /// <summary>

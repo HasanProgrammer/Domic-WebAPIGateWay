@@ -1,17 +1,15 @@
 ﻿using Domic.UseCase.Commons.Contracts.Interfaces;
 using Microsoft.AspNetCore.Http;
-using Minio;
-using Minio.DataModel.Args;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
-public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IExternalStorageManager
+public class ExternalStorageManager(/*IMinioClientFactory minioClientFactory*/) : IExternalStorageManager
 {
-    public async Task<string> UploadAsync(IFormFile file, CancellationToken cancellationToken)
+    public Task<string> UploadAsync(IFormFile file, CancellationToken cancellationToken)
     {
         var bucket = Environment.GetEnvironmentVariable("Minio-Bucket");
 
-        using var minioClient = minioClientFactory.CreateClient();
+        /*using var minioClient = minioClientFactory.CreateClient();
         
         var putObjectArgs = new PutObjectArgs().WithBucket(bucket)
                                                .WithObject($"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}")
@@ -30,8 +28,8 @@ public class ExternalStorageManager(IMinioClientFactory minioClientFactory) : IE
             var filePath = await minioClient.PresignedGetObjectAsync(getObjectArgs);
         
             return filePath;
-        }
+        }*/
         
-        return string.Empty;
+        return Task.FromResult(string.Empty);
     }
 }
