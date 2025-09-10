@@ -9,7 +9,7 @@ public class VideoDto
 public class SeasonDto
 {
     public string Name { get; set; }
-    public VideoDto Video { get; set; }
+    public List<VideoDto> Videos { get; set; }
 }
 
 public class AggregateBookDto
