@@ -31,7 +31,7 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [Authorize]
-    [Route(Route.ReadAllPaginatedBookUrl)]
+    [Route(Route.ReadAllPaginatedAggregateBookUrl)]
     //[PermissionPolicy(Type = "AggregateTerm.ReadAllBooksPaginated")]
     public async Task<IActionResult> ReadAllBooksPaginated([FromQuery] ReadAllBookRequest query,
         CancellationToken cancellationToken
