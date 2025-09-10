@@ -46,7 +46,7 @@ public class BookRpcWebRequest(
         return new() {
             Code    = result.Code    ,
             Message = result.Message ,
-            Body    = new ReadOneResponseBody { Book = result.Body.Book.DeSerialize<BookDto>() } 
+            Body    = new ReadOneResponseBody { Book = result.Body.Book.DeSerialize<AggregateBookDto>() } 
         };
     }
 
@@ -70,7 +70,7 @@ public class BookRpcWebRequest(
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
-                Books = result.Body.Books.DeSerialize<PaginatedCollection<BookDto>>()
+                Books = result.Body.Books.DeSerialize<PaginatedCollection<AggregateBookDto>>()
             }
         };
     }

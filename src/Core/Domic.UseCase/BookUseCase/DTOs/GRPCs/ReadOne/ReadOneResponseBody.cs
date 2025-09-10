@@ -2,5 +2,5 @@
 
 public class ReadOneResponseBody
 {
-    public BookDto Book { get; set; }
+    public AggregateBookDto Book { get; set; }
 }
