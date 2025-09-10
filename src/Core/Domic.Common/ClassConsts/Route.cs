@@ -199,6 +199,7 @@ public partial class Route
     public const string ReadOneAggregateTermUrl                    = "{Id}";
     public const string ReadAllPaginatedAggregateTermUrl           = "terms";
     public const string ReadAllPaginatedAggregateSeasonUrl         = "seasons";
+    public const string ReadAllPaginatedBookUrl                    = "books";
     public const string ReadAllPaginatedAggregateVideoUrl          = "videos";
     public const string ReadAllPaginatedAggregateCommentUrl        = "comments";
     public const string ReadOneAggregateCommentUrl                 = "comments/{Id}";
