@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Route                          = Domic.Common.ClassConsts.Route;
-using ReadAllBookRequest             = Domic.UseCase.BookUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
-using ReadAllBookResponse            = Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllBookRequest             = Domic.UseCase.AggregateBookUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
+using ReadAllBookResponse            = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllAggregateVideoRequest   = Domic.UseCase.AggregateVideoUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
 using ReadAllAggregateVideoResponse  = Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllAggregateSeasonRequest  = Domic.UseCase.AggregateSeasonUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;

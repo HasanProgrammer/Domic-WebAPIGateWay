@@ -1,10 +1,10 @@
-﻿using Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadAllPaginated;
-using Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadOne;
-using Domic.UseCase.BookUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.BookUseCase.Queries.ReadOne;
-using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadOne;
+using Domic.UseCase.AggregateBookUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateBookUseCase.Queries.ReadOne;
 
-namespace Domic.UseCase.BookUseCase.Contracts.Interfaces;
+namespace Domic.UseCase.AggregateBookUseCase.Contracts.Interfaces;
 
 public interface IBookRpcWebRequest : IRpcWebRequest
 {

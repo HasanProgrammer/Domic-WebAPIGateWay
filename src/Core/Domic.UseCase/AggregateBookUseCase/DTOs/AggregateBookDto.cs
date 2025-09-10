@@ -1,4 +1,4 @@
-namespace Domic.UseCase.BookUseCase.DTOs;
+namespace Domic.UseCase.AggregateBookUseCase.DTOs;
 
 public class VideoDto
 {

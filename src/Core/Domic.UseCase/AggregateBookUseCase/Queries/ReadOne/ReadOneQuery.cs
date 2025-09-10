@@ -1,7 +1,7 @@
-using Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadOne;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadOne;
 
-namespace Domic.UseCase.BookUseCase.Queries.ReadOne;
+namespace Domic.UseCase.AggregateBookUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<ReadOneResponse>
 {

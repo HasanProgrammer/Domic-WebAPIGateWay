@@ -1,7 +1,7 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.UseCase.Exceptions;
 
-namespace Domic.UseCase.BookUseCase.Queries.ReadAllPaginated;
+namespace Domic.UseCase.AggregateBookUseCase.Queries.ReadAllPaginated;
 
 public class ReadAllPaginatedQueryValidator : IValidator<ReadAllPaginatedQuery>
 {

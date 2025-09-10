@@ -1,6 +1,6 @@
 ﻿using Domic.UseCase.Commons.DTOs.GRPCs;
 
-namespace Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadOne;
+namespace Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponse : BaseResponse
 {

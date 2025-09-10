@@ -1,4 +1,4 @@
-﻿namespace Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadOne;
+﻿namespace Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadOne;
 
 public class ReadOneResponseBody
 {

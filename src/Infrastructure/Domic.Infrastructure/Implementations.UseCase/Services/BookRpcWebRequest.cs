@@ -6,20 +6,20 @@ using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
-using Domic.UseCase.BookUseCase.Contracts.Interfaces;
-using Domic.UseCase.BookUseCase.DTOs;
-using Domic.UseCase.BookUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.BookUseCase.Queries.ReadOne;
+using Domic.UseCase.AggregateBookUseCase.Contracts.Interfaces;
+using Domic.UseCase.AggregateBookUseCase.DTOs;
+using Domic.UseCase.AggregateBookUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateBookUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
 
 using String                       = Domic.Core.Book.Grpc.String;
 using Int32                        = Domic.Core.Book.Grpc.Int32;
 using ReadAllPaginatedRequest      = Domic.Core.Book.Grpc.ReadAllPaginatedRequest;
 using ReadOneRequest               = Domic.Core.Book.Grpc.ReadOneRequest;
-using ReadOneResponse              = Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadOneResponseBody          = Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
-using ReadAllPaginatedResponse     = Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using ReadAllPaginatedResponseBody = Domic.UseCase.BookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
+using ReadOneResponse              = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using ReadOneResponseBody          = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
+using ReadAllPaginatedResponse     = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
