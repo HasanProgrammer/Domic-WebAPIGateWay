@@ -1,4 +1,5 @@
-﻿using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Filters;
 using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
@@ -21,7 +22,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [ApiExplorerSettings(GroupName = "BackOffice/AggregateTerm")]
 [ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseAggregateTermUrl)]
-public class AggregateTermController(IMediator mediator) : ControllerBase
+public class AggregateTermController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser)
+    : ControllerBase
 {
     /// <summary>
     /// 
@@ -37,6 +39,8 @@ public class AggregateTermController(IMediator mediator) : ControllerBase
         CancellationToken cancellationToken
     )
     {
+        query.UserId = identityUser.GetIdentity();
+        
         var result = await mediator.DispatchAsync<ReadAllBookResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
