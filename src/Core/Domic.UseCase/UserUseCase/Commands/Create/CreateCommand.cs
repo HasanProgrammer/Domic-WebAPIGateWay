@@ -5,6 +5,7 @@ namespace Domic.UseCase.UserUseCase.Commands.Create;
 
 public class CreateCommand : ICommand<CreateResponse>
 {
+    public string ImageUrl          { get; set; }
     public string Username          { get; set; }
     public string Password          { get; set; }
     public string FirstName         { get; set; }

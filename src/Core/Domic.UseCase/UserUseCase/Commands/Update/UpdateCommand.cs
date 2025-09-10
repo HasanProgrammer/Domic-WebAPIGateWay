@@ -6,6 +6,7 @@ namespace Domic.UseCase.UserUseCase.Commands.Update;
 public class UpdateCommand : ICommand<UpdateResponse>
 {
     public string Id                { get; set; }
+    public string ImageUrl          { get; set; }
     public string Username          { get; set; }
     public string Password          { get; set; }
     public string FirstName         { get; set; }

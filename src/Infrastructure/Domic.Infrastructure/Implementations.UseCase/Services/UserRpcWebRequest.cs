@@ -129,6 +129,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         
         CreateRequest payload = new();
 
+        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }    : null;
         payload.Username    = request.Username    != null ? new String { Value = request.Username }    : null;
         payload.Password    = request.Password    != null ? new String { Value = request.Password }    : null;
         payload.FirstName   = request.FirstName   != null ? new String { Value = request.FirstName }   : null;
@@ -217,6 +218,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         UpdateRequest payload = new();
 
         payload.TargetId    = request.Id          != null ? new String { Value = request.Id }          : null;
+        payload.ImageUrl    = request.ImageUrl    != null ? new String { Value = request.ImageUrl }    : null;
         payload.Username    = request.Username    != null ? new String { Value = request.Username }    : null;
         payload.Password    = request.Password    != null ? new String { Value = request.Password }    : null;
         payload.FirstName   = request.FirstName   != null ? new String { Value = request.FirstName }   : null;
