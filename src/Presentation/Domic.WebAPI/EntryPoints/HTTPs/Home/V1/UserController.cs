@@ -87,6 +87,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         //load guest role & permission
 
+        command.Description = "کاربر عضو عادی سامانه";
+
         var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Guest" }, cancellationToken);
         var guestPermission = await mediator.DispatchAsync(new ReadAllPermissionPaginatedQuery { SearchText = "Guest" }, cancellationToken);
 
