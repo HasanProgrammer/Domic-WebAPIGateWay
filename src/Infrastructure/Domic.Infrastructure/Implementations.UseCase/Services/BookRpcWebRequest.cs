@@ -62,6 +62,7 @@ public class BookRpcWebRequest(
         };
 
         payload.Sort       = new Int32 { Value = (int)request.Sort };
+        payload.UserId     = new String { Value = request.UserId };
         payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : default;
         
         var result =
