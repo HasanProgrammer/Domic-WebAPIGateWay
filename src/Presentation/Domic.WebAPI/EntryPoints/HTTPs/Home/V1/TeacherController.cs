@@ -49,6 +49,7 @@ public class TeacherController(IMediator mediator) : ControllerBase
             Sort = (int)dto.Sort,
             UserId = dto.UserId,
             SearchText = dto.SearchText,
+            CategoryId = dto.CategoryId,
             Active = true
         };
         
