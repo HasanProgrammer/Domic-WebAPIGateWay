@@ -46,6 +46,7 @@ public class TeacherController(IMediator mediator) : ControllerBase
         var query = new ReadAllPaginatedQuery {
             PageNumber = dto.PageNumber,
             CountPerPage = dto.CountPerPage,
+            Sort = (int)dto.Sort,
             UserId = dto.UserId,
             SearchText = dto.SearchText,
             Active = true

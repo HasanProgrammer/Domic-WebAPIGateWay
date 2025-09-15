@@ -6,18 +6,19 @@ using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.OtpGeneration;
 using Domic.UseCase.UserUseCase.Commands.OtpVerification;
 using Domic.UseCase.UserUseCase.Commands.SignIn;
+using Domic.UseCase.UserUseCase.Commands.Update;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.SignIn;
 using Microsoft.AspNetCore.Mvc;
-using Domic.UseCase.UserUseCase.DTOs.GRPCs.Create;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification;
-using Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 
+using CreateResponse                  = Domic.UseCase.UserUseCase.DTOs.GRPCs.Create.CreateResponse;
+using UpdateResponse                  = Domic.UseCase.UserUseCase.DTOs.GRPCs.Update.UpdateResponse;
 using ReadAllPermissionPaginatedQuery = Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
-
-using Route = Domic.Common.ClassConsts.Route;
+using ReadOneResponse                 = Domic.UseCase.UserUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
+using Route                           = Domic.Common.ClassConsts.Route;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
@@ -87,7 +88,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         //load guest role & permission
 
-        command.Description = "کاربر عضو عادی سامانه";
+        command.Description = "کاربر عادی عضو سامانه | این کاربران توانایی دسترسی به دوره های خریداری شده خود، تراکنش های بانکی و ویرایش پروفایل خود را دارند";
 
         var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Guest" }, cancellationToken);
         var guestPermission = await mediator.DispatchAsync(new ReadAllPermissionPaginatedQuery { SearchText = "Guest" }, cancellationToken);
@@ -99,6 +100,22 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
             command.Permissions = new List<string> { guestPermission.Body.Permissions.Collection.FirstOrDefault().Id };
         
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize]
+    [HttpPatch]
+    [Route(Route.ProfileUserUrl)]
+    public async Task<IActionResult> Update([FromBody] UpdateCommand command, CancellationToken cancellationToken)
+    {
+        var result = await mediator.DispatchAsync<UpdateResponse>(command, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }

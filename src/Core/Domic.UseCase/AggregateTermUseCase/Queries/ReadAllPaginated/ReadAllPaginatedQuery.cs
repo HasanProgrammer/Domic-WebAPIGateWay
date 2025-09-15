@@ -10,4 +10,5 @@ public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<ReadAllPaginatedResp
     public string UserId { get; set; }
     public string SearchText { get; set; }
     public int Sort { get; set; }
+    public string CategoryId { get; set; }
 }
