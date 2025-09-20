@@ -9,6 +9,7 @@ COPY ["src/Infrastructure/Domic.Persistence/Domic.Persistence.csproj", "src/Infr
 COPY ["src/Core/Domic.UseCase/Domic.UseCase.csproj", "src/Core/Domic.UseCase/"]
 COPY ["src/Core/Domic.Domain/Domic.Domain.csproj", "src/Core/Domic.Domain/"]
 COPY ["src/Core/Domic.Common/Domic.Common.csproj", "src/Core/Domic.Common/"]
+COPY ["src/Presentation/Domic.WebAPI/Storages", "./Storages"]
 RUN dotnet restore "src/Presentation/Domic.WebAPI/Domic.WebAPI.csproj"
 COPY . .
 WORKDIR "/src/src/Presentation/Domic.WebAPI"
