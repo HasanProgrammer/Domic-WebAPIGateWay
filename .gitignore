@@ -37,6 +37,5 @@ msbuild.wrn
 .vs/
 
 src/Services/CoreService/Architecture
-src/Presentation/Domic.WebAPI/Storages/Images/*.png
-src/Presentation/Domic.WebAPI/Storages/Images/*.jpg
-src/Presentation/Domic.WebAPI/Storages/Videos/*.mp4
+src/Presentation/Domic.WebAPI/Storages/*
+!src/Presentation/Domic.WebAPI/Storages/.keep
