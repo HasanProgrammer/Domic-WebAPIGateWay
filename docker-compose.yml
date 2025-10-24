@@ -54,18 +54,18 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
-#    depends_on:
-#      - domic.web.api.gateway.redis
-#    # - domic.minio
-#  
-#  domic.web.api.gateway.redis:
-#    networks:
-#      - domic
-#    image: 'redis'
-#    container_name: 'web_api_gateway_redis'
-#    command: 'redis-server'
-#    ports:
-#      - 4350:6379
+    depends_on:
+      - domic.web.api.gateway.redis
+    # - domic.minio
+
+  domic.web.api.gateway.redis:
+    networks:
+      - domic
+    image: 'redis'
+    container_name: 'web_api_gateway_redis'
+    command: 'redis-server'
+    ports:
+      - 4350:6379
   
   # domic.minio:
   #   image: 'minio/minio:latest'
