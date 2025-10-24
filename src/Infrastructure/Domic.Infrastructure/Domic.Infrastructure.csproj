@@ -13,8 +13,7 @@
 
   <!--CorePackage | Infrastructure-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Infrastructure" Version="10.0.3" />
-    <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
+    <PackageReference Include="Domic.Architecture.Infrastructure" Version="10.0.4" />
 <!--<PackageReference Include="Minio" Version="6.0.4" />-->
 <!--<PackageReference Include="System.Reactive" Version="6.0.1" />-->
   </ItemGroup>
