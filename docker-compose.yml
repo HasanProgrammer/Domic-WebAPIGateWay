@@ -22,7 +22,8 @@ services:
       - 80:80
     volumes:
       - log:/app/CoreLogs
-      - ~/services/Domic-WebAPIGateWay/.https/:/https/
+#     - ~/services/Domic-WebAPIGateWay/.https/:/https/
+      - C:\https\:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
       - Elastic-Index=apigateway
