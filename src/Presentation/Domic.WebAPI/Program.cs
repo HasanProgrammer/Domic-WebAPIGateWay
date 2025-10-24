@@ -4,6 +4,7 @@ using Domic.Persistence.Contexts;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
+using Prometheus;
 
 /*-------------------------------------------------------------------*/
 
@@ -59,6 +60,9 @@ WebApplication application = builder.Build();
 /*-------------------------------------------------------------------*/
 
 #region Middleware
+
+application.UseMetricServer();
+application.UseHttpMetrics();
 
 application.UseStaticFiles(new StaticFileOptions {
     FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") ),
