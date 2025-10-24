@@ -121,6 +121,19 @@ public partial class Route
     public const string DeleteTermUrl           = "{Id}";
 }
 
+//Campaign
+public partial class Route
+{
+    public const string BaseCampaignUrl             = "campaigns";
+    public const string ReadOneCampaignUrl          = "{Id}";
+    public const string ReadAllPaginatedCampaignUrl = "";
+    public const string CreateCampaignUrl           = "";
+    public const string ActiveCampaignUrl           = "active/{Id}";
+    public const string InActiveCampaignUrl         = "inactive/{Id}";
+    public const string UpdateCampaignUrl           = "";
+    public const string DeleteCampaignUrl           = "{Id}";
+}
+
 //Season
 public partial class Route
 {
