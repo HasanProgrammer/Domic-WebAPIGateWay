@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.WebAPI.Extensions;
 using Domic.Persistence.Contexts;
@@ -61,9 +62,6 @@ WebApplication application = builder.Build();
 
 #region Middleware
 
-application.UseMetricServer();
-application.UseHttpMetrics();
-
 application.UseStaticFiles(new StaticFileOptions {
     FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") ),
     RequestPath  = "/Files"
@@ -87,7 +85,9 @@ application.UseCors("CORS");
 
 application.UseAuthentication();
 
-application.UseAuthorization(); 
+application.UseAuthorization();
+
+application.UseObservibility();
 
 application.UseEndpoints(endpoints => {
     
