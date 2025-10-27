@@ -1,4 +1,4 @@
-﻿namespace Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Update;
+﻿namespace Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Delete;
 
 public class DeleteResponseBody
 {

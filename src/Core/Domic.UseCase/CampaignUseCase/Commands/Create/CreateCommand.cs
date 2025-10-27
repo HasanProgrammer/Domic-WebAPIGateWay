@@ -9,6 +9,6 @@ public class CreateCommand : ICommand<CreateResponse>
     public string Description { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public decimal DiscountPercentage { get; set; }
+    public long DiscountPercentage { get; set; }
     public List<string> Terms { get; set; }
 }

@@ -1,9 +1,10 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.CampaignUseCase.Commands.Active;
 using Domic.UseCase.CampaignUseCase.Commands.Create;
+using Domic.UseCase.CampaignUseCase.Commands.Delete;
 using Domic.UseCase.CampaignUseCase.Commands.InActive;
 using Domic.UseCase.CampaignUseCase.Commands.Update;
-using Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Update;
+using Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Delete;
 using Domic.UseCase.CampaignUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Mvc;

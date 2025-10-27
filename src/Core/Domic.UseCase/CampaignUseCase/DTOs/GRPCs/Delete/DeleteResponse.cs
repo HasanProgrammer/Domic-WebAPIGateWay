@@ -1,6 +1,7 @@
-﻿using Domic.UseCase.Commons.DTOs.GRPCs;
+﻿using Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Update;
+using Domic.UseCase.Commons.DTOs.GRPCs;
 
-namespace Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Update;
+namespace Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Delete;
 
 public class DeleteResponse : BaseResponse
 {
