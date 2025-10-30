@@ -214,6 +214,7 @@ public partial class Route
     public const string ReadAllPaginatedAggregateSeasonUrl         = "seasons";
     public const string ReadAllPaginatedAggregateBookUrl           = "books";
     public const string ReadAllPaginatedAggregateVideoUrl          = "videos";
+    public const string ReadAllPaginatedAggregateCampaignUrl       = "campaigns";
     public const string ReadAllPaginatedAggregateCommentUrl        = "comments";
     public const string ReadOneAggregateCommentUrl                 = "comments/{Id}";
     public const string ReadAllPaginatedAggregateCommentAnswersUrl = "comments/{CommentId}/answers";

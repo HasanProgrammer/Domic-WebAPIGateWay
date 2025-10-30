@@ -7,13 +7,15 @@ using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using Route                          = Domic.Common.ClassConsts.Route;
-using ReadAllBookRequest             = Domic.UseCase.AggregateBookUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
-using ReadAllBookResponse            = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using ReadAllAggregateVideoRequest   = Domic.UseCase.AggregateVideoUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
-using ReadAllAggregateVideoResponse  = Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using ReadAllAggregateSeasonRequest  = Domic.UseCase.AggregateSeasonUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
-using ReadAllAggregateSeasonResponse = Domic.UseCase.AggregateSeasonUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using Route                            = Domic.Common.ClassConsts.Route;
+using ReadAllBookRequest               = Domic.UseCase.AggregateBookUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
+using ReadAllBookResponse              = Domic.UseCase.AggregateBookUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllAggregateVideoRequest     = Domic.UseCase.AggregateVideoUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
+using ReadAllAggregateVideoResponse    = Domic.UseCase.AggregateVideoUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllAggregateSeasonRequest    = Domic.UseCase.AggregateSeasonUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
+using ReadAllAggregateSeasonResponse   = Domic.UseCase.AggregateSeasonUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
+using ReadAllAggregateCampaignRequest  = Domic.UseCase.AggregateCampaignUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
+using ReadAllAggregateCampaignResponse = Domic.UseCase.AggregateCampaignUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
@@ -101,6 +103,25 @@ public class AggregateTermController(IMediator mediator, [FromKeyedServices("Htt
     )
     {
         var result = await mediator.DispatchAsync<ReadAllAggregateVideoResponse>(query, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Route(Route.ReadAllPaginatedAggregateCampaignUrl)]
+    //[PermissionPolicy(Type = "AggregateTerm.ReadAllCampaignsPaginated")]
+    public async Task<IActionResult> ReadAllCampaignsPaginated([FromQuery] ReadAllAggregateCampaignRequest query,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync<ReadAllAggregateCampaignResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }
