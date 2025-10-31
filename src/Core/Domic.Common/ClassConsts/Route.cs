@@ -28,7 +28,9 @@ public partial class Route
     public const string SignInUserUrl           = "signin";
     public const string OtpGenerationUserUrl    = "otp-generation";
     public const string OtpVerificationUserUrl  = "otp-verification";
-    public const string SignUpUserUrl           = "signup";
+    public const string SignUpStudentUrl        = "signup/student";
+    public const string SignUpTeacherUrl        = "signup/teacher";
+    public const string SignUpCompanyUrl        = "signup/company";
 }
 
 //Role

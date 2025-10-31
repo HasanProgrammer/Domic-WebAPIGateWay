@@ -83,8 +83,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    [Route(Route.SignUpUserUrl)]
-    public async Task<IActionResult> SignUp([FromBody] CreateCommand command, CancellationToken cancellationToken)
+    [Route(Route.SignUpStudentUrl)]
+    public async Task<IActionResult> SignUpStudent([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
         //load guest role & permission
 
@@ -92,6 +92,62 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
 
         var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Guest" }, cancellationToken);
         var guestPermission = await mediator.DispatchAsync(new ReadAllPermissionPaginatedQuery { SearchText = "Guest" }, cancellationToken);
+
+        if (guestRole.Code == 200)
+            command.Roles = new List<string> { guestRole.Body.Roles.Collection.FirstOrDefault().Id };
+        
+        if (guestPermission.Code == 200)
+            command.Permissions = new List<string> { guestPermission.Body.Permissions.Collection.FirstOrDefault().Id };
+        
+        var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [Route(Route.SignUpTeacherUrl)]
+    public async Task<IActionResult> SignUpTeacher([FromBody] CreateCommand command, CancellationToken cancellationToken)
+    {
+        //load teacher role & permission
+
+        command.Description = "مدرس عضو سامانه | این کاربران توانایی ایجاد دوره، ارتباط با شرکت های ثبت کننده آگهی شغلی";
+
+        var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Teacher" }, cancellationToken);
+        var guestPermission = await mediator.DispatchAsync(new ReadAllPermissionPaginatedQuery { SearchText = "Teacher" }, cancellationToken);
+
+        if (guestRole.Code == 200)
+            command.Roles = new List<string> { guestRole.Body.Roles.Collection.FirstOrDefault().Id };
+        
+        if (guestPermission.Code == 200)
+            command.Permissions = new List<string> { guestPermission.Body.Permissions.Collection.FirstOrDefault().Id };
+        
+        var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [Route(Route.SignUpCompanyUrl)]
+    public async Task<IActionResult> SignUpCompany([FromBody] CreateCommand command, CancellationToken cancellationToken)
+    {
+        //load company role & permission
+
+        command.Description = "شرکت عضو سامانه | این کاربران توانایی ساخت آگهی های شغلی و ارتباط با مدرسین برای ارسال درخواست معرفی نیروی متناسب با پوزیشن های شغلی آگهی خود را دارند";
+
+        var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Company" }, cancellationToken);
+        var guestPermission = await mediator.DispatchAsync(new ReadAllPermissionPaginatedQuery { SearchText = "Company" }, cancellationToken);
 
         if (guestRole.Code == 200)
             command.Roles = new List<string> { guestRole.Body.Roles.Collection.FirstOrDefault().Id };
