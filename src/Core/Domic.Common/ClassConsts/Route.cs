@@ -199,6 +199,58 @@ public partial class Route
     public const string DeleteTicketUrl           = "";
 }
 
+//Company
+public partial class Route
+{
+    public const string BaseCompanyUrl              = "companies";
+    public const string ReadOneCompanyUrl           = "{Id}";
+    public const string ReadAllPaginatedCompanyUrl  = "";
+    public const string CreateCompanyUrl            = "";
+    public const string ActiveCompanyUrl            = "active/{Id}";
+    public const string InActiveCompanyUrl          = "inactive/{Id}";
+    public const string UpdateCompanyUrl            = "";
+    public const string DeleteCompanyUrl            = "{Id}";
+}
+
+//Skill
+public partial class Route
+{
+    public const string BaseSkillUrl              = "skills";
+    public const string ReadOneSkillUrl           = "{Id}";
+    public const string ReadAllPaginatedSkillUrl  = "";
+    public const string CreateSkillUrl            = "";
+    public const string ActiveSkillUrl            = "active/{Id}";
+    public const string InActiveSkillUrl          = "inactive/{Id}";
+    public const string UpdateSkillUrl            = "";
+    public const string DeleteSkillUrl            = "{Id}";
+}
+
+//Stack
+public partial class Route
+{
+    public const string BaseStackUrl              = "stacks";
+    public const string ReadOneStackUrl           = "{Id}";
+    public const string ReadAllPaginatedStackUrl  = "";
+    public const string CreateStackUrl            = "";
+    public const string ActiveStackUrl            = "active/{Id}";
+    public const string InActiveStackUrl          = "inactive/{Id}";
+    public const string UpdateStackUrl            = "";
+    public const string DeleteStackUrl            = "{Id}";
+}
+
+//Stack
+public partial class Route
+{
+    public const string BaseAnnouncementUrl              = "announcements";
+    public const string ReadOneAnnouncementUrl           = "{Id}";
+    public const string ReadAllPaginatedAnnouncementUrl  = "";
+    public const string CreateAnnouncementUrl            = "";
+    public const string ActiveAnnouncementUrl            = "active/{Id}";
+    public const string InActiveAnnouncementUrl          = "inactive/{Id}";
+    public const string UpdateAnnouncementUrl            = "";
+    public const string DeleteAnnouncementUrl            = "{Id}";
+}
+
 //AggregateTicket
 public partial class Route
 {
