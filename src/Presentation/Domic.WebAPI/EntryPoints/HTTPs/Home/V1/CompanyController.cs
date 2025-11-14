@@ -18,12 +18,12 @@ using UpdateResponse           = Domic.UseCase.CompanyUseCase.DTOs.GRPCs.Update.
 using ActiveResponse           = Domic.UseCase.CompanyUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using InActiveResponse         = Domic.UseCase.CompanyUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
+namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [Authorize(Roles = "SuperAdmin,Admin,Company")]
 [ApiExplorerSettings(GroupName = "BackOffice/Company")]
 [ApiVersion("1.0")]
-[Route(Route.BaseBackOfficeUrl + Route.BaseCompanyUrl)]
+[Route(Route.BaseHomeUrl + Route.BaseCompanyUrl)]
 public sealed class CompanyController(IMediator mediator) : ControllerBase
 {
     /// <summary>

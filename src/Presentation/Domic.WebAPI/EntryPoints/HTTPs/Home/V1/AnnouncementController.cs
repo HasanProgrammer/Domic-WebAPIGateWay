@@ -18,12 +18,12 @@ using UpdateResponse           = Domic.UseCase.AnnouncementUseCase.DTOs.GRPCs.Up
 using ActiveResponse           = Domic.UseCase.AnnouncementUseCase.DTOs.GRPCs.Active.ActiveResponse;
 using InActiveResponse         = Domic.UseCase.AnnouncementUseCase.DTOs.GRPCs.InActive.InActiveResponse;
 
-namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
+namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 
 [Authorize(Roles = "SuperAdmin,Admin,Company")]
 [ApiExplorerSettings(GroupName = "BackOffice/Announcement")]
 [ApiVersion("1.0")]
-[Route(Route.BaseBackOfficeUrl + Route.BaseAnnouncementUrl)]
+[Route(Route.BaseHomeUrl + Route.BaseAnnouncementUrl)]
 public sealed class AnnouncementController(IMediator mediator) : ControllerBase
 {
     /// <summary>

@@ -1,4 +1,3 @@
-using Domic.Core.UseCase.Attributes;
 using Domic.UseCase.SkillUseCase.DTOs.GRPCs.Update;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.SkillUseCase.Contracts.Interfaces;
