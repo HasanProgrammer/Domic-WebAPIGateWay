@@ -1,11 +1,9 @@
-using System.Diagnostics;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.WebAPI.Extensions;
 using Domic.Persistence.Contexts;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
-using Prometheus;
 
 /*-------------------------------------------------------------------*/
 
