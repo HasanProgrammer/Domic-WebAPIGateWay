@@ -5,13 +5,14 @@ project.lock.json
 *.pyc
 nupkg/
 
-src/Presentation/Domic.WebAPI/CoreLogs/Logs.txt
-
 # Visual Studio Code
 .vscode
 
 # Rider
 .idea
+
+src/Presentation/Domic.WebAPI/CoreLogs/Logs.txt
+src/Presentation/Domic.WebAPI/Storages/
 
 # User-specific files
 *.suo
@@ -37,7 +38,3 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-
-src/Services/CoreService/Architecture
-src/Presentation/Domic.WebAPI/Storages/*
-!src/Presentation/Domic.WebAPI/Storages/.keep
