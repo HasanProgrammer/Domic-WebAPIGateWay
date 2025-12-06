@@ -11,10 +11,6 @@ nupkg/
 # Rider
 .idea
 
-src/Presentation/Domic.WebAPI/CoreLogs/Logs.txt
-src/Presentation/Domic.WebAPI/Storages/Images/*
-src/Presentation/Domic.WebAPI/Storages/Videos/*
-
 # User-specific files
 *.suo
 *.user
