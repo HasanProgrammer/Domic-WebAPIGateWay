@@ -1,0 +1,8 @@
+{
+  "JWT" : {
+    "Issuer"   : "domic",
+    "Audience" : "domic",
+    "Key"      : "19961375001375199600313",
+    "Expire"   : 3000
+  }
+}

@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Domic.UseCase\Domic.UseCase.csproj" />
+    <ProjectReference Include="..\Domic.Persistence\Domic.Persistence.csproj" />
+  </ItemGroup>
+
+  <!--CorePackage | Infrastructure-->
+  <ItemGroup>
+    <PackageReference Include="Domic.Architecture.Infrastructure" Version="10.0.4" />
+<!--<PackageReference Include="Minio" Version="6.0.4" />-->
+<!--<PackageReference Include="System.Reactive" Version="6.0.1" />-->
+  </ItemGroup>
+  <!--CorePackage | Infrastructure-->
+
+  <!-- CorePackage | RPC -->
+  <ItemGroup>
+      <PackageReference Include="Domic.Grpc.Article" Version="1.1.0" />
+      <PackageReference Include="Domic.Grpc.AggregateArticle" Version="1.1.2" />
+      <PackageReference Include="Domic.Grpc.Comment" Version="1.1.1" />
+      <PackageReference Include="Domic.Grpc.Identity" Version="1.1.1" />
+      <PackageReference Include="Domic.Grpc.Category" Version="1.1.0" />
+      <PackageReference Include="Domic.Grpc.Permission" Version="1.1.3" />
+      <PackageReference Include="Domic.Grpc.Role" Version="1.1.2" />
+      <PackageReference Include="Domic.Grpc.User" Version="1.1.3" />
+      <PackageReference Include="Domic.Grpc.Financial" Version="1.1.5" />
+
+      <!--ForPrivateService-->
+      <PackageReference Include="Domic.Grpc.Term" Version="1.1.8" />
+      <PackageReference Include="Domic.Grpc.Video" Version="1.1.5" />
+      <PackageReference Include="Domic.Grpc.Season" Version="1.0.1" />
+      <PackageReference Include="Domic.Grpc.Ticket" Version="4.0.4" />
+      <PackageReference Include="Domic.Grpc.AggregateTerm" Version="1.3.2" />
+      <PackageReference Include="Domic.Grpc.AggregateTicket" Version="1.0.3" />
+      <PackageReference Include="Domic.Grpc.Announcement" Version="1.0.0" />
+      <PackageReference Include="Domic.Grpc.Skill" Version="1.0.0" />
+      <PackageReference Include="Domic.Grpc.Stack" Version="1.0.0" />
+      <PackageReference Include="Domic.Grpc.Company" Version="1.0.0" />
+      <!--ForPrivateService-->
+  </ItemGroup>
+  <!-- CorePackage | RPC -->
+  
+</Project>

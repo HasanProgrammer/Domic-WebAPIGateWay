@@ -1,0 +1,92 @@
+name: 'web_api_gateway_service'
+
+services:
+  
+  domic.web.api.gateway:
+    networks:
+      - domic
+    image: web_api_gateway_service_api_image:1.0.0
+    container_name: "web_api_gateway_service_api"
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 150M
+#        reservations:
+#          memory: 150M
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 6600:443
+    volumes:
+      - log:/app/CoreLogs
+      - ~/services/Domic-WebAPIGateWay/.https/:/https/
+#     - C:\https\:/https/
+    environment:
+      - Elastic-Host=http://domic.elastic.search:9200
+      - Elastic-Index=apigateway
+      - Elastic-Username=domic
+      - Elastic-Password=Domic123!@#
+      - Minio-EndPoint=
+      - Minio-AccessKey=
+      - Minio-SecretKey=
+      - Minio-Bucket=domic
+      - E-RabbitMQ-Host=domic.rabbit.mq
+      - E-RabbitMQ-Port=5672
+      - E-RabbitMQ-Username=domic
+      - E-RabbitMQ-Password=Domic123!@#
+      - I-RabbitMQ-Host=
+      - I-RabbitMQ-Port=
+      - I-RabbitMQ-Username=
+      - I-RabbitMQ-Password=
+      - E-RedisConnectionString=domic.redis:6379
+      - I-RedisConnectionString=domic.redis:6379
+#     - I-RedisConnectionString=domic.web.api.gateway.redis:6379
+      - MongoConnectionString=
+      - C-SqlServerConnectionString=
+      - Q-SqlServerConnectionString=
+      - ServiceDiscoveryAddress=https://domic.discovery.api:443
+      - ClientOrigins=https://domic-client:3000,http://domic-client:3000
+      - Host=domic.web.api.gateway
+      - Port=6600
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
+#   depends_on:
+#     - domic.web.api.gateway.redis
+#     - domic.minio
+
+# domic.web.api.gateway.redis:
+#   networks:
+#     - domic
+#   image: 'redis'
+#   container_name: 'web_api_gateway_redis'
+#   command: 'redis-server'
+#   ports:
+#     - 4350:6379
+  
+#  domic.minio:
+#    image: 'minio/minio:latest'
+#    container_name: 'web_api_gateway_minio'
+#    restart: on-failure
+#    ports:
+#      - '9000:9000'
+#      - '9001:9001'
+#    environment:
+#      - MINIO_ROOT_USER=domic
+#      - MINIO_ROOT_PASSWORD=domic123
+#    volumes:
+#      - minio-data:/data
+#    command: server /data --console-address ":9001"
+#    networks:
+#      - domic
+  
+volumes:
+  log:
+  # minio-data:
+    
+networks:
+  domic:
+    external: true

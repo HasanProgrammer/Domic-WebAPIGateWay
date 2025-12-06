@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <!--CorePackage | Domain-->
+  <ItemGroup>
+    <PackageReference Include="Domic.Architecture.Domain" Version="4.3.1" />
+  </ItemGroup>
+  <!--CorePackage | Domain-->
+  
+</Project>
