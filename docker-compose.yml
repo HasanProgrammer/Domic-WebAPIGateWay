@@ -47,7 +47,7 @@ services:
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=
       - ServiceDiscoveryAddress=https://domic.discovery.api:443
-      - ClientOrigins=https://localhost:3000,http://localhost:3000
+      - ClientOrigins=https://dotris.net
       - Host=domic.web.api.gateway
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
