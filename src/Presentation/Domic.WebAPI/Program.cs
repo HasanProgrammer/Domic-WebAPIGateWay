@@ -46,7 +46,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddGrpc();
 builder.Services.AddCustomSwagger();
 builder.Services.Configure<FormOptions>(options => {
-    options.MultipartBodyLengthLimit = long.MaxValue;
+    options.MultipartBodyLengthLimit = 1024;
 });
 
 #endregion
@@ -62,8 +62,8 @@ WebApplication application = builder.Build();
 
 application.Use(async (context, next) => {
     var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
-    if (maxRequestBodySizeFeature != null)
-        maxRequestBodySizeFeature.MaxRequestBodySize = null;
+    if (maxRequestBodySizeFeature is not null)
+        maxRequestBodySizeFeature.MaxRequestBodySize = 1024;
     await next();
 });
 
