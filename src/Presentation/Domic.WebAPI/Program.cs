@@ -45,6 +45,9 @@ builder.Services.AddApiVersioning();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddGrpc();
 builder.Services.AddCustomSwagger();
+builder.Services.Configure<FormOptions>(options => {
+    options.MultipartBodyLengthLimit = long.MaxValue;
+});
 
 #endregion
 
@@ -56,6 +59,13 @@ WebApplication application = builder.Build();
 /*-------------------------------------------------------------------*/
 
 #region Middleware
+
+application.Use(async (context, next) => {
+    var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+    if (maxRequestBodySizeFeature != null)
+        maxRequestBodySizeFeature.MaxRequestBodySize = null;
+    await next();
+});
 
 application.UseStaticFiles(new StaticFileOptions {
     FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") ),
@@ -75,12 +85,6 @@ if (application.Environment.IsProduction())
 application.UseCustomSwagger(application.Environment);
 
 application.UseRouting();
-
-application.Use(async (context, next) =>
-{
-    context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = null;
-    await next.Invoke();
-});
 
 application.UseCors("CORS");
 
