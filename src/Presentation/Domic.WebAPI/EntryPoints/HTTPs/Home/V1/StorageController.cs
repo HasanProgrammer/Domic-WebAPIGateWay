@@ -24,7 +24,7 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     [DisableRequestSizeLimit]
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
-        var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
+        var uploadResult = await UploadAsync(file, hostEnvironment, cancellationToken: cancellationToken);
 
         return HttpContext.OkResponse(
             new {
