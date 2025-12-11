@@ -20,4 +20,5 @@ RUN dotnet publish "Domic.WebAPI.csproj" -c Release -o /app/publish /p:UseAppHos
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+RUN chmod -R 777 /app/Storages
 ENTRYPOINT ["dotnet", "Domic.WebAPI.dll"]

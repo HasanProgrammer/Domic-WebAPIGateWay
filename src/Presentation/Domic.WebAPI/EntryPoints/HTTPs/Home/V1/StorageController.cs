@@ -24,7 +24,7 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     [DisableRequestSizeLimit]
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
-        var uploadResult = await UploadAsync(file, hostEnvironment, cancellationToken: cancellationToken);
+        var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
 
         return HttpContext.OkResponse(
             new {
@@ -33,26 +33,5 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
                 Body = new { UploadPath = $"{Request.Scheme}://{Request.Host}/Files{uploadResult.path.Replace("Storages", "").Replace("\\", "/")}" }
             }
         );
-    }
-    
-    public static async Task<(string path, string name, string extension)> UploadAsync(IFormFile file, 
-        IWebHostEnvironment webHostEnvironment, bool renameFile = true, CancellationToken cancellationToken = default
-    )
-    {
-        string uploadPath = default;
-        var fileExtension = Path.GetExtension(file.FileName);
-        var fileName      = renameFile ? Guid.NewGuid().ToString().Replace("-", "") + fileExtension : file.FileName;
-        var rootPath      = webHostEnvironment.WebRootPath ?? webHostEnvironment.ContentRootPath;
-        
-        if (file.IsImage())
-            uploadPath = Path.Combine($"{rootPath}", "Storages", "Images", fileName);
-        else if (file.IsVideo())
-            uploadPath = Path.Combine($"{rootPath}", "Storages", "Videos", fileName);
-        
-        await using var fileStream = new FileStream(uploadPath , FileMode.Create);
-        
-        await file.CopyToAsync(fileStream, cancellationToken);
-        
-        return ( uploadPath , fileName , fileExtension );
     }
 }
