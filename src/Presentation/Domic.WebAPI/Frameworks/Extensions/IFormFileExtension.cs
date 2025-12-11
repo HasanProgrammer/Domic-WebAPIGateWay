@@ -14,6 +14,8 @@ public static class IFormFileExtension
         IWebHostEnvironment webHostEnvironment, bool renameFile = true, CancellationToken cancellationToken = default
     )
     {
+        Console.WriteLine($"\\n  rootpath: {webHostEnvironment.ContentRootPath} \\n");
+        
         var fileExtension = Path.GetExtension(file.FileName);
         var fileName      = renameFile ? Guid.NewGuid().ToString().Replace("-", "") + fileExtension : file.FileName;
         string uploadPath = Path.Combine($"{webHostEnvironment.ContentRootPath}", "Storages", fileName);
