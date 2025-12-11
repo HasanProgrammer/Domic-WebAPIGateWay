@@ -21,8 +21,7 @@ services:
       - 6600:443
     volumes:
       - ~/services/Logs/Domic-WebAPIGateWay/:/app/CoreLogs/
-      - ~/services/Storages/Images:/app/Storages/Images/
-      - ~/services/Storages/Videos:/app/Storages/Videos/
+      - ~/services/Storages/:/app/Storages/
       - ~/services/Domic-WebAPIGateWay/.https/:/https/
 #     - C:\https\:/https/
     environment:
