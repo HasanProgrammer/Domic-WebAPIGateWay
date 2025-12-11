@@ -25,6 +25,10 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
         var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
+        
+        Console.WriteLine($"result: {uploadResult}");
+        Console.WriteLine($"schema: {Request.Scheme}");
+        Console.WriteLine($"host: {Request.Host}");
 
         return HttpContext.OkResponse(
             new {
