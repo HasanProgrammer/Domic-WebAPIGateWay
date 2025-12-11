@@ -45,9 +45,6 @@ builder.Services.AddApiVersioning();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddGrpc();
 builder.Services.AddCustomSwagger();
-builder.Services.Configure<FormOptions>(options => {
-    options.MultipartBodyLengthLimit = 1073741824;
-});
 
 #endregion
 
@@ -78,6 +75,12 @@ if (application.Environment.IsProduction())
 application.UseCustomSwagger(application.Environment);
 
 application.UseRouting();
+
+application.Use(async (context, next) =>
+{
+    context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = null;
+    await next.Invoke();
+});
 
 application.UseCors("CORS");
 
