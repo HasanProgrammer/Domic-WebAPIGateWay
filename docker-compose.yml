@@ -20,7 +20,8 @@ services:
     ports:
       - 6600:443
     volumes:
-      - log:/app/CoreLogs
+      - ~/services/Logs/Domic-WebAPIGateWay/:/app/CoreLogs/
+      - ~/services/Storages/:/app/Storages/
       - ~/services/Domic-WebAPIGateWay/.https/:/https/
 #     - C:\https\:/https/
     environment:
@@ -47,7 +48,7 @@ services:
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=
       - ServiceDiscoveryAddress=https://domic.discovery.api:443
-      - ClientOrigins=https://www.dotris.net
+      - ClientOrigins=https://www.dotris.net,http://localhost:3000
       - Host=domic.web.api.gateway
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
