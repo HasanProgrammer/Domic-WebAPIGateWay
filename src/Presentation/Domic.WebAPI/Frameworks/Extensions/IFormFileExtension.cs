@@ -16,7 +16,7 @@ public static class IFormFileExtension
     {
         var fileExtension = Path.GetExtension(file.FileName);
         var fileName      = renameFile ? Guid.NewGuid().ToString().Replace("-", "") + fileExtension : file.FileName;
-        string uploadPath = Path.Combine($"{webHostEnvironment.WebRootPath}", "Storages", fileName);
+        string uploadPath = Path.Combine($"{webHostEnvironment.ContentRootPath}", "Storages", fileName);
         
         await using var fileStream = new FileStream(uploadPath , FileMode.Create);
         
