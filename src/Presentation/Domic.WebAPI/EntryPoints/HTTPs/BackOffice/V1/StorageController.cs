@@ -1,4 +1,5 @@
-﻿using Domic.Core.Common.ClassExtensions;
+﻿using Domic.Common.ClassExtensions;
+using Domic.Core.Common.ClassExtensions;
 using Domic.Core.WebAPI.Filters;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -26,7 +27,7 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     [DisableRequestSizeLimit]
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
-        var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
+        var uploadResult = await file.UploadToLocalStorageAsync(hostEnvironment, cancellationToken: cancellationToken);
 
         return HttpContext.OkResponse(
             new {
