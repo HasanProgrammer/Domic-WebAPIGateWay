@@ -13,6 +13,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder();
 
 builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonFiles(context.HostingEnvironment));
 
+builder.WebHost.ConfigureKestrel(options => {
+    options.Limits.MaxRequestBodySize = null;
+});
+
 #endregion
 
 /*-------------------------------------------------------------------*/
