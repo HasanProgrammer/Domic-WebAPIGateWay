@@ -1,5 +1,4 @@
-﻿using Domic.Common.ClassExtensions;
-using Domic.Core.Common.ClassExtensions;
+﻿using Domic.Core.Common.ClassExtensions;
 using Domic.Core.WebAPI.Filters;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -24,17 +23,19 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost(Route.UploadStorageUrl)]
-    //[RequestSizeLimit(long.MaxValue)]
-    //[RequestFormLimits(MultipartBodyLengthLimit = long.MaxValue)]
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
-        var uploadResult = await file.UploadToLocalStorageAsync(hostEnvironment, cancellationToken: cancellationToken);
+        var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
 
+        var uploadPath = hostEnvironment.IsDevelopment()
+            ? uploadResult.path.Replace("Storages", "")
+            : uploadResult.path.Split("Storages")[1];
+        
         return HttpContext.OkResponse(
             new {
                 Code = configuration.GetSuccessStatusCode(),
                 Message = configuration.GetSuccessCreateMessage(),
-                Body = new { UploadPath = $"{Request.Scheme}://{Request.Host}/Files{uploadResult.path.Replace("Storages", "").Replace("\\", "/")}" }
+                Body = new { UploadPath = $"{Request.Scheme}://{Request.Host}/Files{uploadPath.Replace("\\", "/")}" }
             }
         );
     }
