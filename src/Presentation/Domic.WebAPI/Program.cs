@@ -64,6 +64,13 @@ WebApplication application = builder.Build();
 
 #region Middleware
 
+application.Use(async (context, next) => {
+    var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+    if (maxRequestBodySizeFeature is not null)
+        maxRequestBodySizeFeature.MaxRequestBodySize = 1024;
+    await next();
+});
+
 application.UseStaticFiles(new StaticFileOptions {
     FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") ),
     RequestPath  = "/Files"
