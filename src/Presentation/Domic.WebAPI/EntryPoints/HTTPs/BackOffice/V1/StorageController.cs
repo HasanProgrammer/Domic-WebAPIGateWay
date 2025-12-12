@@ -24,6 +24,8 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost(Route.UploadStorageUrl)]
+    //[RequestSizeLimit(long.MaxValue)]
+    //[RequestFormLimits(MultipartBodyLengthLimit = long.MaxValue)]
     public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
     {
         var uploadResult = await file.UploadToLocalStorageAsync(hostEnvironment, cancellationToken: cancellationToken);
