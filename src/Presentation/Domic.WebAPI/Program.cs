@@ -14,7 +14,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder();
 builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonFiles(context.HostingEnvironment));
 
 builder.WebHost.ConfigureKestrel(options => {
-    options.Limits.MaxRequestBodySize = null;
+    options.Limits.MaxRequestBodySize = int.MaxValue;
 });
 
 #endregion
@@ -67,7 +67,7 @@ WebApplication application = builder.Build();
 application.Use(async (context, next) => {
     var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
     if (maxRequestBodySizeFeature is not null)
-        maxRequestBodySizeFeature.MaxRequestBodySize = 1024;
+        maxRequestBodySizeFeature.MaxRequestBodySize = int.MaxValue;
     await next();
 });
 
