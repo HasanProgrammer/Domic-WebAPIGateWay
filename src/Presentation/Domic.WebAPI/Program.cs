@@ -61,7 +61,6 @@ builder.Services.Configure<FormOptions>(options => {
 
 WebApplication application = builder.Build();
 
-
 /*-------------------------------------------------------------------*/
 
 #region Middleware
