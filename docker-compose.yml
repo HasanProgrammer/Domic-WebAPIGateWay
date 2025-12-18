@@ -5,8 +5,8 @@ services:
   domic.web.api.gateway:
     networks:
       - domic
-    image: web_api_gateway_service_api_image:1.0.0
-    container_name: "web_api_gateway_service_api"
+    image: domic_web_api_gateway_service_image:1.0.0
+    container_name: "domic_web_api_gateway_service"
 #    deploy:
 #      resources:
 #        limits:
@@ -20,11 +20,10 @@ services:
     ports:
       - 6600:443
     volumes:
-      - ~/services/Logs/Domic-WebAPIGateWay/:/app/CoreLogs/
       - ~/services/Storages/Images/:/app/Storages/Images/
       - ~/services/Storages/Videos/:/app/Storages/Videos/
+      - ~/services/Logs/Domic-WebAPIGateWay/:/app/CoreLogs/
       - ~/services/Domic-WebAPIGateWay/.https/:/https/
-#     - C:\https\:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
       - Elastic-Index=apigateway
@@ -50,12 +49,13 @@ services:
       - Q-SqlServerConnectionString=
       - ServiceDiscoveryAddress=https://domic.discovery.api:443
       - ClientOrigins=https://www.dotris.net,
-      - Host=domic.web.api.gateway
+      - Host=domic.web.api.gateway.service
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
+
 #   depends_on:
 #     - domic.web.api.gateway.redis
 #     - domic.minio
@@ -64,14 +64,14 @@ services:
 #   networks:
 #     - domic
 #   image: 'redis'
-#   container_name: 'web_api_gateway_redis'
+#   container_name: 'domic_web_api_gateway_redis'
 #   command: 'redis-server'
 #   ports:
 #     - 4350:6379
   
 #  domic.minio:
 #    image: 'minio/minio:latest'
-#    container_name: 'web_api_gateway_minio'
+#    container_name: 'domic_web_api_gateway_minio'
 #    restart: on-failure
 #    ports:
 #      - '9000:9000'
@@ -84,10 +84,6 @@ services:
 #    command: server /data --console-address ":9001"
 #    networks:
 #      - domic
-  
-volumes:
-  log:
-  # minio-data:
     
 networks:
   domic:
