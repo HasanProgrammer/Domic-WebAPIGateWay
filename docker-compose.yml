@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - 6600:443
+      - 6600:80
     volumes:
       - ~/services/Storages/Images/:/app/Storages/Images/
       - ~/services/Storages/Videos/:/app/Storages/Videos/
@@ -50,7 +50,7 @@ services:
       - ServiceDiscoveryAddress=https://domic.discovery.service:443
       - ClientOrigins=https://www.dotris.net,
       - Host=domic.web.api.gateway.service
-      - Port=443
+      - Port=80
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
