@@ -47,7 +47,7 @@ services:
       - MongoConnectionString=
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=
-      - ServiceDiscoveryAddress=https://domic.discovery.api:443
+      - ServiceDiscoveryAddress=https://domic.discovery.service:443
       - ClientOrigins=https://www.dotris.net,
       - Host=domic.web.api.gateway.service
       - Port=443
