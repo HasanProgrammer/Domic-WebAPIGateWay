@@ -14,7 +14,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder();
 builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonFiles(context.HostingEnvironment));
 
 builder.WebHost.ConfigureKestrel(options => {
-    options.Limits.MaxRequestBodySize = int.MaxValue;
+    options.Limits.MaxRequestBodySize = null;
     options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(30);
     options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30);
 });
@@ -51,9 +51,9 @@ builder.Services.AddApiVersioning();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddGrpc();
 builder.Services.AddCustomSwagger();
-builder.Services.Configure<FormOptions>(options => {
-    options.MultipartBodyLengthLimit = int.MaxValue;
-});
+// builder.Services.Configure<FormOptions>(options => {
+//     options.MultipartBodyLengthLimit = long.MaxValue;
+// });
 
 #endregion
 
@@ -65,12 +65,12 @@ WebApplication application = builder.Build();
 
 #region Middleware
 
-application.Use(async (context, next) => {
+/*application.Use(async (context, next) => {
     var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
     if (maxRequestBodySizeFeature is not null)
         maxRequestBodySizeFeature.MaxRequestBodySize = int.MaxValue;
     await next();
-});
+});*/
 
 application.UseStaticFiles(new StaticFileOptions {
     FileProvider = new PhysicalFileProvider( Path.Combine(Directory.GetCurrentDirectory(), "Storages") ),
