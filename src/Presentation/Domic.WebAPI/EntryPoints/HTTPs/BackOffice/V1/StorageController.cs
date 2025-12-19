@@ -30,6 +30,7 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     public async Task<IActionResult> Upload(CancellationToken cancellationToken)
     {
         //var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
+        
         var uploadResult =
             await HttpContext.UploadFileAsync(hostEnvironment, Request.ContentType, cancellationToken: cancellationToken);
 

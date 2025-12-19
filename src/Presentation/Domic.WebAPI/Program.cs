@@ -51,9 +51,9 @@ builder.Services.AddApiVersioning();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddGrpc();
 builder.Services.AddCustomSwagger();
-// builder.Services.Configure<FormOptions>(options => {
-//     options.MultipartBodyLengthLimit = long.MaxValue;
-// });
+builder.Services.Configure<FormOptions>(options => {
+    options.MultipartBodyLengthLimit = long.MaxValue;
+});
 
 #endregion
 
