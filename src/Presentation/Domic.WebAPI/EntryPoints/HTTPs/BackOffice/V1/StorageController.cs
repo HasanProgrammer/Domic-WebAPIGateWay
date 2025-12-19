@@ -27,18 +27,29 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost(Route.UploadStorageUrl)]
-    public async Task<IActionResult> Upload(CancellationToken cancellationToken)
+    public async Task<IActionResult> Upload([FromQuery] string fileName, CancellationToken cancellationToken)
     {
         //var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
         
-        var uploadResult =
-            await HttpContext.UploadFileAsync(hostEnvironment, Request.ContentType, cancellationToken: cancellationToken);
+        var extension = Path.GetExtension(fileName);
+        var newFileName = Guid.NewGuid().ToString().Replace("-", "") + extension;
 
-        logger.RecordAsync(Guid.NewGuid().ToString(), "WebAPIGateWay", uploadResult, cancellationToken);
+        string filePath = default;
+
+        if ( new[] { ".png", ".jpg", ".jpeg" }.Contains(extension.ToLower()) )
+            filePath = Path.Combine(hostEnvironment.ContentRootPath ?? "", "Storages", "Images", newFileName);
+        else if( new[] { ".mp4", ".avi" }.Contains(extension.ToLower()) )
+            filePath = Path.Combine(hostEnvironment.ContentRootPath ?? "", "Storages", "Videos", newFileName);
+
+        await using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 1024*1024, true);
+        
+        await Request.Body?.CopyToAsync(stream, cancellationToken);
+
+        logger.RecordAsync(Guid.NewGuid().ToString(), "WebAPIGateWay", filePath, cancellationToken);
         
         var uploadPath = hostEnvironment.IsDevelopment()
-            ? uploadResult.Replace("Storages", "")
-            : uploadResult.Split("Storages")[1];
+            ? filePath.Replace("Storages", "")
+            : filePath.Split("Storages")[1];
         
         return HttpContext.OkResponse(
             new {
