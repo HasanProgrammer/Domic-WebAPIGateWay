@@ -63,7 +63,7 @@ public static class HttpContextExtension
         else if( new[] { ".mp4", ".avi" }.Contains(extension.ToLower()) )
             filePath = Path.Combine(webHostEnvironment.ContentRootPath ?? "", "Storages", "Videos", fileName);
 
-        await using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 1024);
+        await using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 1024*1024, true);
         
         await fileSection.FileStream?.CopyToAsync(stream, cancellation);
 
