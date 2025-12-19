@@ -83,8 +83,8 @@ application.UseCoreExceptionHandler(application.Configuration);
 
 if (application.Environment.IsProduction())
 {
-    application.UseHsts();
-    application.UseHttpsRedirection();
+    //application.UseHsts();
+    //application.UseHttpsRedirection();
 }
 
 application.UseCustomSwagger(application.Environment);
