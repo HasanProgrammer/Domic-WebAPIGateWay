@@ -1,10 +1,13 @@
-﻿using Domic.Core.Common.ClassExtensions;
+﻿#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
+using Domic.Core.Common.ClassExtensions;
 using Domic.Core.WebAPI.Filters;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using Route = Domic.Common.ClassConsts.Route;
+using Route   = Domic.Common.ClassConsts.Route;
+using ILogger = Domic.Core.UseCase.Contracts.Interfaces.ILogger;
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
@@ -13,8 +16,9 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [ApiExplorerSettings(GroupName = "BackOffice/Storage")]
 [Route($"{Route.BaseBackOfficeUrl}{Route.BaseStorageUrl}")]
 [ApiVersion("1.0")]
-public class StorageController(IConfiguration configuration, IWebHostEnvironment hostEnvironment) 
-    : ControllerBase
+public class StorageController(IConfiguration configuration, IWebHostEnvironment hostEnvironment,
+    ILogger logger
+) : ControllerBase
 {
     /// <summary>
     /// 
@@ -23,13 +27,17 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost(Route.UploadStorageUrl)]
-    public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
+    public async Task<IActionResult> Upload(CancellationToken cancellationToken)
     {
-        var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
+        //var uploadResult = await file.UploadAsync(hostEnvironment, cancellationToken: cancellationToken);
+        var uploadResult =
+            await HttpContext.UploadFileAsync(hostEnvironment, Request.ContentType, cancellationToken: cancellationToken);
 
+        logger.RecordAsync(Guid.NewGuid().ToString(), "WebAPIGateWay", uploadResult, cancellationToken);
+        
         var uploadPath = hostEnvironment.IsDevelopment()
-            ? uploadResult.path.Replace("Storages", "")
-            : uploadResult.path.Split("Storages")[1];
+            ? uploadResult.Replace("Storages", "")
+            : uploadResult.Split("Storages")[1];
         
         return HttpContext.OkResponse(
             new {
