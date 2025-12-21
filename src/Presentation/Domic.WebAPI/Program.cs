@@ -15,8 +15,8 @@ builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonF
 
 builder.WebHost.ConfigureKestrel(options => {
     options.Limits.MaxRequestBodySize = null;
-    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(30);
-    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30);
+    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(60);
+    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(60);
 });
 
 #endregion
