@@ -1,5 +1,6 @@
 ﻿using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Core.UseCase.Exceptions;
 using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Domic.UseCase.UserUseCase.Commands.Create;
@@ -115,6 +116,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     public async Task<IActionResult> SignUpTeacher([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
         //load teacher role & permission
+        
+        throw new UseCaseException("در حال حاظر امکان عضویت مدرسین در سامانه میسر نمی باشد . با تشکر");
 
         command.Description = "مدرس عضو سامانه | این کاربران توانایی ایجاد دوره، ارتباط با شرکت های ثبت کننده آگهی شغلی";
 
@@ -143,6 +146,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     public async Task<IActionResult> SignUpCompany([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
         //load company role & permission
+
+        throw new UseCaseException("در حال حاظر امکان عضویت شرکت ها در سامانه میسر نمی باشد . با تشکر");
 
         command.Description = "شرکت عضو سامانه | این کاربران توانایی ساخت آگهی های شغلی و ارتباط با مدرسین برای ارسال درخواست معرفی نیروی متناسب با پوزیشن های شغلی آگهی خود را دارند";
 
