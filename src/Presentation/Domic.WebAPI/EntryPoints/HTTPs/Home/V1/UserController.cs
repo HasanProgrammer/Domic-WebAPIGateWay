@@ -89,8 +89,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         //load guest role & permission
 
-        command.FirstName = "firstname";
-        command.LastName = "lastname";
+        command.FirstName = "کاربری";
+        command.LastName = "عادی";
         command.EMail = "email@gmail.com";
         command.Password = "password";
         command.Description = "کاربر عادی عضو سامانه | این کاربران توانایی دسترسی به دوره های خریداری شده خود، تراکنش های بانکی و ویرایش پروفایل خود را دارند";
