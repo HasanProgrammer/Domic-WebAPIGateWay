@@ -89,6 +89,10 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     {
         //load guest role & permission
 
+        command.FirstName = "firstname";
+        command.LastName = "lastname";
+        command.EMail = "email@gmail.com";
+        command.Password = "password";
         command.Description = "کاربر عادی عضو سامانه | این کاربران توانایی دسترسی به دوره های خریداری شده خود، تراکنش های بانکی و ویرایش پروفایل خود را دارند";
 
         var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Guest" }, cancellationToken);
@@ -101,6 +105,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
             command.Permissions = new List<string> { guestPermission.Body.Permissions.Collection.FirstOrDefault().Id };
         
         var result = await mediator.DispatchAsync<CreateResponse>(command, cancellationToken);
+
+        result.Message += " . دانشجوی گرامی حتما بعد از ورود به پروفایل کاربری اقدام به ویرایش اطلاعات پایه ای خود نمایید . ";
 
         return HttpContext.OkResponse(result);
     }
