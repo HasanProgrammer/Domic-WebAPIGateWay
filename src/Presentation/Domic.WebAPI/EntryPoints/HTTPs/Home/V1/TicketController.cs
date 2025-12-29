@@ -33,7 +33,8 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
   //[PermissionPolicy(Type = "AggregateTicket.ReadOne")]
     public async Task<IActionResult> ReadOne([FromRoute] ReadOneQuery query, CancellationToken cancellationToken)
     {
-        query.UserId = identityUser.GetIdentity();
+        if(!identityUser.GetRoles().Contains("SuperAdmin") || !identityUser.GetRoles().Contains("Admin"))
+            query.UserId = identityUser.GetIdentity();
         
         var result = await mediator.DispatchAsync<ReadOneResponse>(query, cancellationToken);
 
@@ -53,6 +54,9 @@ public class TicketController(IMediator mediator, [FromKeyedServices("Http1")] I
         CancellationToken cancellationToken
     )
     {
+        if(!identityUser.GetRoles().Contains("SuperAdmin") || !identityUser.GetRoles().Contains("Admin"))
+            query.UserId = identityUser.GetIdentity();
+        
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
