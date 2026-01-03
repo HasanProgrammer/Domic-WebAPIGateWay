@@ -1,5 +1,5 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.UseCase.NotificationUseCase.Commands.Create;
+using Domic.UseCase.NotificationUseCase.Commands.VerifyCode;
 using Domic.UseCase.NotificationUseCase.DTOs.GRPCs.Create;
 using Microsoft.AspNetCore.Mvc;
 using Domic.WebAPI.Frameworks.Extensions;
@@ -21,7 +21,7 @@ public class NotificationController(IMediator mediator) : ControllerBase
     /// <returns></returns>
     [HttpPost]
     [Route(Route.SendEmailVerifyCodeNotificationUrl)]
-    public async Task<IActionResult> SendEmailVerifyCode([FromBody] CreateCommand command, 
+    public async Task<IActionResult> SendEmailVerifyCode([FromBody] VerifyCodeCommand command, 
         CancellationToken cancellationToken
     )
     {

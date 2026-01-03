@@ -6,7 +6,7 @@ using Domic.Core.Notification.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.NotificationUseCase.Contracts.Interfaces;
-using Domic.UseCase.NotificationUseCase.Commands.Create;
+using Domic.UseCase.NotificationUseCase.Commands.VerifyCode;
 using Microsoft.AspNetCore.Http;
 
 using String             = Domic.Core.Notification.Grpc.String;
@@ -23,7 +23,7 @@ public class NotificationRpcWebRequest(
 {
     private GrpcChannel _channel;
 
-    public async Task<CreateResponse> SendEmailVerifyCodeAsync(CreateCommand request, CancellationToken cancellationToken)
+    public async Task<CreateResponse> SendEmailVerifyCodeAsync(VerifyCodeCommand request, CancellationToken cancellationToken)
     {
         var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
         
