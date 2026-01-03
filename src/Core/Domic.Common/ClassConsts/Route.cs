@@ -288,3 +288,10 @@ public partial class Route
     public const string ChangeStatusTransactionRequestFinancialUrl = "transaction-requests";
     public const string DecreaseWalletFinancialUrl = "decrease-wallet";
 }
+
+//Notification
+public partial class Route
+{
+    public const string BaseNotificationUrl                = "notifications/verify-code";
+    public const string SendEmailVerifyCodeNotificationUrl = "email";
+}

@@ -30,6 +30,7 @@
       <PackageReference Include="Domic.Grpc.Role" Version="1.1.2" />
       <PackageReference Include="Domic.Grpc.User" Version="1.1.3" />
       <PackageReference Include="Domic.Grpc.Financial" Version="1.1.5" />
+      <PackageReference Include="Domic.Grpc.Notification" Version="1.0.0" />
 
       <!--ForPrivateService-->
       <PackageReference Include="Domic.Grpc.Term" Version="1.1.8" />

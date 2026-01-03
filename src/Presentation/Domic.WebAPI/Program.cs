@@ -1,3 +1,5 @@
+using System.Text;
+using System.Threading.RateLimiting;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.WebAPI.Extensions;
 using Domic.Persistence.Contexts;
@@ -54,6 +56,39 @@ builder.Services.AddCustomSwagger();
 builder.Services.Configure<FormOptions>(options => {
     options.MultipartBodyLengthLimit = long.MaxValue;
 });
+builder.Services.AddRateLimiter(options => {
+    
+    options.RejectionStatusCode = StatusCodes.Status200OK;
+    
+    options.OnRejected = async (context, cancellationToken) => {
+        
+        context.HttpContext.Response.ContentType = "application/json";
+        
+        var payload = new {
+            Code = StatusCodes.Status429TooManyRequests,
+            Message = "شما بیش از حد مجاز و در محدوده زمانی مشخص درخواست ارسال کرده اید! ( حد مجاز : 10 درخواست در دقیقه )",
+            Body = new {}
+        };
+
+        await context.HttpContext.Response.WriteAsync(
+            payload.Serialize(), Encoding.UTF8, cancellationToken
+        );
+        
+    };
+    
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext => 
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip",
+            factory: _ => new FixedWindowRateLimiterOptions {
+                PermitLimit = 10,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0 
+            }
+        )
+    );
+    
+});
 
 #endregion
 
@@ -92,6 +127,8 @@ application.UseCustomSwagger(application.Environment);
 application.UseRouting();
 
 application.UseCors("CORS");
+
+application.UseRateLimiter();
 
 application.UseAuthentication();
 
