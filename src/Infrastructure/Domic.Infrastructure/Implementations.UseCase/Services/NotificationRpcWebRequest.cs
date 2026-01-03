@@ -1,13 +1,11 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
-using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.Notification.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.NotificationUseCase.Contracts.Interfaces;
 using Domic.UseCase.NotificationUseCase.Commands.VerifyCode;
-using Microsoft.AspNetCore.Http;
 
 using String             = Domic.Core.Notification.Grpc.String;
 using CreateResponse     = Domic.UseCase.NotificationUseCase.DTOs.GRPCs.Create.CreateResponse;
@@ -17,8 +15,7 @@ using CreateRequest      = Domic.Core.Notification.Grpc.CreateRequest;
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
 public class NotificationRpcWebRequest(
-    IServiceDiscovery serviceDiscovery, IHttpContextAccessor httpContextAccessor,
-    IExternalDistributedCache distributedCache
+    IServiceDiscovery serviceDiscovery, IExternalDistributedCache distributedCache
 ) : INotificationRpcWebRequest
 {
     private GrpcChannel _channel;
@@ -60,7 +57,6 @@ public class NotificationRpcWebRequest(
         _channel = GrpcChannel.ForAddress(await targetServiceInstanceTask, new GrpcChannelOptions().GetAll());
         
         var metaData = new Metadata {
-            { Header.Token   , httpContextAccessor.HttpContext.GetRowToken() } ,
             { Header.License , await secretKeyTask }
         };
         
