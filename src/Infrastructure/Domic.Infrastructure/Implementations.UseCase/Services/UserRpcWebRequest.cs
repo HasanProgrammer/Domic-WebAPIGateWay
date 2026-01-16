@@ -6,20 +6,24 @@ using Domic.Core.Identity.Grpc;
 using Domic.Core.User.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Domain.Commons.Enumerations;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.Update;
 using Domic.UseCase.UserUseCase.Commands.Create;
+using Domic.UseCase.UserUseCase.Commands.ForgotPasswordOtpGeneration;
+using Domic.UseCase.UserUseCase.Commands.ForgotPasswordOtpVerification;
 using Domic.UseCase.UserUseCase.Commands.InActive;
 using Domic.UseCase.UserUseCase.Commands.OtpGeneration;
 using Domic.UseCase.UserUseCase.Commands.OtpVerification;
 using Domic.UseCase.UserUseCase.Commands.SignIn;
 using Domic.UseCase.UserUseCase.Contracts.Interfaces;
 using Domic.UseCase.UserUseCase.DTOs;
+using Domic.UseCase.UserUseCase.DTOs.GRPCs.ForgotPasswordOtpGeneration;
+using Domic.UseCase.UserUseCase.DTOs.GRPCs.ForgotPasswordOtpVerification;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
+
 using String                       = Domic.Core.User.Grpc.String;
 using AuthString                   = Domic.Core.Identity.Grpc.String;
 using Int32                        = Domic.Core.User.Grpc.Int32;
@@ -208,6 +212,50 @@ public class UserRpcWebRequest : IUserRpcWebRequest
             Code    = result.Code    ,
             Message = result.Message ,
             Body    = new OtpVerificationResponseBody { Token = result.Body.Token }
+        };
+    }
+
+    public async Task<ForgotPasswordOtpGenerationResponse> ForgotPasswordOtpGenerationAsync(
+        ForgotPasswordOtpGenerationCommand request, CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
+
+        var payload = new EmailOtpGenerationRequest();
+        
+        payload.EmailAddress = !string.IsNullOrEmpty(request.EmailAddress) ? new AuthString { Value = request.EmailAddress } : default;
+        
+        var result =
+            await loadData.client.EmailOtpGenerationAsync(
+                payload, headers: loadData.headers, cancellationToken: cancellationToken
+            );
+
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ForgotPasswordOtpGenerationResponseBody { Result = result.Body.Result }
+        };
+    }
+
+    public async Task<ForgotPasswordOtpVerificationResponse> ForgotPasswordOtpVerificationAsync(
+        ForgotPasswordOtpVerificationCommand request, CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
+
+        ResetPasswordRequest payload = new();
+        
+        payload.EmailAddress = !string.IsNullOrEmpty(request.EmailAddress) ? new AuthString { Value = request.EmailAddress } : default;
+        payload.EmailCode    = !string.IsNullOrEmpty(request.EmailCode)    ? new AuthString { Value = request.EmailCode }    : default;
+        payload.NewPassword  = !string.IsNullOrEmpty(request.NewPassword)  ? new AuthString { Value = request.NewPassword }  : default;
+        
+        var result =
+            await loadData.client.ResetPasswordAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
+
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new ForgotPasswordOtpVerificationResponseBody { Result = result.Body.Result }
         };
     }
 

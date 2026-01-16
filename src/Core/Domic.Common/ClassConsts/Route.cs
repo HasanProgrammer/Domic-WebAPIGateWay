@@ -31,6 +31,8 @@ public partial class Route
     public const string SignUpStudentUrl        = "signup/student";
     public const string SignUpTeacherUrl        = "signup/teacher";
     public const string SignUpCompanyUrl        = "signup/company";
+    public const string ForgotPasswordOtpGenerationUserUrl   = "forgot-password/otp-generation";
+    public const string ForgotPasswordOtpVerificationUserUrl = "forgot-password/otp-verification";
 }
 
 //Role

@@ -4,6 +4,8 @@ using Domic.Core.UseCase.Exceptions;
 using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Domic.UseCase.UserUseCase.Commands.Create;
+using Domic.UseCase.UserUseCase.Commands.ForgotPasswordOtpGeneration;
+using Domic.UseCase.UserUseCase.Commands.ForgotPasswordOtpVerification;
 using Domic.UseCase.UserUseCase.Commands.OtpGeneration;
 using Domic.UseCase.UserUseCase.Commands.OtpVerification;
 using Domic.UseCase.UserUseCase.Commands.SignIn;
@@ -84,6 +86,40 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
+    [Route(Route.ForgotPasswordOtpGenerationUserUrl)]
+    public async Task<IActionResult> ForgotPasswordOtpGeneration([FromBody] ForgotPasswordOtpGenerationCommand command,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync(command, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [Route(Route.ForgotPasswordOtpVerificationUserUrl)]
+    public async Task<IActionResult> ForgotPasswordOtpGeneration([FromBody] ForgotPasswordOtpVerificationCommand command,
+        CancellationToken cancellationToken
+    )
+    {
+        var result = await mediator.DispatchAsync(command, cancellationToken);
+
+        return HttpContext.OkResponse(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
     [Route(Route.SignUpStudentUrl)]
     public async Task<IActionResult> SignUpStudent([FromBody] CreateCommand command, CancellationToken cancellationToken)
     {
@@ -91,8 +127,8 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
 
         command.FirstName = "کاربری";
         command.LastName = "عادی";
+        command.Username = command.PhoneNumber;
         command.EMail = "email@gmail.com";
-        command.Password = "password";
         command.Description = "کاربر عادی عضو سامانه | این کاربران توانایی دسترسی به دوره های خریداری شده خود، تراکنش های بانکی و ویرایش پروفایل خود را دارند";
 
         var guestRole = await mediator.DispatchAsync(new ReadAllPaginatedQuery { SearchText = "Guest" }, cancellationToken);
