@@ -1,12 +1,11 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.UserUseCase.Contracts.Interfaces;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.ForgotPasswordOtpGeneration;
-using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration;
 
 namespace Domic.UseCase.UserUseCase.Commands.ForgotPasswordOtpGeneration;
 
 public class ForgotPasswordOtpGenerationCommandHandler(IUserRpcWebRequest userRpcWebRequest) 
-    : ICommandHandler<ForgotPasswordOtpGenerationCommand, OtpGenerationResponse>
+    : ICommandHandler<ForgotPasswordOtpGenerationCommand, ForgotPasswordOtpGenerationResponse>
 {
     public Task BeforeHandleAsync(ForgotPasswordOtpGenerationCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;

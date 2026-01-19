@@ -352,7 +352,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         if(!string.IsNullOrEmpty(token))
             metaData.Add(Header.Token, token);
         
-        if(isIdempotent == false)
+        if(!isIdempotent)
             metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
         
         return ( metaData, new UserService.UserServiceClient(_channel) );
@@ -374,7 +374,7 @@ public class UserRpcWebRequest : IUserRpcWebRequest
             { Header.License , await secretKeyTask }
         };
         
-        if(isIdempotent == false)
+        if(!isIdempotent)
             metaData.Add(Header.IdempotentKey, Guid.NewGuid().ToString());
         
         return ( metaData, new IdentityService.IdentityServiceClient(_channel) );
