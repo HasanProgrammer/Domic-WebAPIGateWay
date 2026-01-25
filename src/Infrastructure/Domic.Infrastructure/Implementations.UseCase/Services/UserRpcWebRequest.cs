@@ -219,11 +219,11 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         ForgotPasswordOtpGenerationCommand request, CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(false, cancellationToken);
 
         var payload = new EmailOtpGenerationRequest();
         
-        payload.EmailAddress = !string.IsNullOrEmpty(request.EmailAddress) ? new AuthString { Value = request.EmailAddress } : default;
+        payload.EmailAddress = !string.IsNullOrEmpty(request.EmailAddress) ? new String { Value = request.EmailAddress } : default;
         
         var result =
             await loadData.client.EmailOtpGenerationAsync(
@@ -241,13 +241,13 @@ public class UserRpcWebRequest : IUserRpcWebRequest
         ForgotPasswordOtpVerificationCommand request, CancellationToken cancellationToken
     )
     {
-        var loadData = await _loadGrpcChannelForAuthServiceAsync(false, cancellationToken);
+        var loadData = await _loadGrpcChannelForUserServiceAsync(false, cancellationToken);
 
         ResetPasswordRequest payload = new();
         
-        payload.EmailAddress = !string.IsNullOrEmpty(request.EmailAddress) ? new AuthString { Value = request.EmailAddress } : default;
-        payload.EmailCode    = !string.IsNullOrEmpty(request.EmailCode)    ? new AuthString { Value = request.EmailCode }    : default;
-        payload.NewPassword  = !string.IsNullOrEmpty(request.NewPassword)  ? new AuthString { Value = request.NewPassword }  : default;
+        payload.EmailAddress = !string.IsNullOrEmpty(request.EmailAddress) ? new String { Value = request.EmailAddress } : default;
+        payload.EmailCode    = !string.IsNullOrEmpty(request.EmailCode)    ? new String { Value = request.EmailCode }    : default;
+        payload.NewPassword  = !string.IsNullOrEmpty(request.NewPassword)  ? new String { Value = request.NewPassword }  : default;
         
         var result =
             await loadData.client.ResetPasswordAsync(payload, headers: loadData.headers, cancellationToken: cancellationToken);
