@@ -102,7 +102,7 @@ public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IId
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpPatch]
     [Route(Route.ForgotPasswordOtpVerificationUserUrl)]
     public async Task<IActionResult> ForgotPasswordOtpGeneration([FromBody] ForgotPasswordOtpVerificationCommand command,
         CancellationToken cancellationToken
