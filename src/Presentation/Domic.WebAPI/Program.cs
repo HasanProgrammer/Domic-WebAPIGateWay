@@ -66,7 +66,7 @@ builder.Services.AddRateLimiter(options => {
         
         var payload = new {
             Code = StatusCodes.Status429TooManyRequests,
-            Message = "شما بیش از حد مجاز و در محدوده زمانی مشخص درخواست ارسال کرده اید! ( حد مجاز : 10 درخواست در دقیقه )",
+            Message = "شما بیش از حد مجاز و در محدوده زمانی مشخص درخواست ارسال کرده اید! ( حد مجاز : 50 درخواست در دقیقه )",
             Body = new {}
         };
 
@@ -80,10 +80,10 @@ builder.Services.AddRateLimiter(options => {
         RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip",
             factory: _ => new FixedWindowRateLimiterOptions {
-                PermitLimit = 10,
+                PermitLimit = 100,
                 Window = TimeSpan.FromMinutes(1),
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                QueueLimit = 0 
+                QueueLimit = 0
             }
         )
     );
