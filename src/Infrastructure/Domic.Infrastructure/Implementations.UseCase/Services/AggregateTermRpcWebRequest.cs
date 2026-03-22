@@ -8,6 +8,8 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Infrastructure.Extensions;
 using Domic.UseCase.AggregateTermUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTermUseCase.DTOs;
+using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.LandingReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.Queries.LandingReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
@@ -77,6 +79,37 @@ public class AggregateTermRpcWebRequest(
             Message = result.Message ,
             Body    = new ReadAllPaginatedResponseBody {
                 Terms = result.Body.Terms.DeSerialize<PaginatedCollection<AggregateTermDto>>()
+            }
+        };
+    }
+
+    public async Task<LandingReadAllPaginatedResponse> LandingReadAllPaginatedAsync(
+        LandingReadAllPaginatedQuery request, CancellationToken cancellationToken
+    )
+    {
+        var loadData = await _loadGrpcChannelAsync(true, cancellationToken);
+        
+        ReadAllPaginatedRequest payload = new() {
+            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
+            CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
+        };
+
+        payload.Active     = request.Active;
+        payload.Sort       = new Int32 { Value = request.Sort };
+        payload.CategoryId = !string.IsNullOrEmpty(request.CategoryId) ? new String { Value = request.CategoryId } : null;
+        payload.UserId     = !string.IsNullOrEmpty(request.UserId)     ? new String { Value = request.UserId }     : null;
+        payload.SearchText = !string.IsNullOrEmpty(request.SearchText) ? new String { Value = request.SearchText } : null;
+
+        var result =
+            await loadData.client.ReadAllPaginatedAsync(payload, cancellationToken: cancellationToken,
+                headers: loadData.headers
+            );
+        
+        return new() {
+            Code    = result.Code    ,
+            Message = result.Message ,
+            Body    = new LandingReadAllPaginatedResponseBody {
+                Terms = result.Body.Terms.DeSerialize<PaginatedCollection<LandingAggregateTermDto>>()
             }
         };
     }

@@ -1,7 +1,7 @@
 ﻿using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.LandingReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.DTOs.GRPCs.ReadOne;
-using Domic.UseCase.AggregateTermUseCase.Queries.ReadAllPaginated;
+using Domic.UseCase.AggregateTermUseCase.Queries.LandingReadAllPaginated;
 using Domic.UseCase.AggregateTermUseCase.Queries.ReadOne;
 using Domic.WebAPI.DTOs;
 using Domic.WebAPI.Frameworks.Extensions;
@@ -43,7 +43,7 @@ public class TeacherController(IMediator mediator) : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        var query = new ReadAllPaginatedQuery {
+        var query = new LandingReadAllPaginatedQuery {
             PageNumber = dto.PageNumber,
             CountPerPage = dto.CountPerPage,
             Sort = (int)dto.Sort,
@@ -53,7 +53,7 @@ public class TeacherController(IMediator mediator) : ControllerBase
             Active = true
         };
         
-        var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
+        var result = await mediator.DispatchAsync<LandingReadAllPaginatedResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
     }
