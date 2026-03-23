@@ -16,7 +16,7 @@ using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpGeneration;
 using Domic.UseCase.UserUseCase.DTOs.GRPCs.OtpVerification;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.RateLimiting;
 using CreateResponse                  = Domic.UseCase.UserUseCase.DTOs.GRPCs.Create.CreateResponse;
 using UpdateResponse                  = Domic.UseCase.UserUseCase.DTOs.GRPCs.Update.UpdateResponse;
 using ReadAllPermissionPaginatedQuery = Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated.ReadAllPaginatedQuery;
@@ -28,6 +28,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [ApiExplorerSettings(GroupName = "Home/User")]
 [ApiVersion("1.0")]
 [Route(Route.BaseHomeUrl + Route.BaseUserUrl)]
+[EnableRateLimiting("AuthThrottling")]
 public class UserController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) : ControllerBase
 {
     /// <summary>

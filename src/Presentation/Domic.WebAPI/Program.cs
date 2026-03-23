@@ -56,27 +56,11 @@ builder.Services.AddCustomSwagger();
 builder.Services.Configure<FormOptions>(options => {
     options.MultipartBodyLengthLimit = long.MaxValue;
 });
-builder.Services.AddRateLimiter(options => {
-    
-    options.RejectionStatusCode = StatusCodes.Status200OK;
-    
-    options.OnRejected = async (context, cancellationToken) => {
-        
-        context.HttpContext.Response.ContentType = "application/json";
-        
-        var payload = new {
-            Code = StatusCodes.Status429TooManyRequests,
-            Message = "شما بیش از حد مجاز و در محدوده زمانی مشخص درخواست ارسال کرده اید! ( حد مجاز : 50 درخواست در دقیقه )",
-            Body = new {}
-        };
+builder.Services.AddRateLimiter(options =>
+{
 
-        await context.HttpContext.Response.WriteAsync(
-            payload.Serialize(), Encoding.UTF8, cancellationToken
-        );
-        
-    };
-    
-    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext => 
+    //for global throttling
+    /*options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
         RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip",
             factory: _ => new FixedWindowRateLimiterOptions {
@@ -86,7 +70,46 @@ builder.Services.AddRateLimiter(options => {
                 QueueLimit = 0
             }
         )
-    );
+    );*/
+    
+    //for specifice throttling
+    
+    #region PolicyThrottling
+
+    options.AddPolicy("AuthThrottling", context =>
+    {
+        
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip",
+            factory: _ => new FixedWindowRateLimiterOptions {
+                PermitLimit = 3,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }
+        );
+        
+    });
+
+    #endregion
+    
+    options.RejectionStatusCode = StatusCodes.Status200OK;
+    
+    options.OnRejected = async (context, cancellationToken) => {
+        
+        context.HttpContext.Response.ContentType = "application/json";
+        
+        var payload = new {
+            Code = StatusCodes.Status429TooManyRequests,
+            Message = "شما بیش از حد مجاز و در محدوده زمانی مشخص درخواست ارسال کرده اید!",
+            Body = new {}
+        };
+
+        await context.HttpContext.Response.WriteAsync(
+            payload.Serialize(), Encoding.UTF8, cancellationToken
+        );
+        
+    };
     
 });
 
