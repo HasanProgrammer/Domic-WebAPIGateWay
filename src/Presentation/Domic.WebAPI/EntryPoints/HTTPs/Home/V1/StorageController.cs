@@ -4,7 +4,7 @@ using Domic.Core.Common.ClassExtensions;
 using Domic.WebAPI.Frameworks.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.RateLimiting;
 using Route   = Domic.Common.ClassConsts.Route;
 using ILogger = Domic.Core.UseCase.Contracts.Interfaces.ILogger;
 
@@ -14,6 +14,7 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.Home.V1;
 [ApiExplorerSettings(GroupName = "Home/Storage")]
 [Route($"{Route.BaseHomeUrl}{Route.BaseStorageUrl}")]
 [ApiVersion("1.0")]
+[EnableRateLimiting("PublicUploadThrottling")]
 public class StorageController(IConfiguration configuration, IWebHostEnvironment hostEnvironment,
     ILogger logger
 ) : ControllerBase

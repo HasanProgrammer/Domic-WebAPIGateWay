@@ -90,6 +90,21 @@ builder.Services.AddRateLimiter(options =>
         );
         
     });
+    
+    options.AddPolicy("PublicUploadThrottling", context =>
+    {
+        
+        return RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip",
+            factory: _ => new FixedWindowRateLimiterOptions {
+                PermitLimit = 2,
+                Window = TimeSpan.FromMinutes(5),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }
+        );
+        
+    });
 
     #endregion
     
