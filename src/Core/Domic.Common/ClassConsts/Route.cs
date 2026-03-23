@@ -162,7 +162,7 @@ public partial class Route
     public const string ActiveVideoUrl           = "active/{Id}";
     public const string InActiveVideoUrl         = "inactive/{Id}";
     public const string UpdateVideoUrl           = "";
-    public const string DeleteVideoUrl           = "";
+    public const string DeleteVideoUrl           = "{Id}";
 }
 
 //TermComment ( CommentService | Command )
