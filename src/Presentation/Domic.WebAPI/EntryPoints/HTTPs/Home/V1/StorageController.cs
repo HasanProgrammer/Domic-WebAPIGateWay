@@ -44,10 +44,8 @@ public class StorageController(IConfiguration configuration, IWebHostEnvironment
         await Request.Body?.CopyToAsync(stream, cancellationToken);
 
         logger.RecordAsync(Guid.NewGuid().ToString(), "WebAPIGateWay", filePath, cancellationToken);
-        
-        var uploadPath = hostEnvironment.IsDevelopment()
-            ? filePath.Replace("Storages", "")
-            : filePath.Split("Storages")[1];
+
+        var uploadPath = filePath.Split("Storages")[1];
 
         return HttpContext.OkResponse(
             new {
