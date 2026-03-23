@@ -12,7 +12,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, CreateRespons
         => _roleRpcWebRequest = roleRpcWebRequest;
 
     public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
-
     
     public Task<CreateResponse> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
         => _roleRpcWebRequest.CreateAsync(command, cancellationToken);
