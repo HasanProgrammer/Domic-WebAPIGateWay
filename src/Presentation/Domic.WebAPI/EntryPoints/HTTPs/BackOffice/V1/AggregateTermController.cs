@@ -55,13 +55,16 @@ public class AggregateTermController(IMediator mediator, [FromKeyedServices("Htt
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize(Roles = "SuperAdmin,Admin,Teacher")]
     [Route(Route.ReadAllPaginatedAggregateTermUrl)]
   //[PermissionPolicy(Type = "AggregateTerm.ReadAllTermsPaginated")]
     public async Task<IActionResult> ReadAllTermsPaginated([FromQuery] ReadAllPaginatedQuery query,
         CancellationToken cancellationToken
     )
     {
+        if(!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            query.UserId = identityUser.GetIdentity();
+        
         query.Active = false;
         
         var result = await mediator.DispatchAsync<ReadAllPaginatedResponse>(query, cancellationToken);
@@ -76,13 +79,18 @@ public class AggregateTermController(IMediator mediator, [FromKeyedServices("Htt
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize(Roles = "SuperAdmin,Admin,Teacher")]
     [Route(Route.ReadAllPaginatedAggregateSeasonUrl)]
     //[PermissionPolicy(Type = "AggregateTerm.ReadAllSeasonsPaginated")]
     public async Task<IActionResult> ReadAllSeasonsPaginated([FromQuery] ReadAllAggregateSeasonRequest query,
         CancellationToken cancellationToken
     )
     {
+        if(!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            query.UserId = identityUser.GetIdentity();
+        
+        //query.Active = false;
+        
         var result = await mediator.DispatchAsync<ReadAllAggregateSeasonResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
@@ -95,13 +103,18 @@ public class AggregateTermController(IMediator mediator, [FromKeyedServices("Htt
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize(Roles = "SuperAdmin,Admin,Teacher")]
     [Route(Route.ReadAllPaginatedAggregateVideoUrl)]
   //[PermissionPolicy(Type = "AggregateTerm.ReadAllVideosPaginated")]
     public async Task<IActionResult> ReadAllVideosPaginated([FromQuery] ReadAllAggregateVideoRequest query,
         CancellationToken cancellationToken
     )
     {
+        if(!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            query.UserId = identityUser.GetIdentity();
+        
+        query.Active = false;
+        
         var result = await mediator.DispatchAsync<ReadAllAggregateVideoResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);
@@ -114,13 +127,16 @@ public class AggregateTermController(IMediator mediator, [FromKeyedServices("Htt
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet]
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize(Roles = "SuperAdmin,Admin,Teacher")]
     [Route(Route.ReadAllPaginatedAggregateCampaignUrl)]
     //[PermissionPolicy(Type = "AggregateTerm.ReadAllCampaignsPaginated")]
     public async Task<IActionResult> ReadAllCampaignsPaginated([FromQuery] ReadAllAggregateCampaignRequest query,
         CancellationToken cancellationToken
     )
     {
+        if(!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
+            query.UserId = identityUser.GetIdentity();
+        
         var result = await mediator.DispatchAsync<ReadAllAggregateCampaignResponse>(query, cancellationToken);
 
         return HttpContext.OkResponse(result);

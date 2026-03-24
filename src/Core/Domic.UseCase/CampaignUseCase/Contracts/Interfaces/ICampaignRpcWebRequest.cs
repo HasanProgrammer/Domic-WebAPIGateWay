@@ -12,6 +12,7 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.CampaignUseCase.Commands.Delete;
 using Domic.UseCase.CampaignUseCase.DTOs.GRPCs.Delete;
 
+
 namespace Domic.UseCase.CampaignUseCase.Contracts.Interfaces;
 
 public interface ICampaignRpcWebRequest : IRpcWebRequest

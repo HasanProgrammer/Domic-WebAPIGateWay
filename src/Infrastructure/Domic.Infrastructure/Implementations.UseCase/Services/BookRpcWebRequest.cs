@@ -84,7 +84,8 @@ public class BookRpcWebRequest(
     /*---------------------------------------------------------------*/
 
     private async Task<(Metadata headers, BookService.BookServiceClient client)> 
-        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken)
+        _loadGrpcChannelAsync(bool isIdempotent, CancellationToken cancellationToken
+    )
     {
         var targetServiceInstanceTask =
             serviceDiscovery.LoadAddressInMemoryAsync(Service.AggregateTermService, cancellationToken);

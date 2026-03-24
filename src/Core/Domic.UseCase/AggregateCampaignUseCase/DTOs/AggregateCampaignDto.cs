@@ -11,7 +11,7 @@ public class AggregateCampaignDto
     public string FrStartDate { get; set; }
     public string FrEndDate { get; set; }
     public DateTime EnCreatedAt { get; set; }
-    public DateTime EnUpdatedAt { get; set; }
+    public DateTime? EnUpdatedAt { get; set; }
     public string FrCreatedAt { get; set; }
     public string FrUpdatedAt { get; set; }
     public decimal DiscountPercentage { get; set; }

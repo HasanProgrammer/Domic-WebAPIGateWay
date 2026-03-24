@@ -1,4 +1,5 @@
-﻿using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.UseCase.CampaignUseCase.Commands.Active;
 using Domic.UseCase.CampaignUseCase.Commands.Create;
 using Domic.UseCase.CampaignUseCase.Commands.Delete;
@@ -23,7 +24,8 @@ namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 [ApiExplorerSettings(GroupName = "BackOffice/Campaign")]
 [ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseCampaignUrl)]
-public class CampaignController(IMediator mediator) : ControllerBase
+public class CampaignController(IMediator mediator, [FromKeyedServices("Http1")] IIdentityUser identityUser) 
+    : ControllerBase
 {
     /// <summary>
     /// 
