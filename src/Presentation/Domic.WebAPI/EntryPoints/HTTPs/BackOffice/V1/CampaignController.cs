@@ -20,7 +20,7 @@ using InActiveResponse  = Domic.UseCase.CampaignUseCase.DTOs.GRPCs.InActive.InAc
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[Authorize(Roles = "SuperAdmin,Admin")]
+[Authorize(Roles = "SuperAdmin,Admin,Teacher")]
 [ApiExplorerSettings(GroupName = "BackOffice/Campaign")]
 [ApiVersion("1.0")]
 [Route(Route.BaseBackOfficeUrl + Route.BaseCampaignUrl)]
