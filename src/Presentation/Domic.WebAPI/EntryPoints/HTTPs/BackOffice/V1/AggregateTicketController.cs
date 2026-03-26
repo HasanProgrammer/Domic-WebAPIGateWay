@@ -12,7 +12,7 @@ using ReadAllPaginatedResponse = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs
 
 namespace Domic.WebAPI.EntryPoints.HTTPs.BackOffice.V1;
 
-[Authorize(Roles = "SuperAdmin,Admin")]
+[Authorize(Roles = "SuperAdmin,Admin,Teacher")]
 [BlackListPolicy]
 [ApiExplorerSettings(GroupName = "BackOffice/AggregateTicket")]
 [ApiVersion("1.0")]

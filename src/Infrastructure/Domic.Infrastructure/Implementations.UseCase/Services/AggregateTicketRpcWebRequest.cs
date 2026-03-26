@@ -13,6 +13,7 @@ using Domic.UseCase.AggregateTicketUseCase.Contracts.Interfaces;
 using Domic.UseCase.AggregateTicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+
 using Int32                        = Domic.Core.AggregateTicket.Grpc.Int32;
 using ReadAllPaginatedResponse     = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
 using ReadAllPaginatedResponseBody = Domic.UseCase.AggregateTicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
@@ -67,8 +68,6 @@ public class AggregateTicketRpcWebRequest(
         };
 
         if (!identityUser.GetRoles().Contains("SuperAdmin") && !identityUser.GetRoles().Contains("Admin"))
-            payload.UserId = default;
-        else
             payload.UserId = new String { Value = identityUser.GetIdentity() };
 
         var result =

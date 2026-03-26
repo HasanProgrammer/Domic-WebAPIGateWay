@@ -1,7 +1,6 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using Domic.Core.Common.ClassConsts;
-using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.Ticket.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -10,27 +9,19 @@ using Domic.UseCase.TicketUseCase.Contracts.Interfaces;
 using Domic.UseCase.TicketUseCase.Commands.Update;
 using Domic.UseCase.TicketUseCase.Commands.Create;
 using Domic.UseCase.TicketUseCase.Commands.CreateComment;
-using Domic.UseCase.TicketUseCase.DTOs;
-using Domic.UseCase.TicketUseCase.Queries.ReadAllPaginated;
-using Domic.UseCase.TicketUseCase.Queries.ReadOne;
 using Microsoft.AspNetCore.Http;
-using String                       = Domic.Core.Ticket.Grpc.String;
-using Int32                        = Domic.Core.Ticket.Grpc.Int32;
-using ReadOneResponse              = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponse;
-using ReadOneResponseBody          = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadOne.ReadOneResponseBody;
-using CreateResponse               = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponse;
-using CreateResponseBody           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponseBody;
-using ReadAllPaginatedResponse     = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponse;
-using ReadAllPaginatedResponseBody = Domic.UseCase.TicketUseCase.DTOs.GRPCs.ReadAllPaginated.ReadAllPaginatedResponseBody;
-using UpdateResponse               = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponse;
-using UpdateResponseBody           = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
-using CheckExistRequest            = Domic.Core.Ticket.Grpc.CheckExistRequest;
-using CreateCommentResponse        = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponse;
-using CreateCommentResponseBody    = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponseBody;
-using CreateRequest                = Domic.Core.Ticket.Grpc.CreateRequest;
-using ReadAllPaginatedRequest      = Domic.Core.Ticket.Grpc.ReadAllPaginatedRequest;
-using ReadOneRequest               = Domic.Core.Ticket.Grpc.ReadOneRequest;
-using UpdateRequest                = Domic.Core.Ticket.Grpc.UpdateRequest;
+
+using String                    = Domic.Core.Ticket.Grpc.String;
+using Int32                     = Domic.Core.Ticket.Grpc.Int32;
+using CreateResponse            = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponse;
+using CreateResponseBody        = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Create.CreateResponseBody;
+using UpdateResponse            = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponse;
+using UpdateResponseBody        = Domic.UseCase.TicketUseCase.DTOs.GRPCs.Update.UpdateResponseBody;
+using CheckExistRequest         = Domic.Core.Ticket.Grpc.CheckExistRequest;
+using CreateCommentResponse     = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponse;
+using CreateCommentResponseBody = Domic.UseCase.TicketUseCase.DTOs.GRPCs.CreateComment.CreateCommentResponseBody;
+using CreateRequest             = Domic.Core.Ticket.Grpc.CreateRequest;
+using UpdateRequest             = Domic.Core.Ticket.Grpc.UpdateRequest;
 
 namespace Domic.Infrastructure.Implementations.UseCase.Services;
 
@@ -53,51 +44,6 @@ public class TicketRpcWebRequest(
             );
 
         return result.Result;
-    }
-
-    public async Task<ReadOneResponse> ReadOneAsync(ReadOneQuery request, CancellationToken cancellationToken)
-    {
-        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
-        
-        ReadOneRequest payload = new() {
-            TicketId = request.TicketId != null ? new String { Value = request.TicketId } : null
-        };
-
-        var result =
-            await loadData.client.ReadOneAsync(payload, headers: loadData.headers, 
-                cancellationToken: cancellationToken
-            );
-
-        return new() {
-            Code    = result.Code    ,
-            Message = result.Message ,
-            Body    = new ReadOneResponseBody { Ticket = result.Body.Ticket.DeSerialize<TicketsDto>() } 
-        };
-    }
-
-    public async Task<ReadAllPaginatedResponse> ReadAllPaginatedAsync(ReadAllPaginatedQuery request,
-        CancellationToken cancellationToken
-    )
-    {
-        var loadData = await _loadGrpcChannelAsync(false, cancellationToken);
-        
-        ReadAllPaginatedRequest payload = new() {
-            PageNumber   = request.PageNumber   != null ? new Int32 { Value = (int)request.PageNumber }   : null ,
-            CountPerPage = request.CountPerPage != null ? new Int32 { Value = (int)request.CountPerPage } : null
-        };
-        
-        var result =
-            await loadData.client.ReadAllPaginateAsync(payload, headers: loadData.headers, 
-                cancellationToken: cancellationToken
-            );
-        
-        return new() {
-            Code    = result.Code    ,
-            Message = result.Message ,
-            Body    = new ReadAllPaginatedResponseBody {
-                Tickets = result.Body.Tickets.DeSerialize<PaginatedCollection<TicketsDto>>()
-            }
-        };
     }
 
     public async Task<CreateResponse> CreateAsync(CreateCommand request, CancellationToken cancellationToken)
